@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html,
+body,
+:root {
+  height: 100%;
+}
+
+@layer base {
+    .form-item {
+        @apply flex flex-col gap-1.5;
+    }
+    
+    .form-label {
+        @apply text-14 w-full max-w-[280px] font-medium text-gray-700;
+    }
+
+    .form-message {
+        @apply text-12 text-red-500;
+    }
+
+    .form-btn {
+        @apply text-16 rounded-lg border border-bankGradient bg-bank-gradient font-semibold text-white shadow-form;
+    }
+
+    .form-link {
+        @apply text-14 cursor-pointer font-medium text-bankGradient;
+    }
+
+    /* Root Layout */
+   .root-layout {
+       @apply flex h-16 items-center justify-between p-5 shadow-creditCard sm:p-8 md:hidden;
+    }
+}
