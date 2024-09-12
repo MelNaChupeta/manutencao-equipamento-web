@@ -2,9 +2,9 @@
     <h1>Nova solicitação de manutenção</h1>
     <form (ngSubmit)="onSubmit()" class="flex flex-col gap-5 mt-7">
       <div class="flex flex-col gap-2">
-        <label for="descricaoEquipamento">Descrição do equipamento:</label>
+        <label class="label-form"  for="descricaoEquipamento">Descrição do equipamento:</label>
         <textarea
-          class="input"
+          class="input-form"
           id="descricaoEquipamento"
           name="descricaoEquipamento"
           [(ngModel)]="solicitacao.equipmentDescription"
@@ -13,9 +13,9 @@
       </div>
 
       <div class="flex flex-col gap-2">
-        <label for="categoria">Categoria do equipamento:</label>
+        <label class="label-form"  for="categoria">Categoria do equipamento:</label>
         <select
-          class="input"
+          class="input-form"
           id="categoria"
           name="categoria"
           [(ngModel)]="solicitacao.category"
@@ -31,9 +31,9 @@
       </div>
 
       <div class="flex flex-col gap-2">
-        <label for="descricaoDefeito">Descrição do defeito:</label>
+        <label  class="label-form" for="descricaoDefeito">Descrição do defeito:</label>
         <textarea
-          class="input"
+          class="input-form"
           id="descricaoDefeito"
           name="descricaoDefeito"
           [(ngModel)]="solicitacao.defectDescription"

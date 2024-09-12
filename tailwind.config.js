@@ -11,6 +11,7 @@ module.exports = {
     fontFamily: {
       sans: ["Inter", "sans-serif"],
       serif: ["Merriweather", "serif"],
+      verdana: ["Verdana"]
     },
     extend: {
       spacing: {
