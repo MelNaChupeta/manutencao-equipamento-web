@@ -16,12 +16,12 @@ export class HomeComponent {
       categoria: 'Notebook/laptop',
       dtHrCriacao: 'Thu Sep 12 2024 01:35:21 GMT-0300 (Brasilia Standard Time)',
       descricaoProblema: 'Derrubou líquido, agora o notebook não liga mais.',
-      estadoAtual: 'Aberta',
+      estadoAtual: 'aberta',
       historicoMovimentacao: [
         {
           dtHrMovimentacao:
             'Thu Sep 12 2024 01:35:21 GMT-0300 (Brasilia Standard Time)',
-          descricaoMovimentacao: 'Aberta',
+          descricaoMovimentacao: 'aberta',
         },
       ],
     },
@@ -32,17 +32,69 @@ export class HomeComponent {
       categoria: 'Celular',
       dtHrCriacao: 'Mon Sep 09 2024 14:55:09 GMT-0300 (Brasilia Standard Time)',
       descricaoProblema: 'Tela quebrada.',
-      estadoAtual: 'Orçada',
+      estadoAtual: 'orçada',
       historicoMovimentacao: [
         {
           dtHrMovimentacao:
             'Mon Sep 09 2024 14:55:09 GMT-0300 (Brasilia Standard Time)',
-          descricaoMovimentacao: 'Aberta',
+          descricaoMovimentacao: 'aberta',
         },
         {
           dtHrMovimentacao:
             'Wed Sep 11 2024 09:51:54 GMT-0300 (Brasilia Standard Time)',
-          descricaoMovimentacao: 'Orçada',
+          descricaoMovimentacao: 'orçada',
+        },
+      ],
+    },
+    {
+      id: 3,
+      equipamento: 'PlayStation 5',
+      descricaoEquipamento: 'PlayStation 5 branco com controle DualSense',
+      categoria: 'Console de videogame',
+      dtHrCriacao: 'Mon Sep 09 2024 14:55:09 GMT-0300 (Brasilia Standard Time)',
+      descricaoProblema: 'Conector de tomada com defeito.',
+      estadoAtual: 'aprovada',
+      historicoMovimentacao: [
+        {
+          dtHrMovimentacao:
+            'Mon Sep 09 2024 14:55:09 GMT-0300 (Brasilia Standard Time)',
+          descricaoMovimentacao: 'aberta',
+        },
+        {
+          dtHrMovimentacao:
+            'Wed Sep 11 2024 09:51:54 GMT-0300 (Brasilia Standard Time)',
+          descricaoMovimentacao: 'orçada',
+        },
+        {
+          dtHrMovimentacao:
+            'Wed Sep 12 2024 14:32:04 GMT-0300 (Brasilia Standard Time)',
+          descricaoMovimentacao: 'aprovada',
+        },
+      ],
+    },
+    {
+      id: 4,
+      equipamento: 'Samsung Galaxy S23',
+      descricaoEquipamento: 'Samsung Galaxy S23 5G 256GB Preto',
+      categoria: 'Celular',
+      dtHrCriacao: 'Mon Sep 08 2024 12:09:12 GMT-0300 (Brasilia Standard Time)',
+      descricaoProblema: 'Caiu na água e não liga mais.',
+      estadoAtual: 'rejeitada',
+      historicoMovimentacao: [
+        {
+          dtHrMovimentacao:
+            'Wed Sep 08 2024 12:09:12 GMT-0300 (Brasilia Standard Time)',
+          descricaoMovimentacao: 'aberta',
+        },
+        {
+          dtHrMovimentacao:
+            'Wed Sep 11 2024 16:23:35 GMT-0300 (Brasilia Standard Time)',
+          descricaoMovimentacao: 'orçada',
+        },
+        {
+          dtHrMovimentacao:
+            'Mon Sep 12 2024 19:53:41 GMT-0300 (Brasilia Standard Time)',
+          descricaoMovimentacao: 'rejeitada',
         },
       ],
     },
