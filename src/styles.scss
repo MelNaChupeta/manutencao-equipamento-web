@@ -12,16 +12,16 @@ body,
 
 @layer base {
     h1 {
-      @apply text-xl;
+      @apply text-3xl font-verdana uppercase;
     }
     h2 {
-      @apply text-lg;
+      @apply text-2xl font-verdana uppercase;
     }
     h3 {
-      @apply text-base;
+      @apply text-xl font-verdana uppercase;
     }
-    p {
-      @apply text-sm;
+    h4 {
+        @apply text-lg font-verdana uppercase
     }
     .main-content-container {
       @apply mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8;
@@ -46,13 +46,6 @@ body,
     }
     .btn-secondary-disabled {
       @apply bg-gray-100 text-gray-400 border border-gray-300 cursor-not-allowed opacity-50;
-    }
-
-    .pill-disabled {
-      @apply text-gray-400 bg-gray-400/25 hover:bg-gray-400/35 ring-gray-400/20 cursor-not-allowed flex-none rounded-full px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
-    }
-    .pill-purple {
-      @apply text-indigo-400 bg-indigo-400/10 hover:bg-indigo-400/20 ring-indigo-400/30 cursor-pointer flex-none rounded-full px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
     }
   
     .label-form {
