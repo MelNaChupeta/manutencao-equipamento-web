@@ -25,6 +25,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.svg",
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"

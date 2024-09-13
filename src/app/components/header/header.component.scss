@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+@layer base {
+    .menu-opened {
+        @apply absolute  md:top-10 md:max-w-56 sm:w-auto 
+    }
+    .menu-closed {
+        @apply hidden sm:w-full
+    }
+    .nav-opened {
+        @apply md:top-0 md:right-0 md:relative sm:absolute sm:top-10 sm:left-0
+    }
+    .nav-closed {
+        @apply sm:hidden
+    }
+}

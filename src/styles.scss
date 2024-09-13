@@ -12,25 +12,25 @@ body,
 
 @layer base {
     h1 {
-      @apply text-3xl font-verdana uppercase;
+      @apply text-3xl font-verdana;
     }
     h2 {
-      @apply text-2xl font-verdana uppercase;
+      @apply text-2xl font-verdana;
     }
     h3 {
-      @apply text-xl font-verdana uppercase;
+      @apply text-xl font-verdana;
     }
     h4 {
-        @apply text-lg font-verdana uppercase
+      @apply text-lg font-verdana;
     }
     .main-content-container {
-      @apply mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8;
+      @apply mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8;
     }
     .section-container {
       @apply mx-auto max-w-2xl;
     }
     .form-container {
-      @apply flex flex-col mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 border-2 px-12 py-8 rounded-2xl shadow-md shadow-slate-200;
+      @apply mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 border-2 px-12 py-8 rounded-2xl shadow-md shadow-slate-200;
     }
     .btn {
       @apply text-base font-medium rounded-lg px-3 py-2 my-2;

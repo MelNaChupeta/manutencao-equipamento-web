@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     </nav>
     <router-outlet />`,
   standalone: true,
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLink, RouterOutlet , HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
