@@ -1,35 +1,43 @@
 
 
+
 <nav class="border-indigo-200 bg-indigo-800 shadow-sm shadow-black">
-    <div class="max-w-screen-xl grid md:grid-cols-3 sm:grid-cols-2 items-center justify-between mx-auto p-4">
-        <a href="" class="flex justify-start items-center  rtl:space-x-reverse">
+    <div class="max-w-screen-xl grid md:grid-cols-3 grid-cols-2 items-center  mx-auto p-3 h-16">
+        <a href="" class="flex justify-start items-center col-span-1  rtl:space-x-reverse">
             <!--<img src="assets/logo.png" class="h-8 mr-4" alt="Manutencao logo" />-->
-            <h1 class="self-center text-white md:block sm:hidden">Manutenção de equipamentos</h1>
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white md:block hidden">Manuten&ccedil;&atilde;o Equipamentos</span>
         </a>
-        <div class="flex justify-end items-center md:order-2 space-x-3 sm:space-x-0 ">
-            <button #menuButton type="button" class="flex text-sm bg-indigo-800 rounded-full md:me-0 focus:ring-4 focus:ring-indigo-600" id="user-menu-button" (click)="toggleMenu()">
+        <div class="flex justify-end items-center col-span-1 md:order-2 md:space-x-3 space-x-0 ">
+            <button (click)="signin()" *ngIf="!user?.isAuthenticated" type="button" class="btn btn-primary mr-4 text-sm text-nowrap my-0" >
+               Cadastrar-se
+            </button>
+            <button (click)="login()"  *ngIf="!user?.isAuthenticated" type="button" class="btn btn-secondary text-sm text-nowrap my-0" >
+               Entrar
+            </button>
+            
+            <button (click)="toggleMenu()" *ngIf="user?.isAuthenticated" #menuButton type="button" class="flex text-sm bg-indigo-800 rounded-full md:me-0 focus:ring-4 focus:ring-indigo-600" id="user-menu-button" >
                 <span class="sr-only">Open user menu</span>
                 <img class="w-8 h-8 rounded-full" src="assets/user2.png" alt="user photo">
             </button>
-            <div #menu [ngClass]="{'menu-opened': menuActive, 'menu-closed': !menuActive}" class="z-50 absolute top-10  my-4 text-base list-none  divide-y  rounded-lg  bg-indigo-700 divide-indigo-600 shadow-sm shadow-gray-900 min-w-48" id="user-dropdown">
+            <div #menu *ngIf="user?.isAuthenticated" [ngClass]="{'menu-opened': menuActive, 'menu-closed': !menuActive}" class="z-50 absolute top-10  my-4 text-base list-none  divide-y  rounded-lg  bg-indigo-700 divide-indigo-600 shadow-sm shadow-gray-900 min-w-48" id="user-dropdown">
                 <div class="px-4 py-3">
-                    <span class="block text-sm text-white">Nome User</span>
-                    <span class="block text-sm   truncate text-indigo-400">email.user;gmail.com</span>
+                    <span class="block text-sm text-white">{{user.name}}</span>
+                    <span class="block text-sm   truncate text-indigo-400">{{user.email}}</span>
                 </div>
                 <ul class="py-2" aria-labelledby="user-menu-button">
                     <li>
                         <a href="#" class="block px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-white">
-                            <fa-icon [icon]="faGear"></fa-icon> Configurações
+                            <fa-icon [icon]="faGear"></fa-icon> Configura&ccedil;&otilde;es
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="block px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-white">
-                            <fa-icon [icon]="faSignOut"></fa-icon>Sair
+                        <a href="#" (click)="signout()" class="block px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-white">
+                            <fa-icon [icon]="faSignOut"></fa-icon> Sair
                         </a>
                     </li>
                 </ul>
             </div>
-                <button #navButton (click)="toggleNav()" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden  focus:outline-none focus:ring-2  text-indigo-400 hover:bg-indigo-700 focus:ring-indigo-600" aria-controls="navbar-user" aria-expanded="false">
+            <button #navButton (click)="toggleNav()" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden  focus:outline-none focus:ring-2  text-indigo-400 hover:bg-indigo-700 focus:ring-indigo-600" aria-controls="navbar-user" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
@@ -37,7 +45,7 @@
             </button>
         </div>
         <div #nav [ngClass]="{'nav-opened': navActive, 'nav-closed': !navActive}" class="items-center justify-end  w-full md:flex md:w-auto z-40" id="navbar-user">
-            <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border  rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  bg-indigo-800 md:bg-indigo-800 border-indigo-800">
+            <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border  rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  bg-indigo-600 md:bg-indigo-800 border-indigo-800">
                 <li>
                     <a href="#" class="block py-2 px-3  bg-blue-700 rounded md:bg-transparent  text-white md:p-0 md:hover:text-blue-500" aria-current="page">In&iacute;cio</a>
                 </li>
