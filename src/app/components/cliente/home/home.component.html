@@ -2,25 +2,33 @@
 <html>
   <body>
     <section class="bg-opacity-100 bg-gray-900">
-      <div class="mx-auto max-w-2xl px-6 py-16">
+      <div class="flex flex-col gap-y-6 mx-auto max-w-2xl px-6 py-16">
+        <h1 class="text-white px-6">Minhas solicitações</h1>
         <ul class="list-none m-0 p-0">
-          <li *ngFor="let solicitacao of solicitacoes" class="relative flex items-center py-4 gap-x-5">
+          <li
+            *ngFor="let solicitacao of solicitacoes"
+            class="relative flex items-center px-6 py-4 gap-x-5 border-b border-white/5 cursor-pointer hover:bg-gray-400/5"
+          >
             <div class="min-w-0 flex-auto">
               <!--info container-->
               <div class="flex items-center gap-x-3">
                 <div
                   class="text-opacity-100 fill-gray-500 bg-gray-500/5 rounded-full flex-none p-1"
                 >
-                  <div class="h-2 w-2 rounded-full" [ngClass]="{
-                    'bg-gray-500': solicitacao.estadoAtual === 'aberta',
-                    'bg-amber-900': solicitacao.estadoAtual === 'orçada',
-                    'bg-red-600': solicitacao.estadoAtual === 'rejeitada',
-                    'bg-yellow-300': solicitacao.estadoAtual === 'aprovada',
-                    'bg-purple-500': solicitacao.estadoAtual === 'redirecionada',
-                    'bg-blue-500': solicitacao.estadoAtual === 'arrumada',
-                    'bg-orange-400': solicitacao.estadoAtual === 'paga',
-                    'bg-green-500': solicitacao.estadoAtual === 'finalizada'
-                  }"></div>
+                  <div
+                    class="h-2 w-2 rounded-full"
+                    [ngClass]="{
+                      'bg-gray-500': solicitacao.estadoAtual === 'aberta',
+                      'bg-amber-900': solicitacao.estadoAtual === 'orçada',
+                      'bg-red-600': solicitacao.estadoAtual === 'rejeitada',
+                      'bg-yellow-300': solicitacao.estadoAtual === 'aprovada',
+                      'bg-purple-500':
+                        solicitacao.estadoAtual === 'redirecionada',
+                      'bg-blue-500': solicitacao.estadoAtual === 'arrumada',
+                      'bg-orange-400': solicitacao.estadoAtual === 'paga',
+                      'bg-green-500': solicitacao.estadoAtual === 'finalizada'
+                    }"
+                  ></div>
                 </div>
                 <h5
                   class="min-w-0 text-sm font-semibold leading-6 text-opacity-1 text-white"
@@ -31,7 +39,9 @@
                       >{{ solicitacao.equipamento }}</span
                     >
                     <span class="text-opacity-1 text-gray-400">/</span>
-                    <span class="whitespace-nowrap">Solicitação {{ solicitacao.estadoAtual }}</span>
+                    <span class="whitespace-nowrap"
+                      >Solicitação {{ solicitacao.estadoAtual }}</span
+                    >
                     <span class="absolute"></span>
                   </a>
                 </h5>
@@ -47,27 +57,38 @@
                 </svg>
                 <p class="whitespace-nowrap">Atualizada 2 dias atrás</p>
               </div>
-              <p class="overflow-hidden text-ellipsis whitespace-nowrap text-sm text-gray-400">{{ solicitacao.descricaoEquipamento }}</p>
+              <p
+                class="overflow-hidden text-ellipsis whitespace-nowrap text-sm text-gray-400"
+              >
+                {{ solicitacao.descricaoEquipamento }}
+              </p>
             </div>
             <div
-              class="text-opacity-1 text-gray-400 bg-gray-400/25 ring-gray-400/20 flex-none rounded-full px-4 py-2 text-sm leading-4 font-medium ring-inset"
+              class="pill-purple"
             >
               <!--badge-->
               Aprovar
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-              class="w-5 h-5 flex-none text-opacity-1 text-gray-400"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
+            <div class="flex flex-row gap-x-1">
+              <p
+                class="text-sm leading-5 text-opacity-1 text-gray-400 overflow-hidden text-ellipsis whitespace-nowrap"
+              >
+                Visualizar
+              </p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+                class="w-5 h-5 flex-none text-opacity-1 text-gray-400"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
           </li>
         </ul>
       </div>
