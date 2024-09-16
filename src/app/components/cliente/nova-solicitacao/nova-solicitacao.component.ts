@@ -5,9 +5,9 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-nova-solicitacao',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './nova-solicitacao.component.html',
-  styleUrl: './nova-solicitacao.component.scss'
+  styleUrl: './nova-solicitacao.component.scss',
 })
 export class NovaSolicitacaoComponent {
   solicitacao = {
@@ -38,14 +38,21 @@ export class NovaSolicitacaoComponent {
   solicitacaoEnviada = false;
 
   onSubmit() {
+    if (
+      !this.solicitacao.equipmentDescription ||
+      !this.solicitacao.defectDescription
+    )
+      return;
+
     this.solicitacao.datetime = new Date();
-    
-    this.solicitacaoSend.category = this.solicitacao.category
-    this.solicitacaoSend.equipmentDescription = this.solicitacao.equipmentDescription
-    this.solicitacaoSend.defectDescription = this.solicitacao.defectDescription
-    this.solicitacaoSend.status = this.solicitacao.status
-    this.solicitacaoSend.datetime = this.solicitacao.datetime
-    
+
+    this.solicitacaoSend.category = this.solicitacao.category;
+    this.solicitacaoSend.equipmentDescription =
+      this.solicitacao.equipmentDescription;
+    this.solicitacaoSend.defectDescription = this.solicitacao.defectDescription;
+    this.solicitacaoSend.status = this.solicitacao.status;
+    this.solicitacaoSend.datetime = this.solicitacao.datetime;
+
     this.solicitacaoEnviada = true;
 
     console.log('enviado isso:', this.solicitacao);
@@ -57,9 +64,5 @@ export class NovaSolicitacaoComponent {
       status: 'ABERTA',
       datetime: new Date(),
     };
-  
-
-
-
   }
 }
