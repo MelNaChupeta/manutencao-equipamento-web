@@ -1,63 +1,84 @@
-<div class="main-content-container">
-    <h1>Nova solicitação de manutenção</h1>
-    <form (ngSubmit)="onSubmit()" class="flex flex-col gap-5 mt-7">
-      <div class="flex flex-col gap-2">
-        <label class="label-form"  for="descricaoEquipamento">Descrição do equipamento:</label>
-        <textarea
-          class="input-form"
-          id="descricaoEquipamento"
-          name="descricaoEquipamento"
-          [(ngModel)]="solicitacao.equipmentDescription"
-          required
-        ></textarea>
-      </div>
+<section
+  class="flex flex-col min-h-screen bg-opacity-100 bg-gray-900 justify-center items-center"
+>
+  <div class="max-w-screen-sm w-full flex flex-col">
+    <div class="flex flex-col gap-y-6">
+      <h2 class="text-white">Nova solicitação de manutenção</h2>
 
-      <div class="flex flex-col gap-2">
-        <label class="label-form"  for="categoria">Categoria do equipamento:</label>
-        <select
-          class="input-form"
-          id="categoria"
-          name="categoria"
-          [(ngModel)]="solicitacao.category"
-          required
-        >
-          <option
-            *ngFor="let categoria of categorias"
-            [value]="categoria.value"
+      <form (ngSubmit)="onSubmit()" class="flex flex-col gap-5">
+        <div class="flex flex-col gap-2">
+          <label class="text-white label-form" for="descricaoEquipamento"
+            >Descrição do equipamento:</label
           >
-            {{ categoria.label }}
-          </option>
-        </select>
-      </div>
+          <textarea
+            class="input-form"
+            id="descricaoEquipamento"
+            name="descricaoEquipamento"
+            [(ngModel)]="solicitacao.equipmentDescription"
+            required
+          ></textarea>
+        </div>
 
-      <div class="flex flex-col gap-2">
-        <label  class="label-form" for="descricaoDefeito">Descrição do defeito:</label>
-        <textarea
-          class="input-form"
-          id="descricaoDefeito"
-          name="descricaoDefeito"
-          [(ngModel)]="solicitacao.defectDescription"
-          required
-        ></textarea>
-      </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-white label-form" for="categoria"
+            >Categoria do equipamento:</label
+          >
+          <select
+            class="input-form"
+            id="categoria"
+            name="categoria"
+            [(ngModel)]="solicitacao.category"
+            required
+          >
+            <option
+              *ngFor="let categoria of categorias"
+              [value]="categoria.value"
+            >
+              {{ categoria.label }}
+            </option>
+          </select>
+        </div>
 
-      <button class="btn-primary mt-7" type="submit">Solicitar</button>
-    </form>
+        <div class="flex flex-col gap-2">
+          <label class="text-white label-form" for="descricaoDefeito"
+            >Descrição do defeito:</label
+          >
+          <textarea
+            class="input-form"
+            id="descricaoDefeito"
+            name="descricaoDefeito"
+            [(ngModel)]="solicitacao.defectDescription"
+            required
+          ></textarea>
+        </div>
 
-    <div *ngIf="solicitacaoEnviada" class="mt-5">
-      <h2>Solicitação Enviada!</h2>
-      <p>
-        <strong>Descrição do equipamento:</strong>
-        {{ solicitacaoSend.equipmentDescription }}
-      </p>
-      <p>
-        <strong>Categoria do equipamento:</strong> {{ solicitacaoSend.category }}
-      </p>
-      <p>
-        <strong>Descrição do defeito:</strong>
-        {{ solicitacaoSend.defectDescription }}
-      </p>
-      <p><strong>Estado:</strong> {{ solicitacaoSend.status }}</p>
-      <p><strong>Data e Hora:</strong> {{ solicitacaoSend.datetime | date:'dd/MM/yyyy HH:mm' }}</p>
+        <div class="flex flex-row-reverse">
+          <button class="btn btn-primary" type="submit">Solicitar</button>
+        </div>
+      </form>
+
+      <div *ngIf="solicitacaoEnviada" class="mt-5">
+        <h2 class="text-white">Solicitação Enviada!</h2>
+        <p class="text-white">
+          <strong>Descrição do equipamento:</strong>
+          {{ solicitacaoSend.equipmentDescription }}
+        </p>
+        <p class="text-white">
+          <strong>Categoria do equipamento:</strong>
+          {{ solicitacaoSend.category }}
+        </p>
+        <p class="text-white">
+          <strong>Descrição do defeito:</strong>
+          {{ solicitacaoSend.defectDescription }}
+        </p>
+        <p class="text-white">
+          <strong>Estado:</strong> {{ solicitacaoSend.status }}
+        </p>
+        <p class="text-white">
+          <strong>Data e Hora:</strong>
+          {{ solicitacaoSend.datetime | date : "dd/MM/yyyy HH:mm" }}
+        </p>
       </div>
+    </div>
   </div>
+</section>
