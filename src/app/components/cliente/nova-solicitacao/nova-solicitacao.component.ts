@@ -27,12 +27,16 @@ export class NovaSolicitacaoComponent {
   };
 
   categorias: { value: string; label: string }[] = [
-    { value: 'notebook', label: 'Notebook' },
+    { value: 'notebook', label: 'Notebook/laptop' },
     { value: 'desktop', label: 'Desktop' },
-    { value: 'impressora', label: 'Impressora' },
-    { value: 'mouse', label: 'Mouse' },
-    { value: 'teclado', label: 'Teclado' },
-    { value: 'microfone', label: 'Microfone' },
+    { value: 'celular', label: 'Celular' },
+    { value: 'tablet', label: 'Tablet' },
+    { value: 'periferico', label: 'Periférico' },
+    { value: 'camera', label: 'Câmera' },
+    { value: 'televisao', label: 'Televisão' },
+    { value: 'drone', label: 'Drone' },
+    { value: 'videogameConsole', label: 'Console de videogame' },
+    { value: 'videogameAcessorio', label: 'Acessório de videogame' },
   ];
 
   solicitacaoEnviada = false;
