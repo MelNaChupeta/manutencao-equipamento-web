@@ -3,9 +3,12 @@ import { CommonModule } from '@angular/common';
 
 export enum TipoEquipamento {
   notebook = 'Notebook/laptop',
+  desktop = 'Desktop',
   celular = 'Celular',
   tablet = 'Tablet',
-  periferico = 'Periférico',
+  impressora = 'Impressora',
+  mouse = 'Mouse',
+  teclado = 'Teclado',
   televisao = 'Televisão',
   camera = 'Câmera',
   drone = 'Drone',
@@ -27,7 +30,7 @@ export enum EstadoSolicitacao {
 
 export interface Movimentacao {
   dtHrMovimentacao: Date;
-  descricaoMovimentacao: EstadoSolicitacao;
+  estadoMovimentacao: EstadoSolicitacao;
 }
 
 export interface Solicitacao {
@@ -64,7 +67,7 @@ export class HomeComponent {
           dtHrMovimentacao: new Date(
             'Thu Sep 12 2024 01:35:21 GMT-0300 (Brasilia Standard Time)'
           ),
-          descricaoMovimentacao: EstadoSolicitacao.aberta,
+          estadoMovimentacao: EstadoSolicitacao.aberta,
         },
       ],
     },
@@ -83,13 +86,13 @@ export class HomeComponent {
           dtHrMovimentacao: new Date(
             'Mon Sep 09 2024 14:55:09 GMT-0300 (Brasilia Standard Time)'
           ),
-          descricaoMovimentacao: EstadoSolicitacao.aberta,
+          estadoMovimentacao: EstadoSolicitacao.aberta,
         },
         {
           dtHrMovimentacao: new Date(
             'Wed Sep 11 2024 09:51:54 GMT-0300 (Brasilia Standard Time)'
           ),
-          descricaoMovimentacao: EstadoSolicitacao.orcada,
+          estadoMovimentacao: EstadoSolicitacao.orcada,
         },
       ],
     },
@@ -108,19 +111,19 @@ export class HomeComponent {
           dtHrMovimentacao: new Date(
             'Mon Sep 09 2024 14:55:09 GMT-0300 (Brasilia Standard Time)'
           ),
-          descricaoMovimentacao: EstadoSolicitacao.aberta,
+          estadoMovimentacao: EstadoSolicitacao.aberta,
         },
         {
           dtHrMovimentacao: new Date(
             'Wed Sep 11 2024 09:51:54 GMT-0300 (Brasilia Standard Time)'
           ),
-          descricaoMovimentacao: EstadoSolicitacao.orcada,
+          estadoMovimentacao: EstadoSolicitacao.orcada,
         },
         {
           dtHrMovimentacao: new Date(
             'Wed Sep 12 2024 14:32:04 GMT-0300 (Brasilia Standard Time)'
           ),
-          descricaoMovimentacao: EstadoSolicitacao.aprovada,
+          estadoMovimentacao: EstadoSolicitacao.aprovada,
         },
       ],
     },
@@ -139,19 +142,19 @@ export class HomeComponent {
           dtHrMovimentacao: new Date(
             'Wed Sep 08 2024 12:09:12 GMT-0300 (Brasilia Standard Time)'
           ),
-          descricaoMovimentacao: EstadoSolicitacao.aberta,
+          estadoMovimentacao: EstadoSolicitacao.aberta,
         },
         {
           dtHrMovimentacao: new Date(
             'Wed Sep 11 2024 16:23:35 GMT-0300 (Brasilia Standard Time)'
           ),
-          descricaoMovimentacao: EstadoSolicitacao.orcada,
+          estadoMovimentacao: EstadoSolicitacao.orcada,
         },
         {
           dtHrMovimentacao: new Date(
             'Mon Sep 12 2024 19:53:41 GMT-0300 (Brasilia Standard Time)'
           ),
-          descricaoMovimentacao: EstadoSolicitacao.rejeitada,
+          estadoMovimentacao: EstadoSolicitacao.rejeitada,
         },
       ],
     },
