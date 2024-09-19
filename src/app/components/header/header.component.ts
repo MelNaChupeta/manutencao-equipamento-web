@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSignOut , faGear , faUser, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { User } from '../../models/user';
+import { UserService } from '../../services';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -25,16 +27,11 @@ export class HeaderComponent implements OnInit, OnDestroy{
   navActive:boolean = false;
   logged:boolean = false;
   
-  user: User = {
-    id: 1,
-    name: 'Matheus Wegner',
-    email: 'matheus.wegner@example.com',
-    perfil: 'CLIENT',
-    isAuthenticated: false
-  };
+  user: User = {};
 
-  constructor(private renderer: Renderer2) {
-    
+  constructor(private renderer: Renderer2, 
+              private userService: UserService,
+              private router: Router) {
   }
   
   ngOnInit(): void {
@@ -46,6 +43,10 @@ export class HeaderComponent implements OnInit, OnDestroy{
           this.menuActive=false;
           this.navActive=false;
       }
+    });
+    
+    this.userService.returnUser().subscribe((user) =>{
+      this.user = user;
     });
   } 
 
@@ -62,16 +63,15 @@ export class HeaderComponent implements OnInit, OnDestroy{
   }
 
   login(): void {
-    this.user.isAuthenticated = true;
+    this.router.navigate(["/login"]);
   }
 
   signin(): void {
-    this.user.isAuthenticated = true;
+    this.router.navigate(["/signup"]);
   }
 
   signout(): void {
-    this.menuActive = false;
-    this.navActive = false;
-    this.user.isAuthenticated = false;
+    this.userService.logout();
+    this.router.navigate(["/login"]);
   }
 }

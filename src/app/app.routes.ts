@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from '../app/guard/auth.guard';
 import { SignupComponent } from './components/cliente/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/cliente/home/home.component';
@@ -7,7 +8,8 @@ import { NovaSolicitacaoComponent } from './components/cliente/nova-solicitacao/
 export const routes: Routes = [
     {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate: [AuthGuard] 
     },
     {
         path: 'signup',
@@ -19,6 +21,7 @@ export const routes: Routes = [
     },
     {
         path: 'solicitacao',
-        component: NovaSolicitacaoComponent
+        component: NovaSolicitacaoComponent,
+        canActivate: [AuthGuard] 
     }
 ];
