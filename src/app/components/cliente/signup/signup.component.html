@@ -1,49 +1,166 @@
 <div class="main-content-container">
     <div class="section-container">
-        <h1>Cadastro</h1>
-        <form>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
             <div class="form-container">
+
+                <div class="w-full col-span-6 p-2 border-b-2 text-center relative">
+                    <h1>Cadastro</h1>
+                </div>
+
                 <div class="input-container-md">
                     <label class="label-form" for="cpf">CPF
-                        <input type="text" class="input-form" />
+                        <input 
+                            type="text" 
+                            class="input-form" 
+                            placeholder="000.000.000-00"
+                            mask="000.000.000-00"
+                            formControlName="cpf"
+                            [ngClass]="{'input-error': cpf?.invalid && cpf?.touched,}"
+                        />
                     </label>
+
+                    <span *ngIf="cpf?.invalid && cpf?.touched" class="error-message">
+                        Preencha corretamente o campo cpf
+                    </span>
+
                 </div>
 
                 <div class="input-container-md">
-                    <label class="label-form" for="nomeCompleto">Nome<input type="text" class="input-form" />
+                    <label class="label-form">Nome
+                        <input 
+                            type="text" 
+                            class="input-form" 
+                            placeholder="José da Silva"
+                            formControlName="nome"
+                            [ngClass]="{'input-error': nome?.invalid && nome?.touched,}"
+                        />
                     </label>
+
+                    <span *ngIf="nome?.invalid && nome?.touched" class="error-message">
+                        Preencha corretamente o campo nome
+                    </span>
+
                 </div>
 
                 <div class="input-container-md">
-                    <label class="label-form">E-mail<input type="email" class="input-form" />
+                    <label class="label-form">E-mail
+                        <input 
+                            type="email" 
+                            class="input-form" 
+                            placeholder="email@example.com"
+                            formControlName="email"
+                            [ngClass]="{'input-error': email?.invalid && email?.touched,}"
+                        />
                     </label>
+
+                    <span *ngIf="email?.invalid && email?.touched" class="error-message">
+                        Preencha corretamente o campo email
+                    </span>
+
                 </div>
 
                 <div class="input-container-md">
-                    <label class="label-form">Celular<input type="text" class="input-form" />
+                    <label class="label-form">Celular
+                        <input 
+                            type="text" 
+                            class="input-form"
+                            mask="(00) 0 0000-0000"
+                            placeholder="(00) 0 0000-0000" 
+                            formControlName="celular"
+                            [ngClass]="{'input-error': celular?.invalid && celular?.touched,}"
+                        />
                     </label>
+
+                    <span *ngIf="celular?.invalid && celular?.touched" class="error-message">
+                        Preencha corretamente o campo celular
+                    </span>
+
                 </div>
 
                 <div class="input-container-md">
-                    <label class="label-form">CEP<input type="text" class="input-form" />
+                    <label class="label-form">CEP
+                        <input 
+                            type="text" 
+                            class="input-form" 
+                            mask="00.000.000-0"
+                            placeholder="00.000.000-0"
+                            formControlName="cep"
+                            [ngClass]="{'input-error': cep?.invalid && cep?.touched,}"
+                        />
                     </label>
+
+                    <span *ngIf="cep?.invalid && cep?.touched" class="error-message">
+                        Preencha corretamente o campo cep
+                    </span>
+
                 </div>
 
                 <div class="input-container-md">
-                    <label class="label-form">Endereço<input type="text" class="input-form" />
+                    <label class="label-form">Endereço
+                        <input 
+                            type="text" 
+                            class="input-form"
+                            placeholder="Rua das Amoras 220"
+                            formControlName="endereco"
+                            [ngClass]="{'input-error': endereco?.invalid && endereco?.touched,}" 
+                        />
                     </label>
+                    
+                    <span *ngIf="endereco?.invalid && endereco?.touched" class="error-message">
+                        Preencha corretamente o campo endereço
+                    </span>
+
                 </div>
 
                 <div class="input-container-sm">
-                    <label class="label-form">Bairro<input type="text" class="input-form" /> </label>
+                    <label class="label-form">Bairro
+                        <input 
+                            type="text"
+                            class="input-form" 
+                            placeholder="Bairro Alto"
+                            formControlName="bairro"
+                            [ngClass]="{'input-error': bairro?.invalid && bairro?.touched,}"
+                        /> 
+                    </label>
+
+                    <span *ngIf="bairro?.invalid && bairro?.touched" class="error-message">
+                        Preencha corretamente o campo bairro
+                    </span>
+
                 </div>
 
                 <div class="input-container-sm">
-                    <label class="label-form">Cidade<input type="text" class="input-form" /> </label>
+                    <label class="label-form">Cidade
+                        <input 
+                            type="text" 
+                            class="input-form" 
+                            placeholder="Curitiba"
+                            formControlName="cidade"
+                            [ngClass]="{'input-error': cidade?.invalid && cidade?.touched,}"    
+                        /> 
+                    </label>
+
+                    <span *ngIf="cidade?.invalid && cidade?.touched" class="error-message">
+                        Preencha corretamente o campo cidade
+                    </span>
+
                 </div>
 
                 <div class="input-container-sm">
-                    <label class="label-form">Estado<input type="text" class="input-form" /> </label>
+                    <label class="label-form">Estado
+                        <input 
+                            type="text" 
+                            class="input-form" 
+                            placeholder="Paraná"
+                            formControlName="estado"
+                            [ngClass]="{'input-error': estado?.invalid && estado?.touched,}"    
+                        /> 
+                    </label>
+
+                    <span *ngIf="estado?.invalid && estado?.touched" class="error-message">
+                        Preencha corretamente o campo estado
+                    </span>
+
                 </div>
 
                 <div class="input-container-lg">
