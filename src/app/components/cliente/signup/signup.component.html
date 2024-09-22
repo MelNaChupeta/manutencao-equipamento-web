@@ -20,24 +20,24 @@
                     </label>
 
                     <span *ngIf="cpf?.invalid && cpf?.touched" class="error-message">
-                        Preencha corretamente o campo cpf
+                        CPF inválido!
                     </span>
 
                 </div>
 
                 <div class="input-container-md">
-                    <label class="label-form">Nome
+                    <label class="label-form">Nome completo
                         <input 
                             type="text" 
                             class="input-form" 
-                            placeholder="José da Silva"
+                            placeholder="Nome completo"
                             formControlName="nome"
                             [ngClass]="{'input-error': nome?.invalid && nome?.touched,}"
                         />
                     </label>
 
                     <span *ngIf="nome?.invalid && nome?.touched" class="error-message">
-                        Preencha corretamente o campo nome
+                        Nome incompleto!
                     </span>
 
                 </div>
@@ -47,20 +47,20 @@
                         <input 
                             type="email" 
                             class="input-form" 
-                            placeholder="email@example.com"
+                            placeholder="email@exemplo.com"
                             formControlName="email"
                             [ngClass]="{'input-error': email?.invalid && email?.touched,}"
                         />
                     </label>
 
                     <span *ngIf="email?.invalid && email?.touched" class="error-message">
-                        Preencha corretamente o campo email
+                        E-mail obrigatório!
                     </span>
 
                 </div>
 
                 <div class="input-container-md">
-                    <label class="label-form">Celular
+                    <label class="label-form">Celular com DDD
                         <input 
                             type="text" 
                             class="input-form"
@@ -72,7 +72,7 @@
                     </label>
 
                     <span *ngIf="celular?.invalid && celular?.touched" class="error-message">
-                        Preencha corretamente o campo celular
+                        Celular inválido!
                     </span>
 
                 </div>
@@ -82,15 +82,15 @@
                         <input 
                             type="text" 
                             class="input-form" 
-                            mask="00.000.000-0"
-                            placeholder="00.000.000-0"
+                            mask="00.000-000"
+                            placeholder="00.000-000"
                             formControlName="cep"
                             [ngClass]="{'input-error': cep?.invalid && cep?.touched,}"
                         />
                     </label>
 
                     <span *ngIf="cep?.invalid && cep?.touched" class="error-message">
-                        Preencha corretamente o campo cep
+                        CEP inválido!
                     </span>
 
                 </div>
@@ -100,14 +100,14 @@
                         <input 
                             type="text" 
                             class="input-form"
-                            placeholder="Rua das Amoras 220"
+                            placeholder="Logradouro"
                             formControlName="endereco"
                             [ngClass]="{'input-error': endereco?.invalid && endereco?.touched,}" 
                         />
                     </label>
                     
                     <span *ngIf="endereco?.invalid && endereco?.touched" class="error-message">
-                        Preencha corretamente o campo endereço
+                        Endereço inválido!
                     </span>
 
                 </div>
@@ -117,14 +117,14 @@
                         <input 
                             type="text"
                             class="input-form" 
-                            placeholder="Bairro Alto"
+                            placeholder="Bairro"
                             formControlName="bairro"
                             [ngClass]="{'input-error': bairro?.invalid && bairro?.touched,}"
                         /> 
                     </label>
 
                     <span *ngIf="bairro?.invalid && bairro?.touched" class="error-message">
-                        Preencha corretamente o campo bairro
+                        Bairro inválido!
                     </span>
 
                 </div>
@@ -134,7 +134,7 @@
                         <input 
                             type="text" 
                             class="input-form" 
-                            placeholder="Curitiba"
+                            placeholder="Cidade"
                             formControlName="cidade"
                             [ngClass]="{'input-error': cidade?.invalid && cidade?.touched,}"    
                         /> 
@@ -151,21 +151,21 @@
                         <input 
                             type="text" 
                             class="input-form" 
-                            placeholder="Paraná"
+                            placeholder="UF"
                             formControlName="estado"
                             [ngClass]="{'input-error': estado?.invalid && estado?.touched,}"    
                         /> 
                     </label>
 
                     <span *ngIf="estado?.invalid && estado?.touched" class="error-message">
-                        Preencha corretamente o campo estado
+                        Estado inválido!
                     </span>
 
                 </div>
 
                 <div class="input-container-lg">
                     <button type="submit" class="btn btn-primary w-full">
-                        Cadastrar
+                        Finaizar cadastro
                     </button>
                     <button type="submit" class="btn btn-secondary w-full">
                         Já tenho conta
