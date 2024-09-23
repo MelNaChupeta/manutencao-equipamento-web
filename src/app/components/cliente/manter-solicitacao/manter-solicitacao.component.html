@@ -1,0 +1,47 @@
+<section
+  class="flex flex-col min-h-screen bg-opacity-100 bg-gray-900 justify-center"
+>
+  <div
+    nfIf="solicitacao"
+    class="flex flex-col w-2/4 gap-y-6 mx-auto max-w-3xl px-6 py-16"
+  >
+    <div class="flex flex-row gap-6">
+      <h2 class="text-white text-2xl font-semibold p-0">
+        Solicitação #{{ solicitacao?.id }}
+      </h2>
+      <div class="pill-purple">
+        <!--badge-->
+        {{ solicitacao?.estadoAtual }}
+      </div>
+    </div>
+
+    <p class="text-gray-400 text-md">{{ solicitacao?.dtHrCriacao | date : "EEEE dd MMMM YYYY hh:mm a" : "pt-BR" }}</p>
+    <div
+      class="relative flex flex-row px-6 py-4 gap-x-4 border rounded-md bg-gray-400/5 border-white/5 cursor-pointer"
+    >
+      <div class="relative flex">
+        <img [ngSrc]="imagemControle" width="120" height="80" />
+      </div>
+      <div class="flex flex-col gap-y-1 justify-center">
+        <p class="text-gray-400 text-md px-6">Equipamento</p>
+        <p class="text-white text-lg font-semibold px-6 whitespace-nowrap">
+          {{ solicitacao?.equipamento }}
+        </p>
+        <p class="text-gray-400 px-6 whitespace-nowrap">{{ solicitacao?.categoria }}</p>
+      </div>
+    </div>
+    <div
+      class="relative flex flex-col px-6 py-4 gap-x-16 border rounded-md bg-gray-400/5 border-white/5"
+    >
+      <p class="text-gray-400 text-md">Atualizações</p>
+      <ul class="list-none m-0 p-0">
+        <li
+          *ngFor="let movimentacao of solicitacao?.historicoMovimentacao"
+          class="relative flex items-center px-6 py-4 gap-x-16"
+        >
+          <p class="text-white whitespace-nowrap">{{ movimentacao.estadoMovimentacao }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -6,16 +6,22 @@ import { HomeComponent } from './components/cliente/home/home.component';
 import { HomeStaffComponent } from './components/funcionario/home-staff/home-staff.component';
 import { EfetuarOrcamentoComponent } from './components/funcionario/efetuar-orcamento/efetuar-orcamento.component';
 import { NovaSolicitacaoComponent } from './components/cliente/nova-solicitacao/nova-solicitacao.component';
+import { ManterSolicitacaoComponent } from './components/cliente/manter-solicitacao/manter-solicitacao.component';
 
 export const routes: Routes = [
     {
-        path: '',
+        path: 'home',
         component: HomeComponent,
         canActivate: [AuthGuard] 
     },
     {
         path: 'home-staff',
         component: HomeStaffComponent,
+        canActivate: [AuthGuard] 
+    },
+    {
+        path: 'efetuar-orcamento',
+        component: EfetuarOrcamentoComponent,
         canActivate: [AuthGuard] 
     },
     {
@@ -32,8 +38,8 @@ export const routes: Routes = [
         canActivate: [AuthGuard] 
     },
     {
-        path: 'efetuar-orcamento',
-        component: EfetuarOrcamentoComponent,
-        canActivate: [AuthGuard] 
+        path: 'solicitacao/:idSolicitacao',
+        component: ManterSolicitacaoComponent,
+        canActivate: [AuthGuard]
     }
 ];

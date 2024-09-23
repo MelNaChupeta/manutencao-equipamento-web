@@ -1,28 +1,34 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../../services'; 
+import { AuthenticationService } from '../../services';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  isLoading:boolean = false;
-  isValidating:boolean = false;  
+  isLoading: boolean = false;
+  isValidating: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
-    private router: Router) {
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
     });
   }
 
@@ -43,31 +49,31 @@ export class LoginComponent {
     this.isLoading = true;
 
     const user = this.loginForm.value;
-    
-    this.authService.login(user.email,user.password).subscribe({
+
+    this.authService.login(user.email, user.password).subscribe({
       next: (response) => {
         setTimeout(() => {
           this.isLoading = false;
           this.isValidating = false;
-          this.router.navigate(['/']); 
-        },3000);
+          this.router.navigate(['/home']);
+        }, 3000);
       },
       error: (error) => {
         this.isLoading = false;
         this.isValidating = false;
-        this.router.navigate(['/']); 
-        
-        let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
+        this.router.navigate(['/home']);
+
+        let message =
+          'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
 
         if (error.status === 400) {
           message = 'Email ou senha inv&aacute;lidos.';
         } else if (error.status === 500 || error.status === 504) {
-          message = 'Erro interno do servidor , tente novamente mais tarde.';
+          message = 'Erro interno do servidor, tente novamente mais tarde.';
         } else if (error.status === 401) {
-          message = 'Aceeso n&atilde; autorizado.';
+          message = 'Acesso n&atilde;o autorizado.';
         }
-       
-      }
+      },
     });
   }
 }
