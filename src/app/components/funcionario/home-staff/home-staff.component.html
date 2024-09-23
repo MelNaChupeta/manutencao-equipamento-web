@@ -1,0 +1,77 @@
+<section
+  class="flex flex-col min-h-screen bg-opacity-100 bg-gray-900 justify-center"
+>
+  <div class="flex flex-col gap-y-6 mx-auto max-w-3xl px-6 py-16">
+    <div class="flex flex-row justify-between items-center px-6 py-4">
+      <h2 class="text-white">Solicitações em aberto:</h2>
+      <button class="pill-purple">
+        Ver todas
+      </button>
+
+    </div>
+    <ul class="list-none m-0 p-0">
+
+      <!-- TODO: adicionar id de cada um no router -->
+
+      <li
+        *ngFor="let solicitacao of solicitacoes"
+        [routerLink]="['/efetuar-orcamento']"
+        class="relative flex items-center px-6 py-4 gap-x-16 border-b border-white/5 cursor-pointer hover:bg-gray-400/5"
+      >
+        <div class="min-w-0 flex-auto">
+          <!--info container-->
+          <div class="flex items-center gap-x-3">
+            <h5
+              class="min-w-0 text-sm font-semibold leading-6 text-opacity-1 text-white"
+            >
+              <a class="flex gap-x-2 text-inherit">
+                <span class="overflow-hidden text-ellipsis whitespace-nowrap">
+                  {{
+                    solicitacao.productDescription.length > 30
+                      ? (solicitacao.productDescription | slice : 0 : 30) +
+                        "..."
+                      : solicitacao.productDescription
+                  }}
+                </span>
+              </a>
+            </h5>
+          </div>
+          
+          <p
+            class="overflow-hidden text-ellipsis whitespace-nowrap text-sm text-gray-400"
+          >
+            Cliente: {{ solicitacao.client }}
+          </p>
+
+          <p
+            class="overflow-hidden text-ellipsis whitespace-nowrap text-sm text-gray-400"
+          >
+            Aberta em {{ solicitacao.datetime | date : "dd/MM/yyyy" }} às
+            {{ solicitacao.datetime | date : "HH:mm:ss" }}
+          </p>
+        </div>
+
+        <div class="flex flex-row gap-x-1">
+          <p
+            class="text-sm leading-5 text-opacity-1 text-gray-400 overflow-hidden text-ellipsis whitespace-nowrap"
+          >
+            Efetuar Orçamento
+          </p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+            class="w-5 h-5 flex-none text-opacity-1 text-gray-400"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

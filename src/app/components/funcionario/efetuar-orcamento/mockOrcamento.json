@@ -1,0 +1,18 @@
+{
+  "client": {
+    "name": "Maria Silva Santos",
+    "cpf": "123.456.789-00",
+    "email": "um.email.aqui@gmail.com",
+    "address": "Rua xyz, numero 9000",
+    "phoneNumber": "4002-8922",
+    "cep": "80.000-000"
+  },
+  "product": {
+    "id": 8,
+    "datetime": "2024-09-20T10:30:00Z",
+    "status": "aberta",
+    "category": "notebook",
+    "equipmentDescription": "Notebook Dell Inspiron 15 com 16GB de RAM, placa de vídeo RTX 4090 Ti, processador Intel Core i9 de 13ª geração, SSD de 1TB, tela de 17 polegadas com resolução 4K, teclado retroiluminado, sistema operacional Windows 11 Pro, acabamento em alumínio, e bateria de longa duração de até 12 horas.",
+    "defectDescription": "A tela está completamente quebrada, com várias trincas visíveis. A placa-mãe foi danificada e apresenta sinais de queima, impossibilitando o funcionamento do sistema. O computador não liga, e após várias tentativas de reparo, foi constatado que a fonte de alimentação também está defeituosa e não fornece energia."
+  }
+}
