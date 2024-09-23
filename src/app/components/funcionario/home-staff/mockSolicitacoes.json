@@ -3,7 +3,7 @@
       "id": 1,
       "datetime": "2024-09-20T10:30:00Z",
       "client": "João Silva",
-      "productDescription": "Notebook Dell Inspiron 15",
+      "productDescription": "Notebook Dell Inspiron 15 com tela quebrada",
       "status": "aberta"
     },
     {
@@ -38,7 +38,7 @@
       "id": 6,
       "datetime": "2024-09-23T13:20:00Z",
       "client": "Juliana Almeida",
-      "productDescription": "Ultrabook Samsung Galaxy Book",
+      "productDescription": "Ultrabook Samsung Galaxy Book modelo 2024",
       "status": "aberta"
     }
   ]
