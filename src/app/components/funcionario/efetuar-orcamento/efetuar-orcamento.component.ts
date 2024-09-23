@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import mockOrcamento from './mockOrcamento.json';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 
 export enum TipoEquipamento {
   notebook = 'Notebook/laptop',
@@ -22,7 +23,13 @@ export enum TipoEquipamento {
 @Component({
   selector: 'app-efetuar-orcamento',
   standalone: true,
-  imports: [CommonModule, NgxMaskDirective, NgxMaskPipe, FormsModule],
+  imports: [
+    CommonModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
+    FormsModule,
+    RouterModule,
+  ],
   providers: [provideNgxMask()],
 
   templateUrl: './efetuar-orcamento.component.html',

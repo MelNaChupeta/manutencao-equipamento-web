@@ -10,8 +10,12 @@
 
     </div>
     <ul class="list-none m-0 p-0">
+
+      <!-- TODO: adicionar id de cada um no router -->
+
       <li
         *ngFor="let solicitacao of solicitacoes"
+        [routerLink]="['/efetuar-orcamento']"
         class="relative flex items-center px-6 py-4 gap-x-16 border-b border-white/5 cursor-pointer hover:bg-gray-400/5"
       >
         <div class="min-w-0 flex-auto">
