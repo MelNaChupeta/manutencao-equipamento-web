@@ -1,0 +1,45 @@
+[
+    {
+      "id": 1,
+      "datetime": "2024-09-20T10:30:00Z",
+      "client": "João Silva",
+      "productDescription": "Notebook Dell Inspiron 15",
+      "status": "aberta"
+    },
+    {
+      "id": 2,
+      "datetime": "2024-09-21T11:15:00Z",
+      "client": "Maria Oliveira",
+      "productDescription": "Desktop HP Pavilion",
+      "status": "aberta"
+    },
+    {
+      "id": 3,
+      "datetime": "2024-09-22T09:45:00Z",
+      "client": "Carlos Mendes",
+      "productDescription": "MacBook Pro 16",
+      "status": "aberta"
+    },
+    {
+      "id": 4,
+      "datetime": "2024-09-22T14:00:00Z",
+      "client": "Ana Costa",
+      "productDescription": "Notebook Lenovo IdeaPad",
+      "status": "aberta"
+    },
+    {
+      "id": 5,
+      "datetime": "2024-09-23T08:30:00Z",
+      "client": "Lucas Pereira",
+      "productDescription": "Desktop Asus ROG",
+      "status": "aberta"
+    },
+    {
+      "id": 6,
+      "datetime": "2024-09-23T13:20:00Z",
+      "client": "Juliana Almeida",
+      "productDescription": "Ultrabook Samsung Galaxy Book",
+      "status": "aberta"
+    }
+  ]
+  
