@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import mockOrcamento from './mockOrcamento.json';
+
 
 @Component({
   selector: 'app-efetuar-orcamento',
@@ -8,5 +10,7 @@ import { Component } from '@angular/core';
   styleUrl: './efetuar-orcamento.component.scss'
 })
 export class EfetuarOrcamentoComponent {
+
+  data = mockOrcamento
 
 }

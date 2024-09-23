@@ -2,39 +2,38 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import mockSolicitacoes from './mockSolicitacoes.json';
 
-export enum TipoEquipamento {
-  notebook = 'Notebook/laptop',
-  desktop = 'Desktop',
-  celular = 'Celular',
-  tablet = 'Tablet',
-  impressora = 'Impressora',
-  mouse = 'Mouse',
-  teclado = 'Teclado',
-  televisao = 'Televisão',
-  camera = 'Câmera',
-  drone = 'Drone',
-  videogameConsole = 'Console de videogame',
-  videogameAcessorio = 'Acessório de videogame',
-}
+// export enum TipoEquipamento {
+//   notebook = 'Notebook/laptop',
+//   desktop = 'Desktop',
+//   celular = 'Celular',
+//   tablet = 'Tablet',
+//   impressora = 'Impressora',
+//   mouse = 'Mouse',
+//   teclado = 'Teclado',
+//   televisao = 'Televisão',
+//   camera = 'Câmera',
+//   drone = 'Drone',
+//   videogameConsole = 'Console de videogame',
+//   videogameAcessorio = 'Acessório de videogame',
+// }
 
-export enum EstadoSolicitacao {
-  aberta = 'aberta',
-  orcada = 'orçada',
-  aprovada = 'aprovada',
-  rejeitada = 'rejeitada',
-  redirecionada = 'redirecionada',
-  arrumada = 'arrumada',
-  aguardandoPagamento = 'aguardando pagamento',
-  paga = 'paga',
-  finalizada = 'finalizada',
-}
+// export enum EstadoSolicitacao {
+//   aberta = 'aberta',
+//   orcada = 'orçada',
+//   aprovada = 'aprovada',
+//   rejeitada = 'rejeitada',
+//   redirecionada = 'redirecionada',
+//   arrumada = 'arrumada',
+//   aguardandoPagamento = 'aguardando pagamento',
+//   paga = 'paga',
+//   finalizada = 'finalizada',
+// }
 
-export interface Movimentacao {
-  dtHrMovimentacao: Date;
-  estadoMovimentacao: EstadoSolicitacao;
-}
+// export interface Movimentacao {
+//   dtHrMovimentacao: Date;
+//   estadoMovimentacao: EstadoSolicitacao;
+// }
 
-// OLD:
 
 // export interface Solicitacao {
 //   id: number;
@@ -64,10 +63,6 @@ export interface Solicitacao {
 })
 export class HomeStaffComponent {
   solicitacoes = mockSolicitacoes 
-
-  ngOnInit(): void {
-    console.log(this.solicitacoes); // Verifique se está mostrando os dados
-  }
 
 
   // shouldShowActionButton(solicitacao: Solicitacao): boolean {
