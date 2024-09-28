@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthenticationService } from '../../../services';
+import { ViaCepService } from '../../../services';
 import { ClienteService } from '../../../services/cliente.service';
 import { Router } from '@angular/router';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
-
+import { debounceTime, switchMap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -13,22 +16,25 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     ReactiveFormsModule,
     CommonModule, 
     NgxMaskDirective, 
-    NgxMaskPipe
+    NgxMaskPipe,
+    FontAwesomeModule
   ],
   providers: [provideNgxMask()],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
 
-export class SignupComponent {
+export class SignupComponent implements OnInit{
   signupForm: FormGroup;
   isValidating: boolean = false; 
   isLoading: boolean = false;
+  loadingCep:boolean = false;
+  faLoading:IconDefinition = faCircleNotch;
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthenticationService,
     private clienteService: ClienteService,
+    private viaCepService: ViaCepService,
     private router: Router){
       this.signupForm = this.fb.group({
         cpf: ['', [Validators.required]],
@@ -41,6 +47,30 @@ export class SignupComponent {
         cidade: ['', [Validators.required]],
         estado: ['', [Validators.required]]
       });
+  }
+  ngOnInit(): void {
+    this.signupForm.get("cep")?.valueChanges.pipe(
+      debounceTime(2000),
+      switchMap(value => {
+        if (value && value.length === 8) {
+          this.loadingCep = true;
+          return this.viaCepService.getAddress(value).pipe(
+            catchError(() => of({ erro: true }))
+          );
+        }
+        return of(null);
+      })
+    ).subscribe(data => {
+      this.loadingCep = false;
+      if (data && !data.erro) {
+        this.signupForm.patchValue({
+          endereco: data.logradouro,
+          bairro: data.bairro,
+          cidade: data.localidade,
+          estado: data.uf
+        });
+      }
+    });
   }
 
   get cpf(){

@@ -78,7 +78,7 @@
                 </div>
 
                 <div class="input-container-md">
-                    <label class="label-form">CEP
+                    <label class="label-form relative">CEP
                         <input 
                             type="text" 
                             class="input-form" 
@@ -87,8 +87,8 @@
                             formControlName="cep"
                             [ngClass]="{'input-error': cep?.invalid && cep?.touched,}"
                         />
+                        <fa-icon [icon]="faLoading" *ngIf="loadingCep"  animation="spin" class="absolute"></fa-icon>
                     </label>
-
                     <span *ngIf="cep?.invalid && cep?.touched" class="error-message">
                         CEP inválido!
                     </span>
