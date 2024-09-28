@@ -119,7 +119,7 @@ export class SignupComponent implements OnInit{
 
     const user = this.signupForm.value;
 
-    this.clienteService.signup(user.cpf, user.nome, user.email, user.celular, user.cep, user. endereco, user.bairro, user.cidade, user.estado).subscribe({
+    this.clienteService.signup(user).subscribe({
       next: (response) => {
         setTimeout(() => {
           this.isValidating = false;
