@@ -117,9 +117,9 @@ export class SignupComponent implements OnInit{
     this.isValidating = true;
     this.isLoading = true;
 
-    const user = this.signupForm.value;
+    const client = this.signupForm.value;
 
-    this.clienteService.signup(user).subscribe({
+    this.clienteService.signup(client).subscribe({
       next: (response) => {
         setTimeout(() => {
           this.isValidating = false;
