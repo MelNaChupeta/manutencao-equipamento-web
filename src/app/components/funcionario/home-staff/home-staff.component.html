@@ -4,7 +4,9 @@
   <div class="flex flex-col gap-y-6 mx-auto max-w-3xl px-6 py-16">
     <div class="flex flex-row justify-between items-center px-6 py-4">
       <h2 class="text-white">Solicitações em aberto:</h2>
-      <button class="pill-purple">Ver todas</button>
+      <button class="pill-purple" [routerLink]="['/ver-solicitacoes']">
+        Ver todas
+      </button>
     </div>
     <ul class="list-none m-0 p-0">
       <!-- TODO: adicionar id de cada um no router -->
