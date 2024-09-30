@@ -11,7 +11,9 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./ver-solicitacoes.component.scss'],
 })
 export class VerSolicitacoesComponent implements OnInit {
-  solicitacoes: any[] = mockVerSolicitacoes;  
+  constructor(private router: Router) {}
+
+  solicitacoes: any[] = mockVerSolicitacoes;
 
   estadoAcoes: { [key: string]: string } = {
     aberta: 'Efetuar Orçamento',
@@ -37,26 +39,17 @@ export class VerSolicitacoesComponent implements OnInit {
       const dateB = new Date(b.dtHrCriacao).getTime();
       return dateA - dateB;
     });
-
-    this.solicitacoes.forEach((solicitacao) => {
-      solicitacao.routerLink = this.getRouterLink(solicitacao);
-    });
-
-  
   }
 
-  getRouterLink(solicitacao: any): any[] {
-    switch (solicitacao.estadoAtual) {
-      case 'aberta':
-        return ['/efetuar-orcamento', solicitacao.id];
-      case 'aprovada':
-      case 'redirecionada':
-        return ['/efetuar-manutencao', solicitacao.id];
-      case 'paga':
-        return ['/finalizar-solicitacao', solicitacao.id];
-      default:
-        return [];
+  goTo(solicitacao: any) {
+    if (solicitacao.estadoAtual === 'aberta') {
+      this.router.navigate(['/efetuar-orcamento', solicitacao.id]);
+    } else if (solicitacao.estadoAtual === 'aprovada') {
+      this.router.navigate(['/efetuar-manutencao', solicitacao.id]);
+    } else if (solicitacao.estadoAtual === 'redirecionada') {
+      this.router.navigate(['/efetuar-manutencao', solicitacao.id]);
+    } else if (solicitacao.estadoAtual === 'paga') {
+      this.router.navigate(['/finalizar-solicitacao', solicitacao.id]);
     }
   }
-
 }
