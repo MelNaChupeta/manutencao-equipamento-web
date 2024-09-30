@@ -25,10 +25,10 @@
               <a class="flex gap-x-2 text-inherit">
                 <span class="overflow-hidden text-ellipsis whitespace-nowrap">
                   {{
-                    solicitacao.productDescription.length > 30
-                      ? (solicitacao.productDescription | slice : 0 : 30) +
+                    solicitacao.descricaoEquipamento.length > 30
+                      ? (solicitacao.descricaoEquipamento | slice : 0 : 30) +
                         "..."
-                      : solicitacao.productDescription
+                      : solicitacao.descricaoEquipamento
                   }}
                 </span>
               </a>
@@ -44,8 +44,8 @@
           <p
             class="overflow-hidden text-ellipsis whitespace-nowrap text-sm text-gray-400"
           >
-            Aberta em {{ solicitacao.datetime | date : "dd/MM/yyyy" }} às
-            {{ solicitacao.datetime | date : "HH:mm:ss" }}
+            Aberta em {{ solicitacao.dtHrCriacao | date : "dd/MM/yyyy" }} às
+            {{ solicitacao.dtHrCriacao | date : "HH:mm:ss" }}
           </p>
         </div>
 
