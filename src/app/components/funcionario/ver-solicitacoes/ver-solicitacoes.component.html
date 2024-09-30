@@ -3,35 +3,75 @@
 >
   <div class="flex flex-col gap-y-6 mx-auto max-w-3xl px-6 py-16">
     <h2 class="text-white px-6">Todas as solicitações</h2>
-    <div class="w-full flex flex-row px-6 py-4 gap-x-4 border rounded-md bg-gray-400/5 border-white/5">
+    <div
+      class="w-full flex flex-col px-6 py-4 gap-x-4 border rounded-md bg-gray-400/5 border-white/5"
+    >
       <fieldset>
         <legend class="text-sm text-gray-400">Filtrar:</legend>
-        
+
         <div class="pt-1">
-          <input type="radio" id="huey" name="drone" value="todos" checked />
+          <input
+            type="radio"
+            id="huey"
+            name="drone"
+            value="todos"
+            [(ngModel)]="filterType"
+          />
           <label for="huey" class="text-sm text-gray-400 px-3">Todos</label>
         </div>
-        
+
         <div class="pt-1">
-          <input type="radio" id="dewey" name="drone" value="hoje" />
-          <label for="dewey" class="text-sm text-gray-400 px-3">Hoje</label>
+          <input
+            type="radio"
+            id="dewey"
+            name="drone"
+            value="hoje"
+            [(ngModel)]="filterType"
+          />
+          <label for="dewey" class="text-sm text-gray-400 px-3"
+            >Abertos hoje</label
+          >
         </div>
-        
+
         <div class="pt-1">
-          <input type="radio" id="louie" name="drone" value="periodo" />
-          <label for="louie" class="text-sm text-gray-400 px-3">Período específico</label>
+          <input
+            type="radio"
+            id="louie"
+            name="drone"
+            value="periodo"
+            [(ngModel)]="filterType"
+          />
+          <label for="louie" class="text-sm text-gray-400 px-3"
+            >Período específico</label
+          >
         </div>
       </fieldset>
-      <!-- TODO: adicionar input de data -->
-      <!-- <input type="date" [(ngModel)]="dataInicio" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" /> -->
+      <!-- TODO: fazer essa joça funcionar -->
+      <div class="flex flex-row gap-3 p-3" *ngIf="filterType === 'periodo'">
+        <input
+          type="date"
+          [(ngModel)]="dataInicio"
+          [value]="dataInicio"
+          id="start"
+          name="date-start"
+          [max]="today"
+        />
+        <input
+          type="date"
+          [(ngModel)]="dataFim"
+          id="start"
+          [value]="dataFim"
+          name="date-start"
+          [max]="today"
+        />
+      </div>
     </div>
     <ul class="list-none m-0 p-0">
-
       <li
         *ngFor="let solicitacao of solicitacoes"
         (click)="goTo(solicitacao)"
         class="relative flex items-center px-6 py-4 gap-x-16 border-b border-white/5 cursor-pointer hover:bg-gray-400/5"
-        >
+      >
         <!-- [routerLink]="solicitacao.routerLink" -->
         <div class="min-w-0 flex-auto">
           <!--info container-->
