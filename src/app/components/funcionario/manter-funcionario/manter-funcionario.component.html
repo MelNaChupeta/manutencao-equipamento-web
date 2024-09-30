@@ -1,0 +1,118 @@
+<div class="main-content-container">
+    <div class="section-container">
+        <form [formGroup]="funcionarioForm" (ngSubmit)="onSubmit()">
+            <div class="form-container">
+
+                <div class="w-full col-span-6 p-2 border-b-2 text-center relative">
+                    <h1>Cadastro funcionários</h1>
+                </div>
+
+                <div class="input-container-md">
+                    <label class="label-form">Nome completo
+                        <input 
+                            type="text" 
+                            class="input-form" 
+                            placeholder="Nome completo"
+                            formControlName="nome"
+                            [ngClass]="{'input-error': nome?.invalid && nome?.touched,}"
+                        />
+                    </label>
+
+                    <span *ngIf="nome?.invalid && nome?.touched" class="error-message">
+                        Nome incompleto!
+                    </span>
+
+                </div>
+
+                <div class="input-container-md">
+                    <label class="label-form">E-mail
+                        <input 
+                            type="email" 
+                            class="input-form" 
+                            placeholder="email@exemplo.com"
+                            formControlName="email"
+                            [ngClass]="{'input-error': email?.invalid && email?.touched,}"
+                        />
+                    </label>
+
+                    <span *ngIf="email?.invalid && email?.touched" class="error-message">
+                        E-mail obrigatório!
+                    </span>
+                </div>
+
+                <div class="input-container-md">
+                    <label class="label-form">Data de Nascimento
+                        <input 
+                            type="date" 
+                            class="input-form"
+                            formControlName="dataNascimento"
+                            [ngClass]="{'input-error': dataNascimento?.invalid && dataNascimento?.touched,}"
+                        />
+                    </label>
+
+                    <span *ngIf="dataNascimento?.invalid && dataNascimento?.touched" class="error-message">
+                        Data inválida!
+                    </span>
+                </div>
+
+                <div class="input-container-md">
+                    <label class="label-form relative">Senha
+                        <input 
+                            type="password" 
+                            class="input-form" 
+                            formControlName="senha"
+                            placeholder="*********"
+                            [ngClass]="{'input-error': senha?.invalid && senha?.touched,}"
+                        />
+                    </label>
+                    <span *ngIf="senha?.invalid && senha?.touched" class="error-message">
+                        Senha inválida!
+                    </span>
+                </div>
+
+                <div class="input-container-lg">
+                    <!-- Botão Primario Cadastro -->
+                    <button type="submit" class="btn btn-primary w-full">
+                        Finalizar cadastro
+                    </button>
+                </div>
+
+                <!-- Exemplo botões -->
+                <div class="input-container-lg">
+                    <!-- Botão de adicionar -->
+                    <button class="btn btn-adicionar w-full">
+                        Adicionar
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+
+                    <!-- Botão de editar -->
+                    <button class="btn btn-editar w-full">
+                        Editar
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M17.414 2.586a2 2 0 00-2.828 0l-10 10a2 2 0 00-.586 1.414V16a1 1 0 001 1h2.828a2 2 0 001.414-.586l10-10a2 2 0 000-2.828zM15.5 3a.5.5 0 010 .707l-10 10a.5.5 0 01-.707 0l-2-2a.5.5 0 010-.707l10-10A.5.5 0 0115.5 3z" />
+                        </svg>
+                    </button>
+
+                    <!-- Botão de remover -->
+                    <button class="btn btn-remover w-full">
+                        Remover
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 8.586l-2.293 2.293a1 1 0 101.414 1.414L10 10.414l2.293 2.293a1 1 0 001.414-1.414L11.414 10l2.293-2.293a1 1 0 00-1.414-1.414L10 8.586z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <!--
+                    <button class="btn btn-remover w-full">
+                        Remover
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    -->
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
