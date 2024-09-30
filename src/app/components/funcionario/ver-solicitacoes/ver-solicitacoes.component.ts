@@ -11,7 +11,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./ver-solicitacoes.component.scss'],
 })
 export class VerSolicitacoesComponent implements OnInit {
-  solicitacoes: any[] = mockVerSolicitacoes;
+  solicitacoes: any[] = mockVerSolicitacoes;  
 
   estadoAcoes: { [key: string]: string } = {
     aberta: 'Efetuar Orçamento',
@@ -32,9 +32,17 @@ export class VerSolicitacoesComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.solicitacoes.sort((a, b) => {
+      const dateA = new Date(a.dtHrCriacao).getTime();
+      const dateB = new Date(b.dtHrCriacao).getTime();
+      return dateA - dateB;
+    });
+
     this.solicitacoes.forEach((solicitacao) => {
       solicitacao.routerLink = this.getRouterLink(solicitacao);
     });
+
+  
   }
 
   getRouterLink(solicitacao: any): any[] {
@@ -50,4 +58,5 @@ export class VerSolicitacoesComponent implements OnInit {
         return [];
     }
   }
+
 }
