@@ -22,6 +22,11 @@ export const routes: Routes = [
         canActivate: [AuthGuard] 
     },
     {
+        path: 'ver-solicitacoes',
+        component: VerSolicitacoesComponent,
+        canActivate: [AuthGuard] 
+    },
+    {
         path: 'efetuar-orcamento/:idSolicitacao',
         component: EfetuarOrcamentoComponent,
         canActivate: [AuthGuard] 
