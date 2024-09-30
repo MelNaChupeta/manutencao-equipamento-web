@@ -2,10 +2,11 @@
   class="flex flex-col min-h-screen bg-opacity-100 bg-gray-900 justify-center"
 >
   <div class="flex flex-col gap-y-6 mx-auto max-w-3xl px-6 py-16">
-    <h2 class="text-white px-6">Minhas solicitações</h2>
+    <h2 class="text-white px-6">Todas as solicitações</h2>
     <ul class="list-none m-0 p-0">
       <li
         *ngFor="let solicitacao of solicitacoes"
+        [routerLink]="solicitacao.routerLink"
         class="relative flex items-center px-6 py-4 gap-x-16 border-b border-white/5 cursor-pointer hover:bg-gray-400/5"
       >
         <div class="min-w-0 flex-auto">
@@ -16,17 +17,7 @@
             >
               <div
                 class="h-2 w-2 rounded-full"
-                [ngClass]="{
-                  'bg-gray-500': solicitacao.estadoAtual === 'aberta',
-                  'bg-amber-900': solicitacao.estadoAtual === 'orcada',
-                  'bg-red-600': solicitacao.estadoAtual === 'rejeitada',
-                  'bg-yellow-300': solicitacao.estadoAtual === 'aprovada',
-                  'bg-purple-500': solicitacao.estadoAtual === 'redirecionada',
-                  'bg-blue-500':
-                    solicitacao.estadoAtual === 'aguardandoPagamento',
-                  'bg-orange-400': solicitacao.estadoAtual === 'paga',
-                  'bg-green-500': solicitacao.estadoAtual === 'finalizada'
-                }"
+                [ngClass]="estadoCores[solicitacao.estadoAtual]"
               ></div>
             </div>
             <h5
