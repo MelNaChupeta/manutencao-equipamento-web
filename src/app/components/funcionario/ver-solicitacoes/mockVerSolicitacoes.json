@@ -53,7 +53,7 @@
       "dtHrCriacao": "2024-09-24T09:00:00Z",
       "client": "Fernanda Ribeiro",
       "descricaoEquipamento": "Notebook Acer Aspire com falha no teclado",
-      "estadoAtual": "aguardando pagamento"
+      "estadoAtual": "aguardandoPagamento"
     },
     {
       "id": 9,
@@ -81,7 +81,7 @@
       "dtHrCriacao": "2024-09-25T12:30:00Z",
       "client": "Paula Fonseca",
       "descricaoEquipamento": "Monitor LG UltraWide com falha de imagem",
-      "estadoAtual": "arrumada"
+      "estadoAtual": "redirecionada"
     },
     {
       "id": 13,
@@ -116,7 +116,7 @@
       "dtHrCriacao": "2024-09-27T09:30:00Z",
       "client": "Alberto Fernandes",
       "descricaoEquipamento": "MacBook Air M1 com falha no touchpad",
-      "estadoAtual": "aguardando pagamento"
+      "estadoAtual": "aguardandoPagamento"
     },
     {
       "id": 18,
