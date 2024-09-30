@@ -8,6 +8,7 @@ import { VerSolicitacoesComponent } from './components/funcionario/ver-solicitac
 import { EfetuarOrcamentoComponent } from './components/funcionario/efetuar-orcamento/efetuar-orcamento.component';
 import { NovaSolicitacaoComponent } from './components/cliente/nova-solicitacao/nova-solicitacao.component';
 import { ManterSolicitacaoComponent } from './components/cliente/manter-solicitacao/manter-solicitacao.component';
+import { CategoriaComponent } from './components/categoria/categoria.component';
 import { ManterFuncionarioComponent } from './components/funcionario/manter-funcionario/manter-funcionario.component';
 
 export const routes: Routes = [
@@ -34,7 +35,7 @@ export const routes: Routes = [
     {
         path: 'manter-funcionario',
         component: ManterFuncionarioComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard] 
     },
     {
         path: 'signup',
@@ -52,6 +53,11 @@ export const routes: Routes = [
     {
         path: 'solicitacao/:idSolicitacao',
         component: ManterSolicitacaoComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'categoria',
+        component: CategoriaComponent,
         canActivate: [AuthGuard]
     }
 ];
