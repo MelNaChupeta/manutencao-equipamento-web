@@ -5,10 +5,10 @@ import { Router, RouterModule } from '@angular/router';
 
 export interface Solicitacao {
   id: number;
-  datetime: string;
+  dtHrCriacao: string;
   client: string;
-  productDescription: string;
-  status: string;
+  descricaoEquipamento: string;
+  estadoAtual: string;
 }
 
 @Component({

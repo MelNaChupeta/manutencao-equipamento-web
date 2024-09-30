@@ -1,0 +1,129 @@
+[
+    {
+      "id": 1,
+      "dtHrCriacao": "2024-09-20T10:30:00Z",
+      "client": "João Silva",
+      "descricaoEquipamento": "Notebook Dell Inspiron 15 com tela quebrada",
+      "estadoAtual": "aberta"
+    },
+    {
+      "id": 2,
+      "dtHrCriacao": "2024-09-21T11:15:00Z",
+      "client": "Maria Oliveira",
+      "descricaoEquipamento": "Desktop HP Pavilion",
+      "estadoAtual": "aberta"
+    },
+    {
+      "id": 3,
+      "dtHrCriacao": "2024-09-22T09:45:00Z",
+      "client": "Carlos Mendes",
+      "descricaoEquipamento": "MacBook Pro 16",
+      "estadoAtual": "aberta"
+    },
+    {
+      "id": 4,
+      "dtHrCriacao": "2024-09-22T14:00:00Z",
+      "client": "Ana Costa",
+      "descricaoEquipamento": "Notebook Lenovo IdeaPad",
+      "estadoAtual": "aberta"
+    },
+    {
+      "id": 5,
+      "dtHrCriacao": "2024-09-23T08:30:00Z",
+      "client": "Lucas Pereira",
+      "descricaoEquipamento": "Desktop Asus ROG",
+      "estadoAtual": "aberta"
+    },
+    {
+      "id": 6,
+      "dtHrCriacao": "2024-09-23T13:20:00Z",
+      "client": "Juliana Almeida",
+      "descricaoEquipamento": "Ultrabook Samsung Galaxy Book modelo 2024",
+      "estadoAtual": "aberta"
+    },
+    {
+      "id": 7,
+      "dtHrCriacao": "2024-09-23T15:45:00Z",
+      "client": "Rafael Santos",
+      "descricaoEquipamento": "Smartphone Xiaomi Mi 11 Ultra com problema na bateria",
+      "estadoAtual": "orcada"
+    },
+    {
+      "id": 8,
+      "dtHrCriacao": "2024-09-24T09:00:00Z",
+      "client": "Fernanda Ribeiro",
+      "descricaoEquipamento": "Notebook Acer Aspire com falha no teclado",
+      "estadoAtual": "aguardandoPagamento"
+    },
+    {
+      "id": 9,
+      "dtHrCriacao": "2024-09-24T11:30:00Z",
+      "client": "Thiago Souza",
+      "descricaoEquipamento": "Tablet Samsung Galaxy Tab S8 com tela rachada",
+      "estadoAtual": "aprovada"
+    },
+    {
+      "id": 10,
+      "dtHrCriacao": "2024-09-24T14:15:00Z",
+      "client": "Bruna Martins",
+      "descricaoEquipamento": "Console PlayStation 5 com problema no HDMI",
+      "estadoAtual": "rejeitada"
+    },
+    {
+      "id": 11,
+      "dtHrCriacao": "2024-09-25T08:00:00Z",
+      "client": "Gustavo Lima",
+      "descricaoEquipamento": "Smartwatch Apple Watch Series 8 com falha no carregamento",
+      "estadoAtual": "redirecionada"
+    },
+    {
+      "id": 12,
+      "dtHrCriacao": "2024-09-25T12:30:00Z",
+      "client": "Paula Fonseca",
+      "descricaoEquipamento": "Monitor LG UltraWide com falha de imagem",
+      "estadoAtual": "redirecionada"
+    },
+    {
+      "id": 13,
+      "dtHrCriacao": "2021-09-25T15:20:00Z",
+      "client": "Ricardo Barbosa",
+      "descricaoEquipamento": "Impressora Epson EcoTank com erro no cabeçote de impressão",
+      "estadoAtual": "paga"
+    },
+    {
+      "id": 14,
+      "dtHrCriacao": "2024-09-26T10:45:00Z",
+      "client": "Luciana Nunes",
+      "descricaoEquipamento": "Notebook HP Spectre com superaquecimento",
+      "estadoAtual": "finalizada"
+    },
+    {
+      "id": 15,
+      "dtHrCriacao": "2015-09-26T13:50:00Z",
+      "client": "Eduardo Monteiro",
+      "descricaoEquipamento": "Desktop Dell Alienware com problema de inicialização",
+      "estadoAtual": "orcada"
+    },
+    {
+      "id": 16,
+      "dtHrCriacao": "2021-09-26T16:10:00Z",
+      "client": "Patrícia Carvalho",
+      "descricaoEquipamento": "Notebook Samsung Book com tela piscando",
+      "estadoAtual": "aprovada"
+    },
+    {
+      "id": 17,
+      "dtHrCriacao": "2023-09-27T09:30:00Z",
+      "client": "Alberto Fernandes",
+      "descricaoEquipamento": "MacBook Air M1 com falha no touchpad",
+      "estadoAtual": "aguardandoPagamento"
+    },
+    {
+      "id": 18,
+      "dtHrCriacao": "2019-09-27T12:00:00Z",
+      "client": "Sofia Cardoso",
+      "descricaoEquipamento": "Drone DJI Mavic Air 2 com erro de conexão",
+      "estadoAtual": "finalizada"
+    }
+  ]
+  

@@ -2,23 +2,47 @@
   class="flex flex-col min-h-screen bg-opacity-100 bg-gray-900 justify-center"
 >
   <div class="flex flex-col gap-y-6 mx-auto max-w-3xl px-6 py-16">
-    <div class="flex flex-row justify-between items-center px-6 py-4">
-      <h2 class="text-white">Solicitações em aberto:</h2>
-      <button class="pill-purple" [routerLink]="['/ver-solicitacoes']">
-        Ver todas
-      </button>
+    <h2 class="text-white px-6">Todas as solicitações</h2>
+    <div class="w-full flex flex-row px-6 py-4 gap-x-4 border rounded-md bg-gray-400/5 border-white/5">
+      <fieldset>
+        <legend class="text-sm text-gray-400">Filtrar:</legend>
+        
+        <div class="pt-1">
+          <input type="radio" id="huey" name="drone" value="todos" checked />
+          <label for="huey" class="text-sm text-gray-400 px-3">Todos</label>
+        </div>
+        
+        <div class="pt-1">
+          <input type="radio" id="dewey" name="drone" value="hoje" />
+          <label for="dewey" class="text-sm text-gray-400 px-3">Hoje</label>
+        </div>
+        
+        <div class="pt-1">
+          <input type="radio" id="louie" name="drone" value="periodo" />
+          <label for="louie" class="text-sm text-gray-400 px-3">Período específico</label>
+        </div>
+      </fieldset>
+      <!-- TODO: adicionar input de data -->
+      <!-- <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" /> -->
     </div>
     <ul class="list-none m-0 p-0">
-      <!-- TODO: adicionar id de cada um no router -->
 
       <li
         *ngFor="let solicitacao of solicitacoes"
-        [routerLink]="['/efetuar-orcamento', solicitacao.id]"
+        [routerLink]="solicitacao.routerLink"
         class="relative flex items-center px-6 py-4 gap-x-16 border-b border-white/5 cursor-pointer hover:bg-gray-400/5"
       >
         <div class="min-w-0 flex-auto">
           <!--info container-->
           <div class="flex items-center gap-x-3">
+            <div
+              class="text-opacity-100 fill-gray-500 bg-gray-500/5 rounded-full flex-none p-1"
+            >
+              <div
+                class="h-2 w-2 rounded-full"
+                [ngClass]="estadoCores[solicitacao.estadoAtual]"
+              ></div>
+            </div>
             <h5
               class="min-w-0 text-sm font-semibold leading-6 text-opacity-1 text-white"
             >
@@ -31,29 +55,37 @@
                       : solicitacao.descricaoEquipamento
                   }}
                 </span>
+                <span class="absolute"></span>
               </a>
             </h5>
           </div>
-
+          <div
+            class="mt-3 flex items-center gap-x-2.5 text-sm leading-5 text-opacity-1 text-gray-300"
+          >
+            <p class="overflow-hidden text-ellipsis whitespace-nowrap">
+              Aberta em {{ solicitacao.dtHrCriacao | date : "dd/MM/yyyy" }} às
+              {{ solicitacao.dtHrCriacao | date : "HH:mm:ss" }}
+            </p>
+            <svg viewBox="0 0 2 2" class="h-1 w-1 flex-none fill-gray-300">
+              <circle r="1" cx="1" cy="1"></circle>
+            </svg>
+          </div>
           <p
             class="overflow-hidden text-ellipsis whitespace-nowrap text-sm text-gray-400"
           >
             Cliente: {{ solicitacao.client }}
           </p>
-
           <p
             class="overflow-hidden text-ellipsis whitespace-nowrap text-sm text-gray-400"
           >
-            Aberta em {{ solicitacao.dtHrCriacao | date : "dd/MM/yyyy" }} às
-            {{ solicitacao.dtHrCriacao | date : "HH:mm:ss" }}
+            Estado atual: {{ solicitacao.estadoAtual }}
           </p>
         </div>
-
         <div class="flex flex-row gap-x-1">
           <p
             class="text-sm leading-5 text-opacity-1 text-gray-400 overflow-hidden text-ellipsis whitespace-nowrap"
           >
-            Efetuar Orçamento
+            {{ estadoAcoes[solicitacao.estadoAtual] || "" }}
           </p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
