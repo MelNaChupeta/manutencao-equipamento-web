@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { funcionario } from '../models/funcionario';
 import { User } from '../models/user'
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +12,17 @@ export class FuncionarioService {
 
   LS_CHAVE = "funcionarios";
   
-  constructor() { }
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private userService: UserService) {}
+
+  private secretKey = new TextEncoder().encode('your-256-bit-secret');
+  url:string = "";
+
+  funcionario(funcionario: funcionario){
+    return this.http.post<funcionario>(`${this.url+ 'auth'}`, {funcionario});
+  }
 
   listarTodos(): funcionario[]{
     const funcionarios = localStorage[this.LS_CHAVE];

@@ -5,6 +5,7 @@ import { User } from '../models/user'
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SignJWT, generateKeyPair } from 'jose';
+import { Client } from '../models';
 
 @Injectable({
     providedIn: 'root'
@@ -19,9 +20,9 @@ export class ClienteService {
     private secretKey = new TextEncoder().encode('your-256-bit-secret'); 
     url:string = "";
 
-    signup(user: User){
+    signup(client: Client){
 
-        return this.http.post<User>(`${this.url+ 'auth'}`, {user});
+        return this.http.post<Client>(`${this.url+ 'auth'}`, {client});
 
     }
 

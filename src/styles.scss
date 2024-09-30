@@ -46,6 +46,15 @@ body,
   .btn-secondary-disabled {
     @apply rounded-full bg-gray-100 text-gray-400 border border-gray-300 cursor-not-allowed opacity-50;
   }
+  .btn-remover {
+    @apply flex items-center justify-center p-2 rounded-full bg-red-500 px-3 py-2 my-2 text-lg text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+  }
+  .btn-adicionar {
+    @apply flex items-center justify-center p-2 rounded-full bg-green-500 px-3 py-2 my-2 text-lg text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+  }
+  .btn-editar {
+    @apply flex items-center justify-center p-2 rounded-full bg-blue-500 px-3 py-2 my-2 text-lg text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+  }
 
   .pill-disabled {
     @apply text-gray-400 bg-gray-400/25 hover:bg-gray-400/35 ring-gray-400/20 cursor-not-allowed flex-none rounded-full px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
