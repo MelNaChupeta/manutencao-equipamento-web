@@ -15,12 +15,13 @@ export class VerSolicitacoesComponent implements OnInit {
   constructor(private router: Router) {}
 
   solicitacoes: any[] = mockVerSolicitacoes;
+  filteredSolicitacoes: any[] = mockVerSolicitacoes;
 
-  filterType: string = 'periodo';
+  filterType: string = 'todos';
 
   today: Date = new Date();
-  dataInicio: Date = new Date();
-  dataFim: Date = new Date();
+  calendarInicio = '';
+  calendarFim = '';
 
   estadoAcoes: { [key: string]: string } = {
     aberta: 'Efetuar Orçamento',
@@ -46,9 +47,11 @@ export class VerSolicitacoesComponent implements OnInit {
       const dateB = new Date(b.dtHrCriacao).getTime();
       return dateA - dateB;
     });
+    this.filteredSolicitacoes = JSON.parse(JSON.stringify(this.solicitacoes));
 
-    this.dataFim = this.today
-    this.dataInicio = this.solicitacoes[0].dtHrCriacao
+    this.calendarInicio =
+      this.solicitacoes[0].dtHrCriacao.split('T')[0] || '2024-01-01';
+    this.calendarFim = this.today.toISOString().split('T')[0];
   }
 
   goTo(solicitacao: any) {
@@ -61,5 +64,29 @@ export class VerSolicitacoesComponent implements OnInit {
     } else if (solicitacao.estadoAtual === 'paga') {
       this.router.navigate(['/finalizar-solicitacao', solicitacao.id]);
     }
+  }
+
+  applyDateFilter() {
+    let start = new Date();
+    let end = new Date();
+
+    if (this.filterType === 'hoje') {
+      this.calendarInicio = this.today.toISOString().split('T')[0];
+      this.calendarFim = this.today.toISOString().split('T')[0];
+    } else if (this.filterType === 'todos') {
+      this.calendarInicio =
+        this.solicitacoes[0].dtHrCriacao.split('T')[0] || '2024-01-01';
+      this.calendarFim = this.today.toISOString().split('T')[0];
+    }
+
+    start = new Date(`${this.calendarInicio}T00:00:00`);
+    end = new Date(`${this.calendarFim}T23:59:59`);
+
+    this.filteredSolicitacoes = JSON.parse(JSON.stringify(this.solicitacoes));
+
+    this.filteredSolicitacoes = this.filteredSolicitacoes.filter((item) => {
+      const data = new Date(item.dtHrCriacao);
+      return data <= end && data >= start;
+    });
   }
 }

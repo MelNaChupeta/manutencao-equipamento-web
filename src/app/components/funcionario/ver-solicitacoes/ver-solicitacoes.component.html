@@ -16,6 +16,7 @@
             name="drone"
             value="todos"
             [(ngModel)]="filterType"
+            (change)="applyDateFilter()"
           />
           <label for="huey" class="text-sm text-gray-400 px-3">Todos</label>
         </div>
@@ -27,6 +28,7 @@
             name="drone"
             value="hoje"
             [(ngModel)]="filterType"
+            (change)="applyDateFilter()"
           />
           <label for="dewey" class="text-sm text-gray-400 px-3"
             >Abertos hoje</label
@@ -48,27 +50,36 @@
       </fieldset>
       <!-- TODO: fazer essa joça funcionar -->
       <div class="flex flex-row gap-3 p-3" *ngIf="filterType === 'periodo'">
-        <input
-          type="date"
-          [(ngModel)]="dataInicio"
-          [value]="dataInicio"
-          id="start"
-          name="date-start"
-          [max]="today"
-        />
-        <input
-          type="date"
-          [(ngModel)]="dataFim"
-          id="start"
-          [value]="dataFim"
-          name="date-start"
-          [max]="today"
-        />
+        <div class="flex flex-col">
+          <p class="text-white">Data inicial:</p>
+          <input
+            type="date"
+            [(ngModel)]="calendarInicio"
+            [value]="calendarInicio"
+            id="start"
+            name="date-start"
+            [max]="today"
+            (change)="applyDateFilter()"
+          />
+        </div>
+        <div class="flex flex-col">
+          <p class="text-white">Data final:</p>
+          <input
+            type="date"
+            [(ngModel)]="calendarFim"
+            id="start"
+            [value]="calendarFim"
+            name="date-start"
+            [max]="today"
+            [min]="calendarInicio"
+            (change)="applyDateFilter()"
+          />
+        </div>
       </div>
     </div>
     <ul class="list-none m-0 p-0">
       <li
-        *ngFor="let solicitacao of solicitacoes"
+        *ngFor="let solicitacao of filteredSolicitacoes"
         (click)="goTo(solicitacao)"
         class="relative flex items-center px-6 py-4 gap-x-16 border-b border-white/5 cursor-pointer hover:bg-gray-400/5"
       >
