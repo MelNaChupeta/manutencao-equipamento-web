@@ -20,6 +20,7 @@ export class VerSolicitacoesComponent implements OnInit {
   filterType: string = 'todos';
 
   today: Date = new Date();
+  todayStr = this.today.toISOString().split('T')[0];
   calendarInicio = '';
   calendarFim = '';
 
@@ -51,7 +52,7 @@ export class VerSolicitacoesComponent implements OnInit {
 
     this.calendarInicio =
       this.solicitacoes[0].dtHrCriacao.split('T')[0] || '2024-01-01';
-    this.calendarFim = this.today.toISOString().split('T')[0];
+    this.calendarFim = this.todayStr
   }
 
   goTo(solicitacao: any) {
@@ -71,12 +72,12 @@ export class VerSolicitacoesComponent implements OnInit {
     let end = new Date();
 
     if (this.filterType === 'hoje') {
-      this.calendarInicio = this.today.toISOString().split('T')[0];
-      this.calendarFim = this.today.toISOString().split('T')[0];
+      this.calendarInicio = this.todayStr
+      this.calendarFim = this.todayStr
     } else if (this.filterType === 'todos') {
       this.calendarInicio =
         this.solicitacoes[0].dtHrCriacao.split('T')[0] || '2024-01-01';
-      this.calendarFim = this.today.toISOString().split('T')[0];
+      this.calendarFim = this.todayStr
     }
 
     start = new Date(`${this.calendarInicio}T00:00:00`);
