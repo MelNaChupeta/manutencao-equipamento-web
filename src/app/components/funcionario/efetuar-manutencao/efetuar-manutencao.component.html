@@ -1,0 +1,152 @@
+<section
+  class="flex flex-col min-h-screen bg-opacity-100 bg-gray-900 justify-center items-center"
+>
+  <div class="flex flex-col max-w-screen-lg gap-6 py-12">
+    <h2 class="text-white">Efetuar Manutenção</h2>
+
+    <!-- Product -->
+    <div>
+      <h3 class="text-white font-bold">Produto:</h3>
+      <div
+        class="w-full max-w-2xl bg-gray-400/5 px-6 py-4 border rounded-md bg-gray-400/5 border-white/5"
+      >
+        <table class="table-auto w-full text-white">
+          <tbody>
+            <tr>
+              <td class="font-bold pr-4 whitespace-nowrap align-top text-right">
+                Data da solicitação:
+              </td>
+              <td class="align-top text-left">
+                {{ data.product.datetime | date : "dd/MM/yyyy 'às' HH:mm:ss" }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
+              >
+                Estado:
+              </td>
+              <td class="align-top text-left pt-4">
+                {{ data.product.status }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
+              >
+                Categoria:
+              </td>
+              <td class="align-top text-left pt-4">
+                {{ data.product.category }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
+              >
+                Descrição do produto:
+              </td>
+              <td class="align-top text-left pt-4">
+                {{ data.product.equipmentDescription }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
+              >
+                Descrição do defeito:
+              </td>
+              <td class="align-top text-left pt-4">
+                {{ data.product.defectDescription }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- client -->
+    <div>
+      <h3 class="text-white font-bold">Cliente:</h3>
+      <div
+        class="w-full max-w-2xl bg-gray-400/5 px-6 py-4 border rounded-md bg-gray-400/5 border-white/5"
+      >
+        <table class="table-auto w-full text-white">
+          <tbody>
+            <tr>
+              <td class="font-bold pr-4 whitespace-nowrap align-top text-right">
+                Nome:
+              </td>
+              <td class="align-top text-left">{{ data.client.name }}</td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
+              >
+                Email:
+              </td>
+              <td class="align-top text-left pt-4">{{ data.client.email }}</td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
+              >
+                Telefone:
+              </td>
+              <td class="align-top text-left pt-4">
+                {{ data.client.phoneNumber }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
+              >
+                CPF:
+              </td>
+              <td class="align-top text-left pt-4">{{ data.client.cpf }}</td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
+              >
+                Endereço:
+              </td>
+              <td class="align-top text-left pt-4">
+                {{ data.client.address }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
+              >
+                CEP:
+              </td>
+              <td class="align-top text-left pt-4">{{ data.client.cep }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- orçamento -->
+    <div>
+      <h3 class="text-white font-bold">Valor da Manutenção:</h3>
+      <div
+        class="flex items-center w-full max-w-2xl bg-gray-400/5 px-6 py-4 gap-4 border rounded-md bg-gray-400/5 border-white/5"
+      >
+      <h4 class="font-bold text-white">{{ data.value | currency:'BRL':'symbol':'1.2-2' }}</h4>
+    </div>
+    </div>
+
+    <div class="flex flex-row justify-between">
+      <button
+        class="btn btn-secondary bg-transparent"
+        [routerLink]="['/ver-solicitacoes']"
+      >
+        Voltar
+      </button>
+      <button class="btn btn-primary">Efetuar Manutenção</button>
+      <button class="btn btn-primary">Redirecionar Manutenção</button>
+    </div>
+  </div>
+</section>
