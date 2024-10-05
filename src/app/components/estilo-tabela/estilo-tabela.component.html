@@ -1,0 +1,116 @@
+<div class="sm:px-6 w-full">
+    <div class="px-4 md:px-10 py-4 md:py-7">
+        <div class="flex items-center justify-between">
+            <p tabindex="0" class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Tabela Funcionário</p>
+            <div class="py-3 px-4 flex items-center text-sm font-medium leading-none text-gray-600 bg-gray-200 hover:bg-gray-300 cursor-pointer rounded">
+                <p>Classificar por:</p>
+                <select aria-label="select" class="focus:text-indigo-600 focus:outline-none bg-transparent ml-1">
+                    <option class="text-sm text-indigo-800">Mais Recente</option>
+                    <option class="text-sm text-indigo-800">Mais Antigo</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
+        <div class="sm:flex items-center justify-between">
+            <div class="relative">
+                <input type="text" placeholder="Pesquisar..." class="pl-10 pr-4 py-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600 border-gray-100">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M12.9 14.32a8 8 0 111.41-1.41l4.39 4.39a1 1 0 01-1.42 1.42l-4.39-4.39zM8 14a6 6 0 100-12 6 6 0 000 12z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+            
+            <div>
+                <button onclick="popuphandler(true)" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded text-white">
+                    Adicionar
+                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+            
+            <!--            
+            <div class="input-container-lg"> 
+                <button class="btn-adicionar focus:ring-2 focus:ring-offset-2 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 focus:outline-none  text-white">
+                    Adicionar
+                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+            -->
+
+        </div>
+
+        <div class="mt-7 overflow-x-auto">
+            <table class="w-full whitespace-nowrap">
+                <tbody>
+                    <tr tabindex="0" class="focus:outline-none h-16 border border-gray-100 rounded">
+                        <td>
+                            <div class="ml-5">
+                                <div class="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
+                                    <input placeholder="checkbox" type="checkbox" class="focus:opacity-100 checkbox opacity-0 absolute cursor-pointer w-full h-full" />
+                                    <div class="check-icon hidden bg-indigo-700 text-white rounded-sm">
+                                        <svg class="icon icon-tabler icon-tabler-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z"></path>
+                                            <path d="M5 12l5 5l10 -10"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class="">
+                            <div class="flex items-center pl-5">
+                                <p class="text-base font-medium leading-none text-gray-700 mr-2">Marcos Antônio da Silva</p>
+                            </div>
+                        </td>
+
+                        <td class="pl-24">
+                            <div class="flex items-center">
+                                <p class="text-sm leading-none text-gray-600 ml-2">marcosantonio&#64;gmail.com</p>
+                            </div>
+                        </td>
+
+                        <td class="pl-5">
+                            <div class="flex items-center">
+                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M6 2a1 1 0 011 1v1h6V3a1 1 0 112 0v1h1a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1V3a1 1 0 011-1zm10 6H4v8h12V8z" clip-rule="evenodd" />
+                                </svg>
+                                <p class="text-sm leading-none text-gray-600 ml-2">04/07</p>
+                            </div>
+                        </td>
+
+                        <td class="pl-4">
+                            <button class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">View</button>
+                        </td>
+
+                        <td>
+                            <div class="relative px-5 pt-2">
+                                <button class="focus:ring-2 rounded-md focus:outline-none" onclick="dropdownFunction(this)" role="button" aria-label="option">
+                                    <svg class="dropbtn" onclick="dropdownFunction(this)" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                </button>
+
+                                <div class="dropdown-content bg-white shadow w-24 absolute z-30 right-0 mr-6 hidden">
+                                    <div tabindex="0" class="focus:outline-none focus:text-indigo-600 text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
+                                        <p>Edit</p>
+                                    </div>
+                                    <div tabindex="0" class="focus:outline-none focus:text-indigo-600 text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
+                                        <p>Delete</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
