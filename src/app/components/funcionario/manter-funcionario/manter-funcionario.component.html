@@ -1,10 +1,11 @@
+<app-estilo-tabela></app-estilo-tabela>
+
 <div class="main-content-container">
     <div class="section-container">
         <form [formGroup]="funcionarioForm" (ngSubmit)="onSubmit()">
             <div class="form-container">
-
                 <div class="w-full col-span-6 p-2 border-b-2 text-center relative">
-                    <h1>Cadastro funcionários</h1>
+                    <h1>Adicionar funcionário</h1>
                 </div>
 
                 <div class="input-container-md">
@@ -105,7 +106,7 @@
                     <!--
                     <button class="btn btn-remover w-full">
                         Remover
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
