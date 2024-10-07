@@ -18,7 +18,8 @@
               </td>
               <td class="align-top text-left">
                 {{
-                  data.product.dtHrCriacao | date : "dd/MM/yyyy 'às' HH:mm:ss"
+                  maintenanceData.product.dtHrCriacao
+                    | date : "dd/MM/yyyy 'às' HH:mm:ss"
                 }}
               </td>
             </tr>
@@ -29,7 +30,7 @@
                 Estado:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.product.status }}
+                {{ maintenanceData.product.status }}
               </td>
             </tr>
             <tr>
@@ -39,7 +40,7 @@
                 Categoria:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.product.categoria }}
+                {{ maintenanceData.product.categoria }}
               </td>
             </tr>
             <tr>
@@ -49,7 +50,7 @@
                 Descrição do produto:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.product.descricaoEquipamento }}
+                {{ maintenanceData.product.descricaoEquipamento }}
               </td>
             </tr>
             <tr>
@@ -59,7 +60,7 @@
                 Descrição do defeito:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.product.defectDescription }}
+                {{ maintenanceData.product.defectDescription }}
               </td>
             </tr>
           </tbody>
@@ -79,7 +80,9 @@
               <td class="font-bold pr-4 whitespace-nowrap align-top text-right">
                 Nome:
               </td>
-              <td class="align-top text-left">{{ data.client.name }}</td>
+              <td class="align-top text-left">
+                {{ maintenanceData.client.name }}
+              </td>
             </tr>
             <tr>
               <td
@@ -87,7 +90,9 @@
               >
                 Email:
               </td>
-              <td class="align-top text-left pt-4">{{ data.client.email }}</td>
+              <td class="align-top text-left pt-4">
+                {{ maintenanceData.client.email }}
+              </td>
             </tr>
             <tr>
               <td
@@ -96,7 +101,7 @@
                 Telefone:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.client.phoneNumber }}
+                {{ maintenanceData.client.phoneNumber }}
               </td>
             </tr>
             <tr>
@@ -105,7 +110,9 @@
               >
                 CPF:
               </td>
-              <td class="align-top text-left pt-4">{{ data.client.cpf }}</td>
+              <td class="align-top text-left pt-4">
+                {{ maintenanceData.client.cpf }}
+              </td>
             </tr>
             <tr>
               <td
@@ -114,7 +121,7 @@
                 Endereço:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.client.endereco }}
+                {{ maintenanceData.client.endereco }}
               </td>
             </tr>
             <tr>
@@ -124,7 +131,7 @@
                 Bairro:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.client.bairro }}
+                {{ maintenanceData.client.bairro }}
               </td>
             </tr>
             <tr>
@@ -134,7 +141,7 @@
                 Cidade:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.client.cidade }}
+                {{ maintenanceData.client.cidade }}
               </td>
             </tr>
             <tr>
@@ -144,7 +151,7 @@
                 Estado:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.client.uf }}
+                {{ maintenanceData.client.uf }}
               </td>
             </tr>
             <tr>
@@ -153,7 +160,9 @@
               >
                 CEP:
               </td>
-              <td class="align-top text-left pt-4">{{ data.client.cep }}</td>
+              <td class="align-top text-left pt-4">
+                {{ maintenanceData.client.cep }}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -167,7 +176,7 @@
         class="flex items-center w-full max-w-2xl bg-gray-400/5 px-6 py-4 gap-4 border rounded-md bg-gray-400/5 border-white/5"
       >
         <h4 class="font-bold text-white">
-          {{ data.preco | currency : "BRL" : "symbol" : "1.2-2" }}
+          {{ maintenanceData.preco | currency : "BRL" : "symbol" : "1.2-2" }}
         </h4>
       </div>
     </div>
@@ -198,7 +207,7 @@
           </div>
         </div>
 
-        <!-- tab : efetuar manutenção -->
+        <!-- tab : efetuar manutenção (RF014) -->
         <div class="flex flex-col px-3 py-4" *ngIf="currentTab === 'efetuar'">
           <label class="label-form text-white" for="descricaoManutencao">
             Descrição da Manutenção:
@@ -239,9 +248,41 @@
           </div>
         </div>
 
-        <!-- tab : redirecionar manutenção -->
-        <div *ngIf="currentTab === 'redirecionar'">
-          <p>oioioi</p>
+        <!-- tab : redirecionar manutenção (RF015) -->
+        <div
+          class="flex flex-col px-3 py-4"
+          *ngIf="currentTab === 'redirecionar'"
+        >
+          <label class="label-form text-white mt-4" for="funcionario">
+            Selecione um Funcionário para redirecionar a solicitação:
+          </label>
+
+          <select
+            class="input-form"
+            id="funcionario"
+            name="funcionario"
+            [(ngModel)]="funcionarioEscolhido"
+            required
+          >
+            <option
+              *ngFor="let funcionario of funcionariosList"
+              [value]="funcionario.id"
+            >
+              {{ funcionario.nome }} - {{ funcionario.email }}
+            </option>
+          </select>
+
+          <div class="flex flex-row justify-end">
+            <button
+              class="btn btn-secondary bg-transparent mt-4"
+              [routerLink]="['/ver-solicitacoes']"
+              [disabled]="!funcionarioEscolhido"
+              [ngClass]="{'btn-secondary-disabled' : !funcionarioEscolhido}"
+              (click)="redirect()"
+            >
+              Redirecionar
+            </button>
+          </div>
         </div>
       </div>
     </div>
