@@ -277,7 +277,7 @@
               class="btn btn-secondary bg-transparent mt-4"
               [routerLink]="['/ver-solicitacoes']"
               [disabled]="!funcionarioEscolhido"
-              [ngClass]="{'pill-disabled' : !funcionarioEscolhido}"
+              [ngClass]="{'btn-secondary-disabled' : !funcionarioEscolhido}"
               (click)="redirect()"
             >
               Redirecionar

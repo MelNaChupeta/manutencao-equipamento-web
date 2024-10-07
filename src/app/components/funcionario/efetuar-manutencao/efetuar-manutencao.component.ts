@@ -71,16 +71,25 @@ export class EfetuarManutencaoComponent {
     let data = {
       descricaoManutencao: this.descricaoManutencao,
       orientacoes: this.orientacoes,
-      date: new Date(),
+      dataManutencao: new Date(),
       novoEstado: 'aguardandoPagamento',
       // TODO: colocar funcionario aqui
       funcionario: 'fulano',
     };
     console.log('Enviar:', data);
   }
-  
-  redirect() {
-    console.log('redirecionando pro funcionario de id:', this.funcionarioEscolhido);
 
+  redirect() {
+    // TODO: achar um jeito de proibir o funcionario de selecionar ele mesmo
+    let data = {
+      solicitacaoId: this.id,
+      novoEstado: 'redirecionada',
+      dataRedirecionamento: new Date(),
+      // TODO: colocar funcionario aqui
+      funcionarioOrigem: 'fulano',
+      funcionarioDestino: this.funcionarioEscolhido,
+    };
+
+    console.log('redirecionando:', data);
   }
 }
