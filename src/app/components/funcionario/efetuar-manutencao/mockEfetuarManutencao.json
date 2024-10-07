@@ -1,118 +1,90 @@
 [
-    {
-      "id": 1,
-      "client": {
-        "name": "João Silva",
-        "cpf": "987.654.321-11",
-        "email": "joao.silva@example.com",
-        "address": "Avenida Central, 1001",
-        "phoneNumber": "3003-4004",
-        "cep": "80.100-000"
-      },
-      "product": {
-        "datetime": "2024-09-20T10:30:00Z",
-        "status": "aberta",
-        "category": "notebook",
-        "equipmentDescription": "Notebook Dell Inspiron 15 com tela Full HD de 15.6 polegadas, processador Intel Core i7, 8GB de RAM, SSD de 512GB, e placa de vídeo integrada.",
-        "defectDescription": "A tela está trincada na parte superior direita. O notebook ainda liga, mas o display apresenta falhas intermitentes e o touchpad está desativado."
-      },
-      "value": 1599.90
+  {
+    "id": 9,
+    "client": {
+      "name": "Thiago Souza",
+      "cpf": "123.456.789-00",
+      "email": "thiago.souza@example.com",
+      "endereco": "Rua das Flores, 234",
+      "cidade": "Curitiba",
+      "bairro": "Centro",
+      "uf": "PR",
+      "phoneNumber": "99999-1111",
+      "cep": "81.200-000"
     },
-    {
-      "id": 2,
-      "client": {
-        "name": "Maria Oliveira",
-        "cpf": "123.654.789-22",
-        "email": "maria.oliveira@gmail.com",
-        "address": "Rua das Flores, 202",
-        "phoneNumber": "9999-1234",
-        "cep": "70.000-200"
-      },
-      "product": {
-        "datetime": "2024-09-21T11:15:00Z",
-        "status": "aberta",
-        "category": "desktop",
-        "equipmentDescription": "Desktop HP Pavilion com processador AMD Ryzen 5, 16GB de RAM, HD de 1TB, e placa de vídeo Radeon RX 580.",
-        "defectDescription": "O computador não liga. Foi verificado que a fonte de alimentação está com problemas, e o sistema apresenta erro na inicialização do disco rígido."
-      },
-      "value": 9875.87
+    "product": {
+      "dtHrCriacao": "2024-09-24T11:30:00Z",
+      "estadoAtual": "aprovada",
+      "categoria": "tablet",
+      "descricaoEquipamento": "Tablet Samsung Galaxy Tab S8 com tela de 11 polegadas, processador Snapdragon 888, 8GB de RAM, e 256GB de armazenamento.",
+      "descricaoProblema": "A tela está rachada após uma queda. O touch ainda funciona, mas com interferências em certas áreas."
     },
-    {
-      "id": 3,
-      "client": {
-        "name": "Carlos Mendes",
-        "cpf": "456.789.123-33",
-        "email": "carlos.mendes@outlook.com",
-        "address": "Praça do Sol, 77",
-        "phoneNumber": "4020-5050",
-        "cep": "60.200-500"
-      },
-      "product": {
-        "datetime": "2024-09-22T09:45:00Z",
-        "status": "aberta",
-        "category": "notebook",
-        "equipmentDescription": "MacBook Pro 16 com processador M1 Pro, 32GB de RAM, SSD de 2TB, e tela Retina de 16 polegadas.",
-        "defectDescription": "A bateria do MacBook não está carregando, e o sistema se desliga aleatoriamente durante o uso. O trackpad também apresenta lentidão na resposta."
-      },
-      "value": 689.30
+    "preco": 750.00
+  },
+  {
+    "id": 11,
+    "client": {
+      "name": "Gustavo Lima",
+      "cpf": "234.567.890-11",
+      "email": "gustavo.lima@example.com",
+      "endereco": "Avenida das Américas, 1020",
+      "cidade": "Curitiba",
+      "bairro": "Barreirinha",
+      "uf": "PR",
+      "phoneNumber": "99888-2222",
+      "cep": "80.300-000"
     },
-    {
-      "id": 4,
-      "client": {
-        "name": "Ana Costa",
-        "cpf": "789.123.456-44",
-        "email": "ana.costa@gmail.com",
-        "address": "Rua do Limoeiro, 450",
-        "phoneNumber": "3030-4040",
-        "cep": "50.500-600"
-      },
-      "product": {
-        "datetime": "2024-09-22T14:00:00Z",
-        "status": "aberta",
-        "category": "notebook",
-        "equipmentDescription": "Notebook Lenovo IdeaPad com processador Intel Core i5, 8GB de RAM, SSD de 256GB, e tela de 14 polegadas.",
-        "defectDescription": "O teclado do notebook está com várias teclas travadas e o sistema operacional apresenta lentidão ao iniciar, possivelmente causado por falhas no SSD."
-      },
-      "value": 798.90
+    "product": {
+      "dtHrCriacao": "2024-09-25T08:00:00Z",
+      "estadoAtual": "redirecionada",
+      "categoria": "smartwatch",
+      "descricaoEquipamento": "Smartwatch Apple Watch Series 8, com display Retina Always-On de 45mm, GPS, resistência à água e monitoramento de saúde integrado.",
+      "descricaoProblema": "Falha no carregamento. O dispositivo não reconhece o carregador e não exibe nenhuma indicação de carregamento ao ser conectado."
     },
-    {
-      "id": 5,
-      "client": {
-        "name": "Lucas Pereira",
-        "cpf": "321.654.987-55",
-        "email": "lucas.pereira@hotmail.com",
-        "address": "Rua Nova Esperança, 1050",
-        "phoneNumber": "7070-8080",
-        "cep": "80.800-700"
-      },
-      "product": {
-        "datetime": "2024-09-23T08:30:00Z",
-        "status": "aberta",
-        "category": "desktop",
-        "equipmentDescription": "Desktop Asus ROG com processador Intel Core i9, 64GB de RAM, SSD de 1TB, placa de vídeo RTX 3080, e resfriamento líquido.",
-        "defectDescription": "O sistema de resfriamento apresentou vazamento, danificando componentes internos. A placa de vídeo também não está funcionando corretamente, com artefatos na tela durante jogos."
-      },
-      "value": 6548.45
-
+    "preco": 450.00
+  },
+  {
+    "id": 12,
+    "client": {
+      "name": "Paula Fonseca",
+      "cpf": "345.678.901-22",
+      "email": "paula.fonseca@example.com",
+      "endereco": "Rua São João, 876",
+      "cidade": "Curitiba",
+      "bairro": "bairro Alto",
+      "uf": "PR",
+      "phoneNumber": "99777-3333",
+      "cep": "81.400-000"
     },
-    {
-      "id": 6,
-      "client": {
-        "name": "Juliana Almeida",
-        "cpf": "654.321.987-66",
-        "email": "juliana.almeida@exemplo.com",
-        "address": "Avenida do Comércio, 1234",
-        "phoneNumber": "9090-1010",
-        "cep": "90.900-000"
-      },
-      "product": {
-        "datetime": "2024-09-23T13:20:00Z",
-        "status": "aberta",
-        "category": "ultrabook",
-        "equipmentDescription": "Ultrabook Samsung Galaxy Book modelo 2024 com processador Intel Core i7, 16GB de RAM, SSD de 512GB, e tela touch de 13 polegadas.",
-        "defectDescription": "A tela touch não está respondendo ao toque, e o ultrabook aquece muito durante o uso. A ventoinha interna parece não estar funcionando corretamente."
-      },
-      "value": 1562.45
-    }
-  ]
-  
+    "product": {
+      "dtHrCriacao": "2024-09-25T12:30:00Z",
+      "estadoAtual": "redirecionada",
+      "categoria": "monitor",
+      "descricaoEquipamento": "Monitor LG UltraWide de 29 polegadas, resolução Full HD, com taxa de atualização de 75Hz e tecnologia de sincronia de imagem.",
+      "descricaoProblema": "Falha de imagem intermitente. O monitor às vezes apresenta uma tela preta por alguns segundos antes de voltar ao normal."
+    },
+    "preco": 350.00
+  },
+  {
+    "id": 16,
+    "client": {
+      "name": "Patrícia Carvalho",
+      "cpf": "456.789.012-33",
+      "email": "patricia.carvalho@example.com",
+      "endereco": "Travessa dos Pioneiros, 543",
+      "cidade": "Curitiba",
+      "bairro": "Boa Vista",
+      "uf": "PR",
+      "phoneNumber": "99666-4444",
+      "cep": "81.500-000"
+    },
+    "product": {
+      "dtHrCriacao": "2021-09-26T16:10:00Z",
+      "estadoAtual": "aprovada",
+      "categoria": "notebook",
+      "descricaoEquipamento": "Notebook Samsung Book, tela Full HD de 15.6 polegadas, processador Intel Core i5, 8GB de RAM, 256GB SSD, e Windows 10.",
+      "descricaoProblema": "A tela do notebook está piscando aleatoriamente, dificultando o uso contínuo. O problema persiste tanto com bateria quanto conectado à energia."
+    },
+    "preco": 1200.00
+  }
+]

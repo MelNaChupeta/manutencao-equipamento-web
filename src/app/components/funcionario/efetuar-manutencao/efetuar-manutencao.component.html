@@ -17,7 +17,7 @@
                 Data da solicitação:
               </td>
               <td class="align-top text-left">
-                {{ data.product.datetime | date : "dd/MM/yyyy 'às' HH:mm:ss" }}
+                {{ data.product.dtHrCriacao | date : "dd/MM/yyyy 'às' HH:mm:ss" }}
               </td>
             </tr>
             <tr>
@@ -37,7 +37,7 @@
                 Categoria:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.product.category }}
+                {{ data.product.categoria }}
               </td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@
                 Descrição do produto:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.product.equipmentDescription }}
+                {{ data.product.descricaoEquipamento }}
               </td>
             </tr>
             <tr>
@@ -112,7 +112,37 @@
                 Endereço:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.client.address }}
+                {{ data.client.endereco }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
+              >
+                Bairro:
+              </td>
+              <td class="align-top text-left pt-4">
+                {{ data.client.bairro }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
+              >
+                Cidade:
+              </td>
+              <td class="align-top text-left pt-4">
+                {{ data.client.cidade }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
+              >
+                Estado:
+              </td>
+              <td class="align-top text-left pt-4">
+                {{ data.client.uf }}
               </td>
             </tr>
             <tr>
@@ -134,7 +164,7 @@
       <div
         class="flex items-center w-full max-w-2xl bg-gray-400/5 px-6 py-4 gap-4 border rounded-md bg-gray-400/5 border-white/5"
       >
-      <h4 class="font-bold text-white">{{ data.value | currency:'BRL':'symbol':'1.2-2' }}</h4>
+      <h4 class="font-bold text-white">{{ data.preco | currency:'BRL':'symbol':'1.2-2' }}</h4>
     </div>
     </div>
 
