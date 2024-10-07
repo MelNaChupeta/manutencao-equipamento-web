@@ -176,7 +176,7 @@
     <div>
       <h3 class="text-white font-bold">Ações:</h3>
       <div
-        class="flex items-center w-full max-w-2xl bg-gray-400/5 px-6 py-4 gap-4 border rounded-md bg-gray-400/5 border-white/5"
+        class="flex flex-col w-full max-w-2xl bg-gray-400/5 px-6 py-4 gap-4 border rounded-md bg-gray-400/5 border-white/5"
       >
         <!-- tabs -->
         <div class="tabs flex flex-row w-full">
@@ -190,10 +190,58 @@
           <div
             class="flex flex-row w-full justify-center px-3 py-2 cursor-pointer"
             (click)="changeTab('redirecionar')"
-            [ngClass]="currentTab === 'redirecionar' ? 'tab-active' : 'not-active'"
+            [ngClass]="
+              currentTab === 'redirecionar' ? 'tab-active' : 'not-active'
+            "
           >
-            <h5 >Redirecionar Manutenção</h5>
+            <h5>Redirecionar Manutenção</h5>
           </div>
+        </div>
+
+        <!-- tab : efetuar manutenção -->
+        <div class="flex flex-col px-3 py-4" *ngIf="currentTab === 'efetuar'">
+          <label class="label-form text-white" for="descricaoManutencao">
+            Descrição da Manutenção:
+          </label>
+
+          <textarea
+            id="descricaoManutencao"
+            name="descricaoManutencao"
+            class="input-form"
+            [(ngModel)]="descricaoManutencao"
+            required
+            maxlength="500"
+            placeholder="Descreva a manutenção que foi efetuada ..."
+          ></textarea>
+
+          <label class="label-form text-white mt-4" for="orientacoes">
+            Orientações para o Cliente:
+          </label>
+
+          <textarea
+            id="orientacoes"
+            name="orientacoes"
+            class="input-form"
+            [(ngModel)]="orientacoes"
+            required
+            maxlength="500"
+            placeholder="Descreva as orientações para o cliente ..."
+          ></textarea>
+
+          <div class="flex flex-row justify-end">
+            <button
+              class="btn btn-secondary bg-transparent mt-4"
+              [routerLink]="['/ver-solicitacoes']"
+              (click)="sendMaintenance()"
+            >
+              Enviar
+            </button>
+          </div>
+        </div>
+
+        <!-- tab : redirecionar manutenção -->
+        <div *ngIf="currentTab === 'redirecionar'">
+          <p>oioioi</p>
         </div>
       </div>
     </div>

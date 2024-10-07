@@ -23,8 +23,9 @@ import { HttpClient } from '@angular/common/http';
 export class EfetuarManutencaoComponent {
   id: string | null = null;
   data: any;
-  valor: string = '';
   currentTab: string = 'efetuar';
+  descricaoManutencao: string = '';
+  orientacoes: string = '';
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
@@ -53,5 +54,17 @@ export class EfetuarManutencaoComponent {
   changeTab(tab: string) {
     this.currentTab = tab;
     console.log(this.currentTab, 'tab');
+  }
+
+  sendMaintenance() {
+    let data = {
+      'descricaoManutencao':this.descricaoManutencao,
+      'orientacoes':this.orientacoes,
+      'date':new Date,
+      'novoEstado':"aguardandoPagamento",
+      // TODO: colocar funcionario aqui
+      'funcionario': 'fulano'
+    }
+    console.log('Enviar:',data)
   }
 }
