@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { faCircleNotch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FuncionarioService } from '../../../services/funcionario.service';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EstiloTabelaComponent } from "../../estilo-tabela/estilo-tabela.component";
+
 
 @Component({
   selector: 'app-manter-funcionario',
@@ -83,6 +84,20 @@ export class ManterFuncionarioComponent {
         }
       });
 
+    }
+
+    @ViewChild('modal') modal!: ElementRef;
+
+    modalOpen(){
+      this.modal.nativeElement.showModal();
+    }
+
+    modalClose(){
+      this.modal.nativeElement.close();
+    }
+
+    onSubmitModal(){
+      this.modalClose();
     }
 
 }
