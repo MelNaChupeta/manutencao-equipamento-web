@@ -1,0 +1,90 @@
+[
+  {
+    "id": 9,
+    "client": {
+      "name": "Thiago Souza",
+      "cpf": "123.456.789-00",
+      "email": "thiago.souza@example.com",
+      "endereco": "Rua das Flores, 234",
+      "cidade": "Curitiba",
+      "bairro": "Centro",
+      "uf": "PR",
+      "phoneNumber": "99999-1111",
+      "cep": "81.200-000"
+    },
+    "product": {
+      "dtHrCriacao": "2024-09-24T11:30:00Z",
+      "estadoAtual": "aprovada",
+      "categoria": "tablet",
+      "descricaoEquipamento": "Tablet Samsung Galaxy Tab S8 com tela de 11 polegadas, processador Snapdragon 888, 8GB de RAM, e 256GB de armazenamento.",
+      "descricaoProblema": "A tela está rachada após uma queda. O touch ainda funciona, mas com interferências em certas áreas."
+    },
+    "preco": 750.00
+  },
+  {
+    "id": 11,
+    "client": {
+      "name": "Gustavo Lima",
+      "cpf": "234.567.890-11",
+      "email": "gustavo.lima@example.com",
+      "endereco": "Avenida das Américas, 1020",
+      "cidade": "Curitiba",
+      "bairro": "Barreirinha",
+      "uf": "PR",
+      "phoneNumber": "99888-2222",
+      "cep": "80.300-000"
+    },
+    "product": {
+      "dtHrCriacao": "2024-09-25T08:00:00Z",
+      "estadoAtual": "redirecionada",
+      "categoria": "smartwatch",
+      "descricaoEquipamento": "Smartwatch Apple Watch Series 8, com display Retina Always-On de 45mm, GPS, resistência à água e monitoramento de saúde integrado.",
+      "descricaoProblema": "Falha no carregamento. O dispositivo não reconhece o carregador e não exibe nenhuma indicação de carregamento ao ser conectado."
+    },
+    "preco": 450.00
+  },
+  {
+    "id": 12,
+    "client": {
+      "name": "Paula Fonseca",
+      "cpf": "345.678.901-22",
+      "email": "paula.fonseca@example.com",
+      "endereco": "Rua São João, 876",
+      "cidade": "Curitiba",
+      "bairro": "bairro Alto",
+      "uf": "PR",
+      "phoneNumber": "99777-3333",
+      "cep": "81.400-000"
+    },
+    "product": {
+      "dtHrCriacao": "2024-09-25T12:30:00Z",
+      "estadoAtual": "redirecionada",
+      "categoria": "monitor",
+      "descricaoEquipamento": "Monitor LG UltraWide de 29 polegadas, resolução Full HD, com taxa de atualização de 75Hz e tecnologia de sincronia de imagem.",
+      "descricaoProblema": "Falha de imagem intermitente. O monitor às vezes apresenta uma tela preta por alguns segundos antes de voltar ao normal."
+    },
+    "preco": 350.00
+  },
+  {
+    "id": 16,
+    "client": {
+      "name": "Patrícia Carvalho",
+      "cpf": "456.789.012-33",
+      "email": "patricia.carvalho@example.com",
+      "endereco": "Travessa dos Pioneiros, 543",
+      "cidade": "Curitiba",
+      "bairro": "Boa Vista",
+      "uf": "PR",
+      "phoneNumber": "99666-4444",
+      "cep": "81.500-000"
+    },
+    "product": {
+      "dtHrCriacao": "2021-09-26T16:10:00Z",
+      "estadoAtual": "aprovada",
+      "categoria": "notebook",
+      "descricaoEquipamento": "Notebook Samsung Book, tela Full HD de 15.6 polegadas, processador Intel Core i5, 8GB de RAM, 256GB SSD, e Windows 10.",
+      "descricaoProblema": "A tela do notebook está piscando aleatoriamente, dificultando o uso contínuo. O problema persiste tanto com bateria quanto conectado à energia."
+    },
+    "preco": 1200.00
+  }
+]
