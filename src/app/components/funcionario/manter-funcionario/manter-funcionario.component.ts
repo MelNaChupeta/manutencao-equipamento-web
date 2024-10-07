@@ -5,14 +5,17 @@ import { FuncionarioService } from '../../../services/funcionario.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EstiloTabelaComponent } from "../../estilo-tabela/estilo-tabela.component";
 
 @Component({
   selector: 'app-manter-funcionario',
   standalone: true,
-  imports: [ 
+  imports: [
     ReactiveFormsModule,
     CommonModule,
-    FontAwesomeModule],
+    FontAwesomeModule,
+    EstiloTabelaComponent
+],
   templateUrl: './manter-funcionario.component.html',
   styleUrl: './manter-funcionario.component.scss'
 })
