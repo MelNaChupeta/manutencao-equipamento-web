@@ -1,0 +1,14 @@
+.tab-active {
+    border-bottom: 3px solid rgb(79, 70, 229);
+    h5 {
+        font-weight: 600;
+        color: rgb(106, 100, 226);
+    }
+}
+
+.not-active {
+    border-bottom: 3px solid rgb(36,43,57);
+    h5 {
+        color: rgb(112, 120, 136);
+    }
+}
