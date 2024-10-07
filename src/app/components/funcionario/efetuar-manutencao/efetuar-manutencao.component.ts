@@ -35,10 +35,7 @@ export class EfetuarManutencaoComponent {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('idSolicitacao');
 
-    console.log('id ', this.id);
-    if (this.id) {
-      this.getDataFromBackend(this.id);
-    }
+    if (this.id) this.getDataFromBackend(this.id);
   }
 
   getDataFromBackend(id: string) {

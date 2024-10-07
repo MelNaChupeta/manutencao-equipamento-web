@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/cliente/home/home.component';
 import { HomeStaffComponent } from './components/funcionario/home-staff/home-staff.component';
 import { VerSolicitacoesComponent } from './components/funcionario/ver-solicitacoes/ver-solicitacoes.component';
+import { FinalizarSolicitacaoComponent } from './components/funcionario/finalizar-solicitacao/finalizar-solicitacao.component';
 import { EfetuarManutencaoComponent } from './components/funcionario/efetuar-manutencao/efetuar-manutencao.component';
 import { EfetuarOrcamentoComponent } from './components/funcionario/efetuar-orcamento/efetuar-orcamento.component';
 import { NovaSolicitacaoComponent } from './components/cliente/nova-solicitacao/nova-solicitacao.component';
@@ -26,6 +27,11 @@ export const routes: Routes = [
     {
         path: 'ver-solicitacoes',
         component: VerSolicitacoesComponent,
+        canActivate: [AuthGuard] 
+    },
+    {
+        path: 'finalizar-solicitacao/:idSolicitacao',
+        component: FinalizarSolicitacaoComponent,
         canActivate: [AuthGuard] 
     },
     {

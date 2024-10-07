@@ -1,0 +1,237 @@
+<section
+  class="flex flex-col min-h-screen bg-opacity-100 bg-gray-900 justify-center items-center"
+>
+  <div class="flex flex-col max-w-screen-lg gap-4 py-12">
+    <h2 class="text-white">Finalizar Solicitação</h2>
+
+    <!-- Product -->
+    <div>
+      <h5 class="text-white font-bold">Informações da Solicitação:</h5>
+      <div
+        class="w-full max-w-2xl bg-gray-400/5 px-6 py-4 border rounded-md bg-gray-400/5 border-white/5"
+      >
+        <table class="table-auto w-full text-white">
+          <tbody>
+            <tr>
+              <td
+                class="font-bold pr-2 whitespace-nowrap align-top text-right text-sm"
+              >
+                Data da solicitação:
+              </td>
+              <td class="align-top text-left text-sm">
+                {{
+                  solicitacaoData.dtHrCriacao
+                    | date : "dd/MM/yyyy 'às' HH:mm:ss"
+                }}
+              </td>
+            </tr>
+
+            <tr>
+              <td
+                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+              >
+                Estado:
+              </td>
+              <td class="align-top text-left pt-2 text-sm">
+                {{ solicitacaoData.estadoAtual }}
+              </td>
+            </tr>
+
+            <tr>
+              <td
+                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+              >
+                Categoria:
+              </td>
+              <td class="align-top text-left pt-2 text-sm">
+                {{ solicitacaoData.categoria }}
+              </td>
+            </tr>
+
+            <tr>
+              <td
+                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+              >
+                Descrição do produto:
+              </td>
+              <td class="align-top text-left pt-2 text-sm">
+                {{ solicitacaoData.descricaoEquipamento }}
+              </td>
+            </tr>
+
+            <tr>
+              <td
+                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm text-sm"
+              >
+                Descrição do defeito:
+              </td>
+              <td class="align-top text-left pt-2 text-sm text-sm">
+                {{ solicitacaoData.defectDescription }}
+              </td>
+            </tr>
+
+            <tr>
+              <td
+                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm text-sm"
+              >
+                Valor pago:
+              </td>
+              <td class="align-top text-left pt-2 text-sm text-sm">
+                {{
+                  solicitacaoData.preco | currency : "BRL" : "symbol" : "1.2-2"
+                }}
+              </td>
+            </tr>
+
+            <tr>
+              <td
+                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm text-sm"
+              >
+                Funcionário responsável:
+              </td>
+              <td class="align-top text-left pt-2 text-sm text-sm">
+                {{ solicitacaoData.funcionario.nome }} -
+                {{ solicitacaoData.funcionario.email }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- client -->
+    <div>
+      <h5 class="text-white font-bold">Cliente:</h5>
+      <div
+        class="w-full max-w-2xl bg-gray-400/5 px-6 py-4 border rounded-md bg-gray-400/5 border-white/5"
+      >
+        <table class="table-auto w-full text-white">
+          <tbody>
+            <tr>
+              <td class="font-bold pr-2 whitespace-nowrap align-top text-right text-sm">
+                Nome:
+              </td>
+              <td class="align-top text-left text-sm">
+                {{ solicitacaoData.client.name }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+              >
+                Email:
+              </td>
+              <td class="align-top text-left pt-2 text-sm">
+                {{ solicitacaoData.client.email }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+              >
+                Telefone:
+              </td>
+              <td class="align-top text-left pt-2 text-sm">
+                {{ solicitacaoData.client.phoneNumber }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+              >
+                CPF:
+              </td>
+              <td class="align-top text-left pt-2 text-sm">
+                {{ solicitacaoData.client.cpf }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+              >
+                Endereço:
+              </td>
+              <td class="align-top text-left pt-2 text-sm">
+                {{ solicitacaoData.client.endereco }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+              >
+                Bairro:
+              </td>
+              <td class="align-top text-left pt-2 text-sm">
+                {{ solicitacaoData.client.bairro }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+              >
+                Cidade:
+              </td>
+              <td class="align-top text-left pt-2 text-sm">
+                {{ solicitacaoData.client.cidade }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+              >
+                Estado:
+              </td>
+              <td class="align-top text-left pt-2 text-sm">
+                {{ solicitacaoData.client.uf }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+              >
+                CEP:
+              </td>
+              <td class="align-top text-left pt-2 text-sm">
+                {{ solicitacaoData.client.cep }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- orçamento -->
+      <div
+        class="flex flex-col items-center justify-center w-full max-w-2xl bg-gray-400/5 px-6 py-4 gap-4 border rounded-md bg-gray-400/5 border-white/5"
+      >
+        <h5 class="font-bold text-white">
+          Deseja realmente finalizar esta solicitação?
+        </h5>
+
+        <div class="flex flex-row gap-10">
+            <button
+              class="btn btn-secondary bg-transparent"
+              [routerLink]="['/ver-solicitacoes']"
+            >
+              Cancelar
+            </button>
+            <button
+              class="btn btn-primary"
+              (click)="finalizarSolicitacao()"
+            >
+              Finalizar solicitação
+            </button>
+
+        </div>
+      </div>
+
+    <div class="flex flex-row justify-between">
+      <button
+        class="btn btn-secondary bg-transparent"
+        [routerLink]="['/ver-solicitacoes']"
+      >
+        Voltar
+      </button>
+    </div>
+  </div>
+</section>
