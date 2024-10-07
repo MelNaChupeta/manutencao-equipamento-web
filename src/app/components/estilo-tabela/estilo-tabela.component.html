@@ -47,35 +47,38 @@
 
         <div class="mt-7 overflow-x-auto">
             <table class="w-full whitespace-nowrap">
+
+                <thead>                                             <!-- Tirar a partir daqui --> 
+                    <tr tabindex="0" class="focus:outline-none h-16 border border-gray-100 rounded">
+                        <th>
+                            <div class="flex items-center pr-5 ml-5">
+                                <label for="" class="text-lg leading-none mr-2">Nome</label>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex items-center">
+                                <label for="" class="text-lg leading-none ml-2">E-mail</label>
+                            </div>
+                        </th>
+                        <th class="text-left">Data Nascimento</th>
+                    </tr>
+                </thead>
+
                 <tbody>
                     <tr tabindex="0" class="focus:outline-none h-16 border border-gray-100 rounded">
-                        <td>
-                            <div class="ml-5">
-                                <div class="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
-                                    <input placeholder="checkbox" type="checkbox" class="focus:opacity-100 checkbox opacity-0 absolute cursor-pointer w-full h-full" />
-                                    <div class="check-icon hidden bg-indigo-700 text-white rounded-sm">
-                                        <svg class="icon icon-tabler icon-tabler-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z"></path>
-                                            <path d="M5 12l5 5l10 -10"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-
                         <td class="">
                             <div class="flex items-center pl-5">
                                 <p class="text-base font-medium leading-none text-gray-700 mr-2">Marcos Antônio da Silva</p>
                             </div>
                         </td>
 
-                        <td class="pl-24">
+                        <td class="">
                             <div class="flex items-center">
                                 <p class="text-sm leading-none text-gray-600 ml-2">marcosantonio&#64;gmail.com</p>
                             </div>
                         </td>
 
-                        <td class="pl-5">
+                        <td class="">
                             <div class="flex items-center">
                                 <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M6 2a1 1 0 011 1v1h6V3a1 1 0 112 0v1h1a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1V3a1 1 0 011-1zm10 6H4v8h12V8z" clip-rule="evenodd" />
