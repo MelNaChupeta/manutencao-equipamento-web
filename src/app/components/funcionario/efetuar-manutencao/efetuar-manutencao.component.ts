@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import mockEfetuarManutencao from './mockEfetuarManutencao.json';
+import mockFuncionarios from './mockFuncionarios.json';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -22,7 +23,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EfetuarManutencaoComponent {
   id: string | null = null;
-  data: any;
+  maintenanceData: any;
+  funcionariosList: any;
+  funcionarioEscolhido: number | null = null;
   currentTab: string = 'efetuar';
   descricaoManutencao: string = '';
   orientacoes: string = '';
@@ -39,32 +42,45 @@ export class EfetuarManutencaoComponent {
   }
 
   getDataFromBackend(id: string) {
+    this.getManutencaoData(id);
+    this.getFuncionariosList();
+  }
+
+  getManutencaoData(id: string) {
     const foundObject = mockEfetuarManutencao.find(
       (obj) => obj.id.toString() === id
     );
 
     if (foundObject) {
-      this.data = foundObject;
-      console.log('Dados encontrados:', this.data);
+      this.maintenanceData = foundObject;
+      console.log('Dados encontrados:', this.maintenanceData);
     } else {
       console.error('Objeto com o id fornecido não encontrado.');
     }
   }
 
+  getFuncionariosList() {
+    this.funcionariosList = mockFuncionarios;
+  }
+
   changeTab(tab: string) {
     this.currentTab = tab;
-    console.log(this.currentTab, 'tab');
   }
 
   sendMaintenance() {
     let data = {
-      'descricaoManutencao':this.descricaoManutencao,
-      'orientacoes':this.orientacoes,
-      'date':new Date,
-      'novoEstado':"aguardandoPagamento",
+      descricaoManutencao: this.descricaoManutencao,
+      orientacoes: this.orientacoes,
+      date: new Date(),
+      novoEstado: 'aguardandoPagamento',
       // TODO: colocar funcionario aqui
-      'funcionario': 'fulano'
-    }
-    console.log('Enviar:',data)
+      funcionario: 'fulano',
+    };
+    console.log('Enviar:', data);
+  }
+  
+  redirect() {
+    console.log('redirecionando pro funcionario de id:', this.funcionarioEscolhido);
+
   }
 }
