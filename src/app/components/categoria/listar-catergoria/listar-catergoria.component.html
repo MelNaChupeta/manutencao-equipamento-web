@@ -1,0 +1,13 @@
+<div>
+    <form action="">
+        <button ngClick="novaCategoria()">nova categoria</button>
+        <table>
+            <tr *ngFor="let categoria of categorias; index as i; first as isFirst">
+                <td><fa-icon [icon]="faPencil" (click)="editar(categoria.id)"></fa-icon></td>
+                <td><fa-icon [icon]="faTrash" (click)="excluir(categoria.id)"></fa-icon></td>
+                <td>{{categoria.id}}</td>
+                <td>{{categoria.nome}}</td>
+            </tr>
+        </table>
+    </form>
+</div>

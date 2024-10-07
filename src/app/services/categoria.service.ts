@@ -21,15 +21,19 @@ export class CategoriaService {
     }
     
     update(categoria: Categoria){
-        return this.http.put<Categoria>(`${this.url+ '/categoria/update'}`, {categoria});
+        return this.http.put<Categoria>(`${this.url+ '/categoria/update/'+categoria.id}`, {categoria});
     }
     
-    findById(id:number){
+    findById(id:Number){
         return this.http.get<Categoria>(`${this.url+ '/categoria/'+id}`);
     }
     
-    delete(id:number){
+    delete(id?:Number){
         return this.http.delete<Categoria>(`${this.url+ '/categoria/'+id}`);
+    }
+
+    findAll(){
+        return this.http.get<Categoria[]>(`${this.url+ '/categoria/all'}`);
     }
 
 }

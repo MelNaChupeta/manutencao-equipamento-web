@@ -12,6 +12,9 @@ import { NovaSolicitacaoComponent } from './components/cliente/nova-solicitacao/
 import { ManterSolicitacaoComponent } from './components/cliente/manter-solicitacao/manter-solicitacao.component';
 import { CategoriaComponent } from './components/categoria/categoria.component';
 import { ManterFuncionarioComponent } from './components/funcionario/manter-funcionario/manter-funcionario.component';
+import { ListarCatergoriaComponent } from './components/categoria/listar-catergoria/listar-catergoria.component';
+import { ManterCatergoriaComponent } from './components/categoria/manter-catergoria/manter-catergoria.component';
+import { NovaCatergoriaComponent } from './components/categoria/nova-catergoria/nova-catergoria.component';
 
 export const routes: Routes = [
     {
@@ -68,8 +71,18 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
+        path: 'categoria/:idCategoria',
+        component: ManterCatergoriaComponent,
+        canActivate: [AuthGuard]
+    },
+    {
         path: 'categoria',
-        component: CategoriaComponent,
+        component: NovaCatergoriaComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'categoria/all',
+        component: ListarCatergoriaComponent,
         canActivate: [AuthGuard]
     }
 ];

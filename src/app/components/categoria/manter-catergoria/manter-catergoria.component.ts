@@ -1,24 +1,24 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import { CategoriaService } from '../../services/categoria.service';
-import { Categoria } from '../../models';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPencilSquare  , faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
+import { faCircleNotch, faPencilSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Categoria } from '../../../models';
+import { CategoriaService } from '../../../services';
+import { CommonModule } from '@angular/common';
+
 @Component({
-  selector: 'app-categoria',
+  selector: 'app-manter-catergoria',
   standalone: true,
   imports: [
     ReactiveFormsModule,
     CommonModule ,
     FontAwesomeModule
   ],
-  templateUrl: './categoria.component.html',
-  styleUrl: './categoria.component.scss'
+  templateUrl: './manter-catergoria.component.html',
+  styleUrl: './manter-catergoria.component.scss'
 })
-export class CategoriaComponent {
+export class ManterCatergoriaComponent {
   categoriaForm: FormGroup;
   isValidating: boolean = false; 
   isLoading: boolean = false;
@@ -28,18 +28,7 @@ export class CategoriaComponent {
   faPencil:IconDefinition  = faPencilSquare;
   faTrash:IconDefinition  = faTrash;
   idCategoria!:number;
-  categorias:Categoria[] = [
-    { nome: 'notebook', id: 10 },
-    { nome: 'desktop', id: 9  },
-    { nome: 'celular', id: 8 },
-    { nome: 'tablet', id: 7 },
-    { nome: 'periferico', id: 6 },
-    { nome: 'camera', id: 5 },
-    { nome: 'televisao', id: 4 },
-    { nome: 'drone', id : 3},
-    { nome: 'videogameConsole', id:2},
-    { nome: 'videogameAcessorio', id : 1 },
-  ];
+  
 
 
   constructor(
@@ -48,7 +37,9 @@ export class CategoriaComponent {
     private router: Router,
     private route: ActivatedRoute){
     this.route.queryParams.subscribe(params => {
-        this.idCategoria = params['id'];
+        this.idCategoria = params['id'] as number;
+        this.loadingCategoria = true;
+        this.findById(this.idCategoria)
     });
     this.categoriaForm = this.fb.group({
         nome: ['', [Validators.required]],
@@ -70,8 +61,6 @@ export class CategoriaComponent {
 
     const categoria:Categoria = this.categoriaForm.value;
     if(this.idCategoria) {
-      this.cadastrar(categoria);
-    }else{
       categoria.id = this.idCategoria;
       this.editar(categoria);
     }
@@ -79,20 +68,6 @@ export class CategoriaComponent {
 
   editar(categoria:Categoria) {
     this.categoriaService.update(categoria).subscribe({
-      next: (response) => {
-          this.isValidating = false;
-          this.isLoading = false;
-      },
-      error: (error) => {
-        this.isValidating = false;
-        this.isLoading = false;
-        let message = 'Ocorreu um erro ao processar a requisição.';
-      }
-    });
-  }
-
-  cadastrar(categoria:Categoria) {
-    this.categoriaService.register(categoria).subscribe({
       next: (response) => {
           this.isValidating = false;
           this.isLoading = false;
@@ -122,25 +97,4 @@ export class CategoriaComponent {
       }
     });
   }
-
-  excluir(id:number):void {
-    this.categoriaService.delete(id).subscribe({
-      next: (response) => {
-        setTimeout(() => {
-          this.isValidating = false;
-          this.isLoading = false;
-        }, 3000);
-      },
-      error: (error) => {
-        this.isValidating = false;
-        this.isLoading = false;
-        let message = 'Ocorreu um erro ao processar a requisição.';
-      }
-    });
-  }
-  
-  goEditar(id:number){
-    this.router.navigate(["/categoria/"+id]);
-  }
-
 }
