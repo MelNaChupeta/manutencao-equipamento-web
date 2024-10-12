@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { faCircleNotch, faPencilSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
+import { TabelaComponent } from '../../estilo-tabela/estilo-tabela.component';
 
 @Component({
   selector: 'app-listar-catergoria',
@@ -13,7 +14,8 @@ import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawes
   imports: [
     ReactiveFormsModule,
     CommonModule ,
-    FontAwesomeModule
+    FontAwesomeModule,
+    TabelaComponent
   ],
   templateUrl: './listar-catergoria.component.html',
   styleUrl: './listar-catergoria.component.scss'
@@ -24,6 +26,7 @@ export class ListarCatergoriaComponent {
   faLoading:IconDefinition = faCircleNotch;
   faPencil:IconDefinition  = faPencilSquare;
   faTrash:IconDefinition  = faTrash;
+  
   categorias:Categoria[] = [
     { nome: 'notebook', id: 10 },
     { nome: 'desktop', id: 9  },
@@ -37,19 +40,27 @@ export class ListarCatergoriaComponent {
     { nome: 'videogameAcessorio', id : 1 },
   ];
 
+  colunas:any[] = [
+    { titulo: 'ID', campo: 'id' },
+    { titulo: 'NOME', campo: 'nome' },
+  ];
+
+  buttons = [
+    { icon: this.faPencil, iconClasses: 'text-lg text-green  text-green-700', action: this.editar.bind(this) },
+    { icon: this.faTrash, iconClasses: 'text-lg text-red text-red-700', action: this.excluir.bind(this) }
+  ];
+
   constructor(
     private categoriaService: CategoriaService,
     private router: Router){
     
   }
 
-  excluir(id?:Number):void {
+  excluir(item?:Categoria):void {
     let message = 'tem certeza que deseja excluir essa categoria ?';
-    this.categoriaService.delete(id).subscribe({
+    this.categoriaService.delete(item?.id).subscribe({
       next: (response) => {
-        setTimeout(() => {
           this.isLoading = false;
-        }, 3000);
       },
       error: (error) => {
         this.isLoading = false;
@@ -58,8 +69,8 @@ export class ListarCatergoriaComponent {
     });
   }
 
-  editar(id?:Number){
-    this.router.navigate(["/categoria/"+id]);
+  editar(item?:Categoria){
+    this.router.navigate(["/categoria/"+item?.id]);
   }
   
   novaCategoria() {
@@ -70,6 +81,7 @@ export class ListarCatergoriaComponent {
     this.categoriaService.findAll().subscribe({
       next: (response) => {
           this.isLoading = false;
+          this.categorias = response;
       },
       error: (error) => {
         this.isLoading = false;
@@ -77,4 +89,6 @@ export class ListarCatergoriaComponent {
       }
     })
   }
+
+  
 }

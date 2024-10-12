@@ -8,18 +8,18 @@
             <span class="self-center text-2xl font-semibold whitespace-nowrap text-white md:block hidden">Manuten&ccedil;&atilde;o Equipamentos</span>
         </a>
         <div class="flex justify-end items-center col-span-1 md:order-2 md:space-x-3 space-x-0 ">
-            <button (click)="signin()" *ngIf="!user?.isAuthenticated" type="button" class="btn btn-primary mr-4 text-sm text-nowrap my-0" >
+            <button (click)="signin()" *ngIf="!user?.id" type="button" class="btn btn-primary mr-4 text-sm text-nowrap my-0" >
                Cadastrar-se
             </button>
-            <button (click)="login()"  *ngIf="!user?.isAuthenticated" type="button" class="btn btn-secondary text-sm text-nowrap my-0" >
+            <button (click)="login()"  *ngIf="!user?.id" type="button" class="btn btn-secondary text-sm text-nowrap my-0" >
                Entrar
             </button>
             
-            <button (click)="toggleMenu()" *ngIf="user?.isAuthenticated" #menuButton type="button" class="flex text-sm bg-indigo-800 rounded-full md:me-0 focus:ring-4 focus:ring-indigo-600" id="user-menu-button" >
+            <button (click)="toggleMenu()" *ngIf="user?.id" #menuButton type="button" class="flex text-sm bg-indigo-800 rounded-full md:me-0 focus:ring-4 focus:ring-indigo-600" id="user-menu-button" >
                 <span class="sr-only">Open user menu</span>
                 <img class="w-8 h-8 rounded-full" src="assets/user2.png" alt="user photo">
             </button>
-            <div #menu *ngIf="user?.isAuthenticated" [ngClass]="{'menu-opened': menuActive, 'menu-closed': !menuActive}" class="z-50 absolute top-10  my-4 text-base list-none  divide-y  rounded-lg  bg-indigo-700 divide-indigo-600 shadow-sm shadow-gray-900 min-w-48" id="user-dropdown">
+            <div #menu *ngIf="user?.id" [ngClass]="{'menu-opened': menuActive, 'menu-closed': !menuActive}" class="z-50 absolute top-10  my-4 text-base list-none  divide-y  rounded-lg  bg-indigo-700 divide-indigo-600 shadow-sm shadow-gray-900 min-w-48" id="user-dropdown">
                 <div class="px-4 py-3">
                     <span class="block text-sm text-white">{{user.name}}</span>
                     <span class="block text-sm   truncate text-indigo-400">{{user.email}}</span>

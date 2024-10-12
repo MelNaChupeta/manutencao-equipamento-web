@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EstiloTabelaComponent } from './estilo-tabela.component';
+import { TabelaComponent } from './estilo-tabela.component';
 
 describe('EstiloTabelaComponent', () => {
-  let component: EstiloTabelaComponent;
-  let fixture: ComponentFixture<EstiloTabelaComponent>;
+  let component: TabelaComponent;
+  let fixture: ComponentFixture<TabelaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EstiloTabelaComponent]
+      imports: [TabelaComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EstiloTabelaComponent);
+    fixture = TestBed.createComponent(TabelaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

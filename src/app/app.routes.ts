@@ -81,7 +81,7 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: 'categoria/all',
+        path: 'categorias',
         component: ListarCatergoriaComponent,
         canActivate: [AuthGuard]
     }

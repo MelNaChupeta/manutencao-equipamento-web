@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../../services';
+import { AuthenticationService, UserService } from '../../services';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +24,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
+    private userService: UserService,
     private router: Router
   ) {
     this.loginForm = this.fb.group({
@@ -52,11 +53,10 @@ export class LoginComponent {
 
     this.authService.login(user.email, user.password).subscribe({
       next: (response) => {
-        setTimeout(() => {
           this.isLoading = false;
           this.isValidating = false;
-          this.router.navigate(['/home']);
-        }, 3000);
+          this.userService.saveToken(response.message);
+          this.router.navigate(["/home"])
       },
       error: (error) => {
         this.isLoading = false;

@@ -5,7 +5,7 @@ import { FuncionarioService } from '../../../services/funcionario.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { EstiloTabelaComponent } from "../../estilo-tabela/estilo-tabela.component";
+import { TabelaComponent } from "../../estilo-tabela/estilo-tabela.component";
 
 
 @Component({
@@ -15,7 +15,7 @@ import { EstiloTabelaComponent } from "../../estilo-tabela/estilo-tabela.compone
     ReactiveFormsModule,
     CommonModule,
     FontAwesomeModule,
-    EstiloTabelaComponent
+    TabelaComponent
 ],
   templateUrl: './manter-funcionario.component.html',
   styleUrl: './manter-funcionario.component.scss'

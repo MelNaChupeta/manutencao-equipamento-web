@@ -5,6 +5,7 @@ import { faSignOut , faGear , faUser, IconDefinition } from '@fortawesome/free-s
 import { User } from '../../models/user';
 import { UserService } from '../../services';
 import { Router } from '@angular/router';
+import { Client } from '../../models/client';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -46,7 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
     });
     
     this.userService.returnUser().subscribe((user) =>{
-      this.user = user;
+      this.user = user as User;
     });
   } 
 
