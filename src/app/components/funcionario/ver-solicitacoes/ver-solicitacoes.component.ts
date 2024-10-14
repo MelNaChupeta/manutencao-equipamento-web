@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import mockVerSolicitacoes from './mockVerSolicitacoes.json';
 import { Router, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms'; // Importe o FormsModule aqui
+import { FormsModule } from '@angular/forms';
+import { FuncionarioService } from '../../../services/funcionario.service';
 
 @Component({
   selector: 'app-ver-solicitacoes',
@@ -12,10 +12,13 @@ import { FormsModule } from '@angular/forms'; // Importe o FormsModule aqui
   styleUrls: ['./ver-solicitacoes.component.scss'],
 })
 export class VerSolicitacoesComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private funcionarioService: FuncionarioService
+  ) {}
 
-  solicitacoes: any[] = mockVerSolicitacoes;
-  filteredSolicitacoes: any[] = mockVerSolicitacoes;
+  solicitacoes: any[] = [];
+  filteredSolicitacoes: any[] = [];
 
   filterType: string = 'todos';
 
@@ -43,16 +46,24 @@ export class VerSolicitacoesComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.solicitacoes.sort((a, b) => {
-      const dateA = new Date(a.dtHrCriacao).getTime();
-      const dateB = new Date(b.dtHrCriacao).getTime();
-      return dateA - dateB;
-    });
-    this.filteredSolicitacoes = JSON.parse(JSON.stringify(this.solicitacoes));
+    this.solicitacoes = this.listarTodasSolicitacoes();
 
-    this.calendarInicio =
-      this.solicitacoes[0].dtHrCriacao.split('T')[0] || '2024-01-01';
-    this.calendarFim = this.todayStr
+    if (this.solicitacoes.length) {
+      this.solicitacoes.sort((a, b) => {
+        const dateA = new Date(a.dtHrCriacao).getTime();
+        const dateB = new Date(b.dtHrCriacao).getTime();
+        return dateA - dateB;
+      });
+      this.filteredSolicitacoes = JSON.parse(JSON.stringify(this.solicitacoes));
+
+      this.calendarInicio =
+        this.solicitacoes[0].dtHrCriacao.split('T')[0] || '2024-01-01';
+      this.calendarFim = this.todayStr;
+    }
+  }
+
+  listarTodasSolicitacoes() {
+    return this.funcionarioService.listarTodasSolicitacoes();
   }
 
   goTo(solicitacao: any) {
@@ -72,12 +83,12 @@ export class VerSolicitacoesComponent implements OnInit {
     let end = new Date();
 
     if (this.filterType === 'hoje') {
-      this.calendarInicio = this.todayStr
-      this.calendarFim = this.todayStr
+      this.calendarInicio = this.todayStr;
+      this.calendarFim = this.todayStr;
     } else if (this.filterType === 'todos') {
       this.calendarInicio =
         this.solicitacoes[0].dtHrCriacao.split('T')[0] || '2024-01-01';
-      this.calendarFim = this.todayStr
+      this.calendarFim = this.todayStr;
     }
 
     start = new Date(`${this.calendarInicio}T00:00:00`);
