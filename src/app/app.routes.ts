@@ -15,6 +15,8 @@ import { ManterFuncionarioComponent } from './components/funcionario/manter-func
 import { ListarCatergoriaComponent } from './components/categoria/listar-catergoria/listar-catergoria.component';
 import { ManterCatergoriaComponent } from './components/categoria/manter-catergoria/manter-catergoria.component';
 import { NovaCatergoriaComponent } from './components/categoria/nova-catergoria/nova-catergoria.component';
+import { InserirFuncionarioComponent } from './components/funcionario/inserir-funcionario/inserir-funcionario.component';
+import { EditarFuncionarioComponent } from './components/funcionario/editar-funcionario/editar-funcionario.component';
 
 export const routes: Routes = [
     {
@@ -50,6 +52,16 @@ export const routes: Routes = [
     {
         path: 'manter-funcionario',
         component: ManterFuncionarioComponent,
+        canActivate: [AuthGuard] 
+    },
+    {
+        path: 'inserir-funcionario',
+        component: InserirFuncionarioComponent,
+        canActivate: [AuthGuard] 
+    },
+    {
+        path: 'editar-funcionario/:idFuncionario',
+        component: EditarFuncionarioComponent,
         canActivate: [AuthGuard] 
     },
     {

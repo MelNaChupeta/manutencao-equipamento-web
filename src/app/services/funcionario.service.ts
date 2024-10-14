@@ -4,10 +4,13 @@ import { User } from '../models/user'
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class FuncionarioService {
 
   LS_CHAVE = "funcionarios";
@@ -23,6 +26,10 @@ export class FuncionarioService {
   funcionario(funcionario: funcionario){
     return this.http.post<funcionario>(`${this.url+ 'auth'}`, {funcionario});
   }
+
+  returnUser(): Observable<User>{
+    return this.userService.returnUser();
+}
 
   listarTodos(): funcionario[]{
     const funcionarios = localStorage[this.LS_CHAVE];
