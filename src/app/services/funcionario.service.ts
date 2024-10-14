@@ -88,12 +88,19 @@ export class FuncionarioService {
 
   getManutencaoData(id: number) {
     const data = mockEfetuarManutencao;
-    const manutencao = data.find((item) => item.id === id);
+    const manutencao = data.find((obj) => obj.id === id);
     return manutencao ? manutencao : {};
   }
 
   getFuncionariosList(): funcionario[] {
     const data = mockListaFuncionarios
     return data?data:[] 
+  }
+
+  getOrcamento(id: number) {
+    const data = mockOrcamento;
+    const orcamento = data.find((obj) => obj.id === id);
+    return orcamento ? orcamento : {};
+
   }
 }
