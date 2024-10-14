@@ -93,14 +93,19 @@ export class FuncionarioService {
   }
 
   getFuncionariosList(): funcionario[] {
-    const data = mockListaFuncionarios
-    return data?data:[] 
+    const data = mockListaFuncionarios;
+    return data ? data : [];
   }
 
   getOrcamento(id: number) {
     const data = mockOrcamento;
     const orcamento = data.find((obj) => obj.id === id);
     return orcamento ? orcamento : {};
+  }
 
+  getSolicitacaoInfo(id: number) {
+    const data = mockFinalizarSolicitacao;
+    const solicitacao = data.find((obj) => obj.id === id);
+    return solicitacao ? solicitacao : {};
   }
 }
