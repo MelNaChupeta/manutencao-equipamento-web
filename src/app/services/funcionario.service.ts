@@ -7,6 +7,17 @@ import { UserService } from './user.service';
 import { Observable } from 'rxjs';
 
 
+// import { Solicitacao } from '../../models/solicitacao';
+// import { environment } from '../../../environments/environment';
+
+//mocks:
+import mockEfetuarManutencao from '../mocks/mockEfetuarManutencao.json';
+import mockFinalizarSolicitacao from '../mocks/mockFinalizarSolicitacao.json';
+import mockSolicitacoesAbertas from '../mocks/mockHomeStaffSolicitacoes.json';
+import mockListaFuncionarios from '../mocks/mockListaFuncionarios.json';
+import mockOrcamento from '../mocks/mockOrcamento.json';
+import mockVerSolicitacoes from '../mocks/mockVerSolicitacoes.json';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -71,5 +82,38 @@ export class FuncionarioService {
     funcionarios = funcionarios.filter(funcionario => funcionario.id !== id);
 
     localStorage[this.LS_CHAVE] = JSON.stringify(funcionarios);
+  }
+
+  listarSolicitacoesAbertas(): any[] {
+    const solicitacoes = mockSolicitacoesAbertas;
+    return solicitacoes ? solicitacoes : [];
+  }
+
+  listarTodasSolicitacoes(): any[] {
+    const solicitacoes = mockVerSolicitacoes;
+    return solicitacoes ? solicitacoes : [];
+  }
+
+  getManutencaoData(id: number) {
+    const data = mockEfetuarManutencao;
+    const manutencao = data.find((obj) => obj.id === id);
+    return manutencao ? manutencao : {};
+  }
+
+  getFuncionariosList(): funcionario[] {
+    const data = mockListaFuncionarios;
+    return data ? data : [];
+  }
+
+  getOrcamento(id: number) {
+    const data = mockOrcamento;
+    const orcamento = data.find((obj) => obj.id === id);
+    return orcamento ? orcamento : {};
+  }
+
+  getSolicitacaoInfo(id: number) {
+    const data = mockFinalizarSolicitacao;
+    const solicitacao = data.find((obj) => obj.id === id);
+    return solicitacao ? solicitacao : {};
   }
 }

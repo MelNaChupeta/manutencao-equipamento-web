@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import mockEfetuarManutencao from './mockEfetuarManutencao.json';
-import mockFuncionarios from './mockFuncionarios.json';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { FuncionarioService } from '../../../services/funcionario.service';
 
 @Component({
   selector: 'app-efetuar-manutencao',
@@ -22,42 +21,46 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './efetuar-manutencao.component.scss',
 })
 export class EfetuarManutencaoComponent {
-  id: string | null = null;
+  id: number | null = null;
+
   maintenanceData: any;
-  funcionariosList: any;
+  funcionariosList: any[] = [];
+
   funcionarioEscolhido: number | null = null;
   currentTab: string = 'efetuar';
   descricaoManutencao: string = '';
   orientacoes: string = '';
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private funcionarioService: FuncionarioService
+  ) {}
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('idSolicitacao');
+    let aux = this.route.snapshot.paramMap.get('idSolicitacao');
 
-    if (this.id) this.getDataFromBackend(this.id);
-  }
+    if (aux !== null) {
+      this.id = parseInt(aux, 10);
+    }
 
-  getDataFromBackend(id: string) {
-    this.getManutencaoData(id);
-    this.getFuncionariosList();
-  }
-
-  getManutencaoData(id: string) {
-    const foundObject = mockEfetuarManutencao.find(
-      (obj) => obj.id.toString() === id
-    );
-
-    if (foundObject) {
-      this.maintenanceData = foundObject;
-      console.log('Dados encontrados:', this.maintenanceData);
-    } else {
-      console.error('Objeto com o id fornecido não encontrado.');
+    if (this.id) {
+      this.getManutencaoData(this.id);
+      this.getFuncionariosList()
     }
   }
 
+  getDataFromBackend(id: string) {
+    // this.getManutencaoData(id);
+    this.getFuncionariosList();
+  }
+
+  getManutencaoData(id: number) {
+    this.maintenanceData = this.funcionarioService.getManutencaoData(id)
+  }
+
   getFuncionariosList() {
-    this.funcionariosList = mockFuncionarios;
+    this.funcionariosList = this.funcionarioService.getFuncionariosList();
   }
 
   changeTab(tab: string) {
@@ -70,20 +73,17 @@ export class EfetuarManutencaoComponent {
       orientacoes: this.orientacoes,
       dataManutencao: new Date(),
       novoEstado: 'aguardandoPagamento',
-      // TODO: colocar funcionario aqui
-      funcionario: 'fulano',
+      funcionario: '',
     };
     console.log('Enviar:', data);
   }
 
   redirect() {
-    // TODO: achar um jeito de proibir o funcionario de selecionar ele mesmo
     let data = {
       solicitacaoId: this.id,
       novoEstado: 'redirecionada',
       dataRedirecionamento: new Date(),
-      // TODO: colocar funcionario aqui
-      funcionarioOrigem: 'fulano',
+      funcionarioOrigem: '',
       funcionarioDestino: this.funcionarioEscolhido,
     };
 

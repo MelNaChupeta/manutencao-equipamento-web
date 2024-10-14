@@ -5,7 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import mockFinalizarSolicitacao from './mockFinalizarSolicitacao.json';
+// import mockFinalizarSolicitacao from './mockFinalizarSolicitacao.json';
+import { FuncionarioService } from '../../../services/funcionario.service';
 
 @Component({
   selector: 'app-finalizar-solicitacao',
@@ -21,32 +22,28 @@ import mockFinalizarSolicitacao from './mockFinalizarSolicitacao.json';
   styleUrl: './finalizar-solicitacao.component.scss',
 })
 export class FinalizarSolicitacaoComponent {
-  id: string | null = null;
+  id: number | null = null;
   solicitacaoData: any;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private funcionarioService: FuncionarioService
   ) {}
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('idSolicitacao');
+    let aux = this.route.snapshot.paramMap.get('idSolicitacao');
 
-    if (this.id) this.getDataFromBackend(this.id);
+    if (aux !== null) {
+      this.id = parseInt(aux, 10);
+    }
+
+    if (this.id) this.getSolicitacaoInfo(this.id);
   }
 
-  getDataFromBackend(id: string) {
-    const data = mockFinalizarSolicitacao.find(
-      (obj) => obj.id.toString() === id
-    );
-
-    if (data) {
-      this.solicitacaoData = data;
-      console.log('Dados encontrados:', this.solicitacaoData);
-    } else {
-      console.error('Objeto com o id fornecido não encontrado.');
-    }
+  getSolicitacaoInfo(id: number) {
+    this.solicitacaoData = this.funcionarioService.getSolicitacaoInfo(id);
   }
 
   finalizarSolicitacao() {
@@ -54,8 +51,7 @@ export class FinalizarSolicitacaoComponent {
       solicitacaoId: this.id,
       novoEstado: 'finalizada',
       dataFinalizacao: new Date(),
-      // TODO: colocar funcionario aqui
-      funcionario: 'fulano',
+      funcionario: '',
     };
 
     console.log('finalizando ...', data);
