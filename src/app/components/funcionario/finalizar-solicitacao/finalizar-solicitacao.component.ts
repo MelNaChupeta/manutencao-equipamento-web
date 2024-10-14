@@ -44,7 +44,6 @@ export class FinalizarSolicitacaoComponent {
 
   getSolicitacaoInfo(id: number) {
     this.solicitacaoData = this.funcionarioService.getSolicitacaoInfo(id);
-    console.log('veio', this.solicitacaoData);
   }
 
   finalizarSolicitacao() {

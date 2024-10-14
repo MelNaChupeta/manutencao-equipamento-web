@@ -98,6 +98,13 @@
       "estadoAtual": "finalizada"
     },
     {
+      "id": 19,
+      "dtHrCriacao": "2023-04-26T10:27:00Z",
+      "client": "Luciana Santos",
+      "descricaoEquipamento": "Notebook Dell Spectre com superaquecimento",
+      "estadoAtual": "finalizada"
+    },
+    {
       "id": 15,
       "dtHrCriacao": "2015-09-26T13:50:00Z",
       "client": "Eduardo Monteiro",

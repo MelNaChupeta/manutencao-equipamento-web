@@ -80,9 +80,12 @@ export class FuncionarioService {
   }
 
   listarSolicitacoesAbertas(): any[] {
-    // const solicitacoes = localStorage[this.LS_CHAVE];
     const solicitacoes = mockSolicitacoesAbertas;
-    // return solicitacoes? JSON.parse(solicitacoes) : [];
+    return solicitacoes ? solicitacoes : [];
+  }
+
+  listarTodasSolicitacoes(): any[] {
+    const solicitacoes = mockVerSolicitacoes;
     return solicitacoes ? solicitacoes : [];
   }
 
