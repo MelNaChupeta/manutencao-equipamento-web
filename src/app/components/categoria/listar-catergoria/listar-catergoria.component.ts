@@ -65,7 +65,12 @@ export class ListarCatergoriaComponent {
     this.isModalOpen = true;
     this.categoria = item;
     this.modalService.open(ModalComponent, {
-     
+      onClose: () => {
+        console.log('Modal closed');
+      },
+      onConfirm: () => {
+        this.onDeleteModalConfirm(item?.id)
+      }
     });
   }
 
@@ -93,11 +98,11 @@ export class ListarCatergoriaComponent {
 
  /* onDeleteModalClose() {
     console.log("closed");
-  }
+  }*/
 
-  onDeleteModalConfirm() {
+  onDeleteModalConfirm(id?:number) {
     this.isModalOpen = false;
-    this.categoriaService.delete(this.categoria?.id).subscribe({
+    this.categoriaService.delete(id).subscribe({
       next: (response) => {
           this.isLoading = false;
       },
@@ -106,7 +111,7 @@ export class ListarCatergoriaComponent {
         let message = 'Ocorreu um erro ao processar a requisição.';
       }
     });
-  }*/
+  }
 
   
 }
