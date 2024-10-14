@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Categoria } from '../../../models';
 import { CategoriaService } from '../../../services';
@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { faCircleNotch, faPencilSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
 import { TabelaComponent } from '../../estilo-tabela/estilo-tabela.component';
+import { ModalComponent } from '../../commom/modal/modal.component';
+import { ModalService } from '../../../services/modal.service';
 
 @Component({
   selector: 'app-listar-catergoria',
@@ -21,12 +23,14 @@ import { TabelaComponent } from '../../estilo-tabela/estilo-tabela.component';
   styleUrl: './listar-catergoria.component.scss'
 })
 export class ListarCatergoriaComponent {
+  
   isLoading:boolean = false;
   loadingCategoria:boolean = false;
   faLoading:IconDefinition = faCircleNotch;
   faPencil:IconDefinition  = faPencilSquare;
   faTrash:IconDefinition  = faTrash;
-  
+  isModalOpen = false;
+  categoria:Categoria = {};
   categorias:Categoria[] = [
     { nome: 'notebook', id: 10 },
     { nome: 'desktop', id: 9  },
@@ -52,20 +56,16 @@ export class ListarCatergoriaComponent {
 
   constructor(
     private categoriaService: CategoriaService,
-    private router: Router){
+    private router: Router,
+    private modalService:ModalService){
     
   }
 
-  excluir(item?:Categoria):void {
-    let message = 'tem certeza que deseja excluir essa categoria ?';
-    this.categoriaService.delete(item?.id).subscribe({
-      next: (response) => {
-          this.isLoading = false;
-      },
-      error: (error) => {
-        this.isLoading = false;
-        let message = 'Ocorreu um erro ao processar a requisição.';
-      }
+  excluir(item:Categoria):void {
+    this.isModalOpen = true;
+    this.categoria = item;
+    this.modalService.open(ModalComponent, {
+     
     });
   }
 
@@ -89,6 +89,24 @@ export class ListarCatergoriaComponent {
       }
     })
   }
+
+
+ /* onDeleteModalClose() {
+    console.log("closed");
+  }
+
+  onDeleteModalConfirm() {
+    this.isModalOpen = false;
+    this.categoriaService.delete(this.categoria?.id).subscribe({
+      next: (response) => {
+          this.isLoading = false;
+      },
+      error: (error) => {
+        this.isLoading = false;
+        let message = 'Ocorreu um erro ao processar a requisição.';
+      }
+    });
+  }*/
 
   
 }

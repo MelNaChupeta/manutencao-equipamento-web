@@ -51,7 +51,7 @@ export class LoginComponent {
 
     const user = this.loginForm.value;
 
-    this.authService.login(user.email, user.password).subscribe({
+    this.authService.login(user.email, user.password)/*.subscribe({
       next: (response) => {
           this.isLoading = false;
           this.isValidating = false;
@@ -74,6 +74,6 @@ export class LoginComponent {
           message = 'Acesso n&atilde;o autorizado.';
         }
       },
-    });
+    });*/
   }
 }
