@@ -17,6 +17,7 @@ import { ManterCatergoriaComponent } from './components/categoria/manter-catergo
 import { NovaCatergoriaComponent } from './components/categoria/nova-catergoria/nova-catergoria.component';
 import { InserirFuncionarioComponent } from './components/funcionario/inserir-funcionario/inserir-funcionario.component';
 import { EditarFuncionarioComponent } from './components/funcionario/editar-funcionario/editar-funcionario.component';
+import { RelatorioCategoriaComponent } from './components/generate-pdf/relatorio-categoria/relatorio-categoria.component';
 
 export const routes: Routes = [
     {
@@ -95,6 +96,11 @@ export const routes: Routes = [
     {
         path: 'categorias',
         component: ListarCatergoriaComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'relatorio-categoria',
+        component: RelatorioCategoriaComponent,
         canActivate: [AuthGuard]
     }
 ];

@@ -55,7 +55,7 @@ export class LoginComponent {
       next: (response) => {
           this.isLoading = false;
           this.isValidating = false;
-          this.userService.saveToken(response.message);
+          //this.userService.saveToken(response.message);
           this.router.navigate(["/home"])
       },
       error: (error) => {
