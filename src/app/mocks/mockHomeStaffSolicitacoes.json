@@ -1,0 +1,45 @@
+[
+  {
+    "id": 1,
+    "dtHrCriacao": "2024-09-20T10:30:00Z",
+    "client": "João Silva",
+    "descricaoEquipamento": "Notebook Dell Inspiron 15 com tela quebrada",
+    "estadoAtual": "aberta"
+  },
+
+  {
+    "id": 2,
+    "dtHrCriacao": "2024-09-21T11:15:00Z",
+    "client": "Maria Oliveira",
+    "descricaoEquipamento": "Desktop HP Pavilion",
+    "estadoAtual": "aberta"
+  },
+  {
+    "id": 3,
+    "dtHrCriacao": "2024-09-22T09:45:00Z",
+    "client": "Carlos Mendes",
+    "descricaoEquipamento": "MacBook Pro 16",
+    "estadoAtual": "aberta"
+  },
+  {
+    "id": 4,
+    "dtHrCriacao": "2024-09-22T14:00:00Z",
+    "client": "Ana Costa",
+    "descricaoEquipamento": "Notebook Lenovo IdeaPad",
+    "estadoAtual": "aberta"
+  },
+  {
+    "id": 5,
+    "dtHrCriacao": "2024-09-23T08:30:00Z",
+    "client": "Lucas Pereira",
+    "descricaoEquipamento": "Desktop Asus ROG",
+    "estadoAtual": "aberta"
+  },
+  {
+    "id": 6,
+    "dtHrCriacao": "2024-09-23T13:20:00Z",
+    "client": "Juliana Almeida",
+    "descricaoEquipamento": "Ultrabook Samsung Galaxy Book modelo 2024",
+    "estadoAtual": "aberta"
+  }
+]

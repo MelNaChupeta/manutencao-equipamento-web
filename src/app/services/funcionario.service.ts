@@ -4,6 +4,10 @@ import { User } from '../models/user'
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
+import mockSolicitacoesAbertas from '../mocks/mockHomeStaffSolicitacoes.json';
+// import { Solicitacao } from '../../models/solicitacao';
+// import { environment } from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -64,5 +68,13 @@ export class FuncionarioService {
     funcionarios = funcionarios.filter(funcionario => funcionario.id !== id);
 
     localStorage[this.LS_CHAVE] = JSON.stringify(funcionarios);
+  }
+
+
+  listarSolicitacoesAbertas(): any[] {
+    // const solicitacoes = localStorage[this.LS_CHAVE];
+    const solicitacoes = mockSolicitacoesAbertas;
+    // return solicitacoes? JSON.parse(solicitacoes) : [];
+    return solicitacoes ? solicitacoes : [];
   }
 }
