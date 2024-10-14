@@ -20,18 +20,16 @@ export interface Solicitacao {
   styleUrl: './home-staff.component.scss',
 })
 export class HomeStaffComponent implements OnInit {
+  solicitacoes: any[] = [];
 
-  solicitacoes : any[] = [];
+  constructor(private funcionarioService: FuncionarioService) {}
 
-  constructor(private funcionarioService: FuncionarioService) { }
-
-  ngOnInit():void {
+  ngOnInit(): void {
     this.solicitacoes = this.listarSolicitacoesAbertas();
   }
   // solicitacoes = mockSolicitacoes;
-  
-  listarSolicitacoesAbertas(): any[] {
-    return this.funcionarioService.listarSolicitacoesAbertas()
-  }
 
+  listarSolicitacoesAbertas(): any[] {
+    return this.funcionarioService.listarSolicitacoesAbertas();
+  }
 }
