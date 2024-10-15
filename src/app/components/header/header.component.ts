@@ -1,11 +1,12 @@
 import { Component, OnDestroy, Renderer2, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faSignOut , faGear , faUser, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faSignOut , faGear , faUser, IconDefinition , faComputer , faPerson } from '@fortawesome/free-solid-svg-icons';
 import { User } from '../../models/user';
 import { UserService } from '../../services';
 import { Router } from '@angular/router';
 import { Client } from '../../models/client';
+import { UserRole } from '../../models/userRole';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -23,6 +24,8 @@ export class HeaderComponent implements OnInit, OnDestroy{
   faSignOut:IconDefinition = faSignOut;
   faGear:IconDefinition = faGear;
   faUser:IconDefinition = faUser;
+  faComputer:IconDefinition = faComputer;
+  faPerson:IconDefinition = faPerson;
  
   menuActive:boolean = false;
   navActive:boolean = false;
@@ -74,5 +77,17 @@ export class HeaderComponent implements OnInit, OnDestroy{
   signout(): void {
     this.userService.logout();
     this.router.navigate(["/login"]);
+  }
+  
+  goHome():void {
+    if(this.userService.isLoggedIn()){
+      if(this.user.role == UserRole.funcionario) {
+        this.router.navigate(["/home-staff"]);
+      }else{
+        this.router.navigate(["/home"]);
+      }
+    }else{
+      this.router.navigate(["/login"]);
+    }
   }
 }

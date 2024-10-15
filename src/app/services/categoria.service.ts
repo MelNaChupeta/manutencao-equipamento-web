@@ -12,28 +12,55 @@ import { environment } from '../../environments/environment';
 })
 
 export class CategoriaService {
-     constructor(private http: HttpClient) {}
-
+    constructor(private http: HttpClient) {}
+    LS_CHAVE = "categorias";
     url:string = environment.URL_API;
 
     register(categoria: Categoria){
-        return this.http.post<Categoria>(`${this.url+ '/categoria/register'}`, {categoria});
+        //return this.http.post<Categoria>(`${this.url+ '/categoria/register'}`, {categoria});
+        const categorias = this.findAll();
+
+        categoria.id = new Date().getTime();
+
+        categorias.push(categoria);
+
+        localStorage[this.LS_CHAVE] = JSON.stringify(categorias); 
     }
     
     update(categoria: Categoria){
-        return this.http.put<Categoria>(`${this.url+ '/categoria/update/'+categoria.id}`, {categoria});
+        //return this.http.put<Categoria>(`${this.url+ '/categoria/update/'+categoria.id}`, {categoria});
+        const categorias = this.findAll();
+
+        categorias.forEach((obj, index, objs) => {
+          if (categoria.id === obj.id) {          
+            objs[index] = categoria              
+          }
+        });
+    
+        localStorage[this.LS_CHAVE] = JSON.stringify(categorias);
     }
     
-    findById(id:Number){
-        return this.http.get<Categoria>(`${this.url+ '/categoria/'+id}`);
+    findById(id:Number) {
+        //return this.http.get<Categoria>(`${this.url+ '/categoria/'+id}`);
+        const categorias = this.findAll();
+
+        return categorias.find(c => c.id ===id);
     }
     
     delete(id?:Number){
-        return this.http.delete<Categoria>(`${this.url+ '/categoria/'+id}`);
+        //return this.http.delete<Categoria>(`${this.url+ '/categoria/'+id}`);
+        let categorias = this.findAll();
+
+        categorias = categorias.filter(c => c.id !== id);
+
+        localStorage[this.LS_CHAVE] = JSON.stringify(categorias);
     }
 
-    findAll(){
-        return this.http.get<Categoria[]>(`${this.url+ '/categoria/all'}`);
+    findAll(): Categoria[] {
+        //return this.http.get<Categoria[]>(`${this.url+ '/categoria/all'}`);
+        const funcionarios = localStorage[this.LS_CHAVE];
+
+        return funcionarios? JSON.parse(funcionarios) : [];
     }
 
 }

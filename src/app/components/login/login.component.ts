@@ -51,17 +51,25 @@ export class LoginComponent {
 
     const user = this.loginForm.value;
 
-    this.authService.login(user.email, user.password)/*.subscribe({
+    this.authService.login(user.email, user.password).subscribe({
       next: (response) => {
           this.isLoading = false;
           this.isValidating = false;
-          //this.userService.saveToken(response.message);
-          this.router.navigate(["/home"])
+          this.userService.saveToken(response.message);
+          if(user.email.includes("funcionario")) {
+            this.router.navigate(["/home-staff"])
+          }else{
+            this.router.navigate(["/home"])
+          }
       },
       error: (error) => {
         this.isLoading = false;
         this.isValidating = false;
-        this.router.navigate(['/home']);
+        if(user.email.includes("funcionario")) {
+          this.router.navigate(["/home-staff"])
+        }else{
+          this.router.navigate(["/home"])
+        }
 
         let message =
           'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
@@ -74,6 +82,6 @@ export class LoginComponent {
           message = 'Acesso n&atilde;o autorizado.';
         }
       },
-    });*/
+    });
   }
 }

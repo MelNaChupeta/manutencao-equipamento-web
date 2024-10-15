@@ -1,12 +1,13 @@
 import { Injectable, ComponentRef, ApplicationRef, EnvironmentInjector, ViewContainerRef, TemplateRef, Type, createComponent } from "@angular/core";
 import { ModalComponent } from "../components/commom/modal/modal.component";
 import { Options } from "../models/modalOptions";
+import { BaseModalComponent } from "../components/commom/modal/base-modal/base-modal.component";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModalService {
-  newModalComponent!: ComponentRef<ModalComponent>;
+  newModalComponent!: ComponentRef<BaseModalComponent>;
   options!: Options | undefined;
 
   constructor(
@@ -15,7 +16,7 @@ export class ModalService {
   ) {}
 
   open(
-    vcrOrComponent: ViewContainerRef,
+    vcrOrComponent: Type<unknown>,
     content: TemplateRef<Element>,
     options?: Options
   ): void;
@@ -23,17 +24,13 @@ export class ModalService {
   open<C>(vcrOrComponent: Type<C>, options?: Options): void;
 
   open<C>(
-    vcrOrComponent: ViewContainerRef | Type<C>,
+    vcrOrComponent: Type<BaseModalComponent>,
     param2?: TemplateRef<Element> | Options,
     options?: Options
   ) {
-    if (vcrOrComponent instanceof ViewContainerRef) {
-      this.openWithTemplate(vcrOrComponent, param2 as TemplateRef<Element>);
-      this.options = options;
-    } else {
-      this.openWithComponent(vcrOrComponent);
-      this.options = param2 as Options | undefined;
-    }
+    
+    this.openWithComponent(vcrOrComponent);
+    this.options = param2 as Options | undefined;
 
     if (this.options?.onClose) {
       this.newModalComponent.instance.closeModal.subscribe(() => {
@@ -48,11 +45,11 @@ export class ModalService {
     }
   }
 
-  private openWithComponent(component: Type<unknown>) {
+  private openWithComponent(component: Type<BaseModalComponent>) {
     const newComponent = createComponent(component, {
       environmentInjector: this.injector,
     });
-    this.newModalComponent = createComponent(ModalComponent, {
+    this.newModalComponent = createComponent(component, {
       environmentInjector: this.injector,
       projectableNodes: [[newComponent.location.nativeElement]],
     });
@@ -67,25 +64,5 @@ export class ModalService {
     this.newModalComponent.instance.close();
   }
 
-  private openWithTemplate(vcr: ViewContainerRef, content: TemplateRef<Element>) {
-    vcr.clear();
-    const innerContent = vcr.createEmbeddedView(content);
-
-    this.newModalComponent = vcr.createComponent(ModalComponent, {
-      environmentInjector: this.injector,
-      projectableNodes: [innerContent.rootNodes],
-    });
-
-    if (this.options?.onClose) {
-      this.newModalComponent.instance.closeModal.subscribe(() => {
-        this.options?.onClose!();
-      });
-    }
-
-    if (this.options?.onConfirm) {
-      this.newModalComponent.instance.confirmModal.subscribe(() => {
-        this.options?.onConfirm!();
-      });
-    }
-  }
+  
 }

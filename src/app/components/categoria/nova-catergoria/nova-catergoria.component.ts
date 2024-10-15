@@ -72,7 +72,7 @@ export class NovaCatergoriaComponent {
     this.cadastrar(categoria);
   }
   cadastrar(categoria:Categoria) {
-    this.categoriaService.register(categoria).subscribe({
+    this.categoriaService.register(categoria)/*.subscribe({
       next: (response) => {
           this.isValidating = false;
           this.isLoading = false;
@@ -82,6 +82,6 @@ export class NovaCatergoriaComponent {
         this.isLoading = false;
         let message = 'Ocorreu um erro ao processar a requisição.';
       }
-    });
+    });*/
   }
 }

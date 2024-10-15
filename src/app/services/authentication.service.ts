@@ -5,6 +5,7 @@ import { User } from '../models/user'
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SignJWT, generateKeyPair } from 'jose';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -16,11 +17,12 @@ export class AuthenticationService {
                 private userService: UserService) {}
 
     private secretKey = new TextEncoder().encode('your-256-bit-secret'); // Use a strong secret key        
-    //url = environment.URL;
-    url:string = "";
+    url = environment.URL_API;
+    //url:string = "";
 
     login(email:string , password:String){
-      new SignJWT({email,password , isAuthenticated : true})
+       let role:string = email.includes("funcionario")? "FUNCIONARIO" : "CLIENTE"; 
+       new SignJWT({email,password,isAuthenticated : true , role:role})
         .setProtectedHeader({ alg: 'HS256' })
         .setIssuedAt()
         .setExpirationTime('24h')
@@ -28,7 +30,7 @@ export class AuthenticationService {
         .then((jwt) => {
             this.userService.saveToken(jwt);
         });
-        return this.http.post<User>(`${this.url+ 'auth'}`, {email,password});
+        return this.http.post<any>(`${this.url+ '/auth'}`, {email,password});
     }
 
     logout(): void{

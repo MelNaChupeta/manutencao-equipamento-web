@@ -1,14 +1,14 @@
-import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { Categoria } from '../../../models';
 import { CategoriaService } from '../../../services';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { faCircleNotch, faPencilSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCircleNotch, faPencilSquare, faTrash , faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
 import { TabelaComponent } from '../../estilo-tabela/estilo-tabela.component';
-import { ModalComponent } from '../../commom/modal/modal.component';
 import { ModalService } from '../../../services/modal.service';
+import { ConfirmModalComponent } from '../../commom/modal/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-listar-catergoria',
@@ -17,22 +17,24 @@ import { ModalService } from '../../../services/modal.service';
     ReactiveFormsModule,
     CommonModule ,
     FontAwesomeModule,
-    TabelaComponent
+    TabelaComponent,
+    RouterModule
   ],
   templateUrl: './listar-catergoria.component.html',
   styleUrl: './listar-catergoria.component.scss'
 })
-export class ListarCatergoriaComponent {
+export class ListarCatergoriaComponent  implements OnInit{
   
   isLoading:boolean = false;
   loadingCategoria:boolean = false;
   faLoading:IconDefinition = faCircleNotch;
   faPencil:IconDefinition  = faPencilSquare;
   faTrash:IconDefinition  = faTrash;
+  faPlus:IconDefinition  = faPlus;
   isModalOpen = false;
   categoria:Categoria = {};
   categorias:Categoria[] = [
-    { nome: 'notebook', id: 10 },
+    /*{ nome: 'notebook', id: 10 },
     { nome: 'desktop', id: 9  },
     { nome: 'celular', id: 8 },
     { nome: 'tablet', id: 7 },
@@ -41,7 +43,7 @@ export class ListarCatergoriaComponent {
     { nome: 'televisao', id: 4 },
     { nome: 'drone', id : 3},
     { nome: 'videogameConsole', id:2},
-    { nome: 'videogameAcessorio', id : 1 },
+    { nome: 'videogameAcessorio', id : 1 },*/
   ];
 
   colunas:any[] = [
@@ -50,8 +52,8 @@ export class ListarCatergoriaComponent {
   ];
 
   buttons = [
-    { icon: this.faPencil, iconClasses: 'text-lg text-green  text-green-700', action: this.editar.bind(this) },
-    { icon: this.faTrash, iconClasses: 'text-lg text-red text-red-700', action: this.excluir.bind(this) }
+    { icon: this.faPencil, iconClasses: 'text-3xl text-green  text-green-700', action: this.editar.bind(this) },
+    { icon: this.faTrash, iconClasses: 'text-3xl text-red text-red-700', action: this.excluir.bind(this) }
   ];
 
   constructor(
@@ -60,11 +62,16 @@ export class ListarCatergoriaComponent {
     private modalService:ModalService){
     
   }
+  ngOnInit(): void {
+    this.listar();
+  }
 
   excluir(item:Categoria):void {
     this.isModalOpen = true;
     this.categoria = item;
-    this.modalService.open(ModalComponent, {
+    this.modalService.open(ConfirmModalComponent, {
+      title:"Confirmar Ação",
+      body:"tem certeza que deseja excluir esse item ?",
       onClose: () => {
         console.log('Modal closed');
       },
@@ -83,7 +90,7 @@ export class ListarCatergoriaComponent {
   }
 
   listar() {
-    this.categoriaService.findAll().subscribe({
+    this.categorias = this.categoriaService.findAll()/*.subscribe({
       next: (response) => {
           this.isLoading = false;
           this.categorias = response;
@@ -92,7 +99,7 @@ export class ListarCatergoriaComponent {
         this.isLoading = false;
         let message = 'Ocorreu um erro ao processar a requisição.';
       }
-    })
+    })*/
   }
 
 
@@ -102,7 +109,7 @@ export class ListarCatergoriaComponent {
 
   onDeleteModalConfirm(id?:number) {
     this.isModalOpen = false;
-    this.categoriaService.delete(id).subscribe({
+    this.categoriaService.delete(id)/*.subscribe({
       next: (response) => {
           this.isLoading = false;
       },
@@ -110,7 +117,7 @@ export class ListarCatergoriaComponent {
         this.isLoading = false;
         let message = 'Ocorreu um erro ao processar a requisição.';
       }
-    });
+    });*/
   }
 
   

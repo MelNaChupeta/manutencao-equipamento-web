@@ -17,6 +17,8 @@ export interface Options {
       height?: string;
       maxHeight?: string;
     };
+    title?:string;
+    body?:string;
     onClose?: () => void;
     onConfirm?: () => void;
 }

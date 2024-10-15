@@ -10,7 +10,6 @@ import { EfetuarManutencaoComponent } from './components/funcionario/efetuar-man
 import { EfetuarOrcamentoComponent } from './components/funcionario/efetuar-orcamento/efetuar-orcamento.component';
 import { NovaSolicitacaoComponent } from './components/cliente/nova-solicitacao/nova-solicitacao.component';
 import { ManterSolicitacaoComponent } from './components/cliente/manter-solicitacao/manter-solicitacao.component';
-import { CategoriaComponent } from './components/categoria/categoria.component';
 import { ManterFuncionarioComponent } from './components/funcionario/manter-funcionario/manter-funcionario.component';
 import { ListarCatergoriaComponent } from './components/categoria/listar-catergoria/listar-catergoria.component';
 import { ManterCatergoriaComponent } from './components/categoria/manter-catergoria/manter-catergoria.component';

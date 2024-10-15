@@ -28,7 +28,7 @@ export class ManterCatergoriaComponent {
   faPencil:IconDefinition  = faPencilSquare;
   faTrash:IconDefinition  = faTrash;
   idCategoria!:number;
-  
+  categoria?:Categoria = {};
 
 
   constructor(
@@ -36,15 +36,19 @@ export class ManterCatergoriaComponent {
     private categoriaService: CategoriaService,
     private router: Router,
     private route: ActivatedRoute){
-    this.route.queryParams.subscribe(params => {
-        this.idCategoria = params['id'] as number;
-        this.loadingCategoria = true;
-        this.findById(this.idCategoria)
-    });
     this.categoriaForm = this.fb.group({
         nome: ['', [Validators.required]],
         id: [null]
     });
+    this.route.paramMap.subscribe(params => {
+        let idCategoria = params.get('idCategoria');
+        if(idCategoria){
+          this.idCategoria = parseInt(idCategoria);
+        }
+        this.loadingCategoria = true;
+        this.findById(this.idCategoria)
+    });
+    
   }
 
   get nome(){
@@ -67,7 +71,7 @@ export class ManterCatergoriaComponent {
   }
 
   editar(categoria:Categoria) {
-    this.categoriaService.update(categoria).subscribe({
+    this.categoriaService.update(categoria)/*.subscribe({
       next: (response) => {
           this.isValidating = false;
           this.isLoading = false;
@@ -77,12 +81,13 @@ export class ManterCatergoriaComponent {
         this.isLoading = false;
         let message = 'Ocorreu um erro ao processar a requisição.';
       }
-    });
+    });*/
   }
 
   findById(id:number) {
     this.loadingCategoria = true;
-    this.categoriaService.findById(id).subscribe({
+    this.categoria = this.categoriaService.findById(id);/*.subscribe({
+
       next: (response) => {
           this.loadingCategoria = false;
           this.categoriaForm.patchValue({
@@ -95,6 +100,10 @@ export class ManterCatergoriaComponent {
         this.isLoading = false;
         let message = 'Ocorreu um erro ao processar a requisição.';
       }
+    });*/
+    this.categoriaForm.patchValue({
+      nome: this.categoria?.nome,
+      id: this.categoria?.id
     });
   }
 }
