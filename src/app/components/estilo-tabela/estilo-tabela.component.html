@@ -26,7 +26,7 @@
             <table class="w-full whitespace-nowrap">
                 <thead>                                            
                     <tr tabindex="0"  class="focus:outline-none h-16 border border-gray-100 rounded">
-                        <th *ngFor="let coluna of colunas" (click)="sortByColumn(coluna.campo)" class="cursor-pointer">
+                        <th *ngFor="let coluna of colunas" (click)="sortByColumn(coluna.campo)" class="cursor-pointer max-w-48">
                             {{ coluna.titulo }}
                             <fa-icon [icon]="faArrowDown" class="opacity-45" [ngClass] = "{'active-sort': sortedColumn == coluna.campo && sortDirection == 'asc'}"></fa-icon>
                             <fa-icon [icon]="faArrowUp"   class="opacity-45" [ngClass] = "{'active-sort': sortedColumn == coluna.campo && sortDirection == 'desc'}"></fa-icon>
@@ -95,7 +95,7 @@
                 </tbody>
                 <tbody *ngIf="paginatedData.length == 0" >
                     <tr class="focus:outline-none h-16 border text-center border-gray-100 rounded ">
-                        <td  class="text-center pl-5 col-span-full" >Nenhum registro encontrado</td>
+                        <td  colspan="100%" class="text-center pl-5 col-span-full" >Nenhum registro encontrado</td>
                     </tr>
                 </tbody>
                 

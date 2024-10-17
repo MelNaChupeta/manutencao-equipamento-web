@@ -9,6 +9,9 @@ import { debounceTime, switchMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { ProgressService } from '../../../services/progress.service';
+import { ModalService } from '../../../services/modal.service';
+import { AlertModalComponent } from '../../commom/modal/alert-modal/alert-modal.component';
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -35,6 +38,8 @@ export class SignupComponent implements OnInit{
     private fb: FormBuilder,
     private clienteService: ClienteService,
     private viaCepService: ViaCepService,
+    private progressBarService: ProgressService,
+    private modalService: ModalService,
     private router: Router){
       this.signupForm = this.fb.group({
         cpf: ['', [Validators.required]],
@@ -50,8 +55,9 @@ export class SignupComponent implements OnInit{
   }
   ngOnInit(): void {
     this.signupForm.get("cep")?.valueChanges.pipe(
-      debounceTime(2000),
+      
       switchMap(value => {
+        this.loadingCep = true;
         if (value && value.length === 8) {
           this.loadingCep = true;
           return this.viaCepService.getAddress(value).pipe(
@@ -111,24 +117,32 @@ export class SignupComponent implements OnInit{
 
   async onSubmit(){
     if (this.signupForm.invalid) {
+      this.signupForm.markAllAsTouched();  
       return;
     }
 
     this.isValidating = true;
     this.isLoading = true;
-
+    this.progressBarService.show();
     const client = this.signupForm.value;
 
     this.clienteService.signup(client).subscribe({
       next: (response) => {
-        setTimeout(() => {
+          this.progressBarService.hide();
           this.isValidating = false;
           this.isLoading = false;
-          this.router.navigate(['/']);
-        }, 3000);
+          this.modalService.open(AlertModalComponent, {
+            title:"Cadastro realizado com sucesso",
+            body:`<p>Um email foi enviado para <u><b>${client.email}</b></u> contendo a sua senha</p>`,
+            onClose: () => {
+              this.router.navigate(["/login/"]);
+              
+            },
+          });      
       },
 
       error: (error) => {
+        this.progressBarService.hide();
         this.isValidating = false;
         this.isLoading = false;
         this.router.navigate(['/']);

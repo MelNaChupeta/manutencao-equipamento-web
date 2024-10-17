@@ -6,6 +6,10 @@ import { faCircleNotch, faPencilSquare, faTrash } from '@fortawesome/free-solid-
 import { Categoria } from '../../../models';
 import { CategoriaService } from '../../../services';
 import { CommonModule } from '@angular/common';
+import { AlertModalComponent } from '../../commom/modal/alert-modal/alert-modal.component';
+import { ErrorModalComponent } from '../../commom/modal/error-modal/error-modal.component';
+import { ModalService } from '../../../services/modal.service';
+import { ProgressService } from '../../../services/progress.service';
 
 @Component({
   selector: 'app-manter-catergoria',
@@ -35,6 +39,8 @@ export class ManterCatergoriaComponent {
     private fb: FormBuilder,
     private categoriaService: CategoriaService,
     private router: Router,
+    private modalService: ModalService,
+    private progressBarService: ProgressService,
     private route: ActivatedRoute){
     this.categoriaForm = this.fb.group({
         nome: ['', [Validators.required]],
@@ -59,7 +65,7 @@ export class ManterCatergoriaComponent {
     if (this.categoriaForm.invalid) {
       return;
     }
-
+    this.progressBarService.show();
     this.isValidating = true;
     this.isLoading = true;
 
@@ -71,7 +77,33 @@ export class ManterCatergoriaComponent {
   }
 
   editar(categoria:Categoria) {
-    this.categoriaService.update(categoria)/*.subscribe({
+    this.categoriaService.update(categoria)
+    this.categoriaService.register(categoria).subscribe(
+         (response) => {
+            this.progressBarService.hide();
+            this.isLoading = false;
+            this.modalService.open(AlertModalComponent, {
+              title:"Sucesso",
+              body:"Categoria alterada com sucesso",
+              onClose: () => {
+                this.router.navigate(["/categorias/"]);
+                
+              },
+            });      
+        },
+         (error) => {
+          this.progressBarService.hide();
+          this.isLoading = false;
+          this.modalService.open(ErrorModalComponent, {
+            title:"Atenção",
+            body:"Erro ao alterar categoria"
+          });      
+        }
+    ); 
+     
+     
+    
+    /*.subscribe({
       next: (response) => {
           this.isValidating = false;
           this.isLoading = false;
@@ -86,24 +118,28 @@ export class ManterCatergoriaComponent {
 
   findById(id:number) {
     this.loadingCategoria = true;
-    this.categoria = this.categoriaService.findById(id);/*.subscribe({
-
-      next: (response) => {
+    this.progressBarService.show();
+    this.categoriaService.findById(id).subscribe(
+       (response) => {
+          this.progressBarService.hide();
           this.loadingCategoria = false;
+          this.categoria = response
           this.categoriaForm.patchValue({
-            id: response.id,
-            nome: response.nome,
+            id: response?.id,
+            nome: response?.nome,
           });
       },
-      error: (error) => {
+      (error) => {
+        this.progressBarService.hide();
         this.isValidating = false;
         this.isLoading = false;
         let message = 'Ocorreu um erro ao processar a requisição.';
+        this.modalService.open(ErrorModalComponent, {
+          title:"Atenção",
+          body:message
+        });
       }
-    });*/
-    this.categoriaForm.patchValue({
-      nome: this.categoria?.nome,
-      id: this.categoria?.id
-    });
+    );
+   
   }
 }

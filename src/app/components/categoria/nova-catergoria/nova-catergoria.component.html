@@ -25,12 +25,11 @@
                 </div>
 
                 <div class="input-container-lg">
-                    <button type="submit" class="btn btn-primary w-full">
-                        Cadastrar
+                    <button type="submit" [disabled]="isLoading" class="btn btn-primary w-full">
+                        {{ isLoading ? 'Cadastrando...' : 'Cadastrar' }}
                     </button>
                 </div>
             </div>
         </form>
     </div>
-    
 </div>

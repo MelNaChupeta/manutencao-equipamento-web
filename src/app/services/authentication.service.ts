@@ -3,7 +3,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user'
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { SignJWT, generateKeyPair } from 'jose';
 import { environment } from '../../environments/environment';
 
@@ -30,7 +30,8 @@ export class AuthenticationService {
         .then((jwt) => {
             this.userService.saveToken(jwt);
         });
-        return this.http.post<any>(`${this.url+ '/auth'}`, {email,password});
+        return of("").pipe(delay(1000));
+        //return this.http.post<any>(`${this.url+ '/auth'}`, {email,password});
     }
 
     logout(): void{

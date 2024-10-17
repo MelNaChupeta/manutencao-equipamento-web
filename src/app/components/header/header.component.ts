@@ -5,12 +5,12 @@ import { faSignOut , faGear , faUser, IconDefinition , faComputer , faPerson } f
 import { User } from '../../models/user';
 import { UserService } from '../../services';
 import { Router } from '@angular/router';
-import { Client } from '../../models/client';
 import { UserRole } from '../../models/userRole';
+import { ProgressBarComponent } from '../commom/progress-bar/progress-bar.component';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule,FontAwesomeModule ],
+  imports: [CommonModule,FontAwesomeModule , ProgressBarComponent ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -67,7 +67,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   }
 
   login(): void {
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/login/"]);
   }
 
   signin(): void {
@@ -76,7 +76,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   signout(): void {
     this.userService.logout();
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/login/"]);
   }
   
   goHome():void {

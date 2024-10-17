@@ -9,6 +9,8 @@ import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawes
 import { TabelaComponent } from '../../estilo-tabela/estilo-tabela.component';
 import { ModalService } from '../../../services/modal.service';
 import { ConfirmModalComponent } from '../../commom/modal/confirm-modal/confirm-modal.component';
+import { ErrorModalComponent } from '../../commom/modal/error-modal/error-modal.component';
+import { ProgressService } from '../../../services/progress.service';
 
 @Component({
   selector: 'app-listar-catergoria',
@@ -59,6 +61,7 @@ export class ListarCatergoriaComponent  implements OnInit{
   constructor(
     private categoriaService: CategoriaService,
     private router: Router,
+    private progressBarService: ProgressService,
     private modalService:ModalService){
     
   }
@@ -90,7 +93,22 @@ export class ListarCatergoriaComponent  implements OnInit{
   }
 
   listar() {
-    this.categorias = this.categoriaService.findAll()/*.subscribe({
+     this.progressBarService.show();
+     this.categoriaService.findAll().subscribe(
+      (response) => {
+          this.progressBarService.hide();
+          this.isLoading = false;
+          this.categorias = response;
+      },
+       (error) => {
+        this.progressBarService.hide();
+        this.isLoading = false;
+        this.modalService.open(ErrorModalComponent, {
+          title:"Atenção",
+          body:"Erro ao buscar categorias"
+        });    
+      }
+    )/*.subscribe({
       next: (response) => {
           this.isLoading = false;
           this.categorias = response;
@@ -109,7 +127,11 @@ export class ListarCatergoriaComponent  implements OnInit{
 
   onDeleteModalConfirm(id?:number) {
     this.isModalOpen = false;
-    this.categoriaService.delete(id)/*.subscribe({
+    this.progressBarService.show();
+    this.categoriaService.delete(id)
+    this.progressBarService.hide();
+    
+    /*.subscribe({
       next: (response) => {
           this.isLoading = false;
       },
@@ -118,6 +140,7 @@ export class ListarCatergoriaComponent  implements OnInit{
         let message = 'Ocorreu um erro ao processar a requisição.';
       }
     });*/
+    this.listar();
   }
 
   

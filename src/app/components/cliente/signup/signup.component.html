@@ -164,11 +164,11 @@
                 </div>
 
                 <div class="input-container-lg">
-                    <button type="submit" class="btn btn-primary w-full">
-                        Finalizar cadastro
+                    <button type="submit" [disabled]="isLoading" class="btn btn-primary w-full">
+                        {{ isLoading ? 'Cadastrando...' : 'Finalizar cadastro' }}
                     </button>
                     <button type="submit" class="btn btn-secondary w-full">
-                        Já tenho conta
+                        Já uma tenho conta
                     </button>
                 </div>
             </div>
