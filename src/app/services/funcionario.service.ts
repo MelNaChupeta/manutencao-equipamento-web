@@ -61,7 +61,7 @@ export class FuncionarioService {
   buscarPorId(id: number): funcionario | undefined {
     const funcionarios = this.listarTodos();
 
-    return funcionarios.find(funcionario => funcionario.id ===id);
+    return funcionarios.find(funcionario => funcionario.id === id);
   }
 
   atualizar(funcionario: funcionario): void{
