@@ -77,22 +77,26 @@ export class EfetuarManutencaoComponent {
   }
 
   sendMaintenance() {
+    const userEmail = localStorage.getItem('userEmail') || '';
+
     let data = {
       descricaoManutencao: this.descricaoManutencao,
       orientacoes: this.orientacoes,
       dataManutencao: new Date(),
       novoEstado: 'aguardandoPagamento',
-      funcionario: '',
+      funcionario: userEmail,
     };
     console.log('Enviar:', data);
   }
 
   redirect() {
+    const userEmail = localStorage.getItem('userEmail') || '';
+
     let data = {
       solicitacaoId: this.id,
       novoEstado: 'redirecionada',
       dataRedirecionamento: new Date(),
-      funcionarioOrigem: '',
+      funcionarioOrigem: userEmail,
       funcionarioDestino: this.funcionarioEscolhido,
     };
 

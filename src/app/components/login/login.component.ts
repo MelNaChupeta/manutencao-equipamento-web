@@ -57,6 +57,9 @@ export class LoginComponent {
           this.isLoading = false;
           this.isValidating = false;
           //this.userService.saveToken(response.message);
+
+          localStorage.setItem('userEmail', user.email);
+
           if(user.email.includes("funcionario")) {
             this.router.navigate(["/home-staff"])
           }else{
