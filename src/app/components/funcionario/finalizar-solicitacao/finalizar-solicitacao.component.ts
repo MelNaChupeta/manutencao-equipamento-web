@@ -17,7 +17,7 @@ import { BreadcrumbComponent } from '../../breadcrumb/breadcrumb.component';
     NgxMaskPipe,
     FormsModule,
     RouterModule,
-    BreadcrumbComponent
+    BreadcrumbComponent,
   ],
   templateUrl: './finalizar-solicitacao.component.html',
   styleUrl: './finalizar-solicitacao.component.scss',
@@ -28,8 +28,8 @@ export class FinalizarSolicitacaoComponent {
   paths = [
     { label: 'Início', path: '/home-staff' },
     { label: 'Todas as solicitações', path: '/ver-solicitacoes' },
-    { label: 'Finalizar solicitação', path: '' }
-  ]
+    { label: 'Finalizar solicitação', path: '' },
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -53,11 +53,13 @@ export class FinalizarSolicitacaoComponent {
   }
 
   finalizarSolicitacao() {
+    const userEmail = localStorage.getItem('userEmail') || '';
+
     let data = {
       solicitacaoId: this.id,
       novoEstado: 'finalizada',
       dataFinalizacao: new Date(),
-      funcionario: '',
+      funcionario: userEmail,
     };
 
     console.log('finalizando ...', data);

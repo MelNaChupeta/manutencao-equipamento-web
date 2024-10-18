@@ -4,13 +4,15 @@
   <div class="flex flex-col w-2/4 gap-y-6 mx-auto max-w-3xl px-6 py-16">
     <app-breadcrumb [paths]="paths"></app-breadcrumb>
 
-    <h2 class="text-white text-2xl font-semibold p-0">Efetuar orçamento  #{{ id }}</h2>
+    <h2 class="text-white text-2xl font-semibold p-0">
+      Efetuar orçamento #{{ id }}
+    </h2>
 
     <!-- Product -->
     <div>
       <h3 class="text-white font-bold">Produto:</h3>
       <div
-        class="w-full max-w-2xl bg-gray-400/5 px-6 py-4 border rounded-md bg-gray-400/5 border-white/5"
+        class="w-full bg-gray-400/5 px-6 py-4 border rounded-md bg-gray-400/5 border-white/5"
       >
         <table class="table-auto w-full text-white">
           <tbody>
@@ -71,7 +73,7 @@
     <div>
       <h3 class="text-white font-bold">Cliente:</h3>
       <div
-        class="w-full max-w-2xl bg-gray-400/5 px-6 py-4 border rounded-md bg-gray-400/5 border-white/5"
+        class="w-full bg-gray-400/5 px-6 py-4 border rounded-md bg-gray-400/5 border-white/5"
       >
         <table class="table-auto w-full text-white">
           <tbody>
@@ -131,30 +133,71 @@
     </div>
 
     <!-- orçamento -->
-    <div>
+    <div class="w-full">
       <h3 class="text-white font-bold">Orçamento:</h3>
       <div
-        class="flex items-center w-full max-w-2xl bg-gray-400/5 px-6 py-4 gap-4 border rounded-md bg-gray-400/5 border-white/5"
+        class="flex items-center w-full bg-gray-400/5 px-6 py-4 gap-4 border rounded-md bg-gray-400/5 border-white/5"
       >
-        <p class="font-bold text-white">Valor:</p>
+        <div class="flex flex-col w-full">
+          <div
+            *ngFor="let item of items; let i = index"
+            class="item flex flex-row gap-x-6 p-3"
+          >
+            <div class="w-full">
+              <label for="name" class="text-white text-sm">Item:</label>
+              <input
+                id="name"
+                name="name"
+                class="input-form"
+                placeholder="Nome do item"
+                type="text"
+                [ngModel]="item.name"
+                required
+              />
+            </div>
 
-        <input
-          matInput
-          class="w-full input-form"
-          mask="separator.2"
-          placeholder="R$ 0,00"
-          [thousandSeparator]="'.'"
-          [decimalMarker]="','"
-          prefix="R$ "
-          type="text"
-          [dropSpecialCharacters]="true"
-          [ngModel]="valor"
-        />
+            <div class="w-full">
+              <label for="name" class="text-white text-sm">Preço:</label>
+              <input
+                matInput
+                class="input-form"
+                mask="separator.2"
+                placeholder="R$ 0,00"
+                [thousandSeparator]="'.'"
+                [decimalMarker]="','"
+                prefix="R$ "
+                type="text"
+                [dropSpecialCharacters]="true"
+                [(ngModel)]="item.price"
+                (ngModelChange)="updateTotal()"
+              />
+            </div>
+            <div class="flex items-end pb-2 text-white text-lg">
+              <i
+                class="fa-solid fa-xmark cursor-pointer"
+                (click)="removeItem(i)"
+              ></i>
+            </div>
+          </div>
+          <div class="flex justify-center p-3">
+            <button class="pill-purple" (click)="addItem()">
+              Adicionar novo item
+            </button>
+          </div>
+          <div class="flex flex-row justify-end gap-x-3 p-3 text-white">
+            <p>Total:</p>
+            <h4 class="font-semibold">
+              R$ {{ total | number : "1.2-2" : "pt-BR" }}
+            </h4>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="flex flex-row justify-end">
-      <button class="btn btn-primary">Enviar</button>
+      <button class="btn btn-primary" (click)="sendBudget()">
+        Enviar orçamento
+      </button>
     </div>
   </div>
 </section>
