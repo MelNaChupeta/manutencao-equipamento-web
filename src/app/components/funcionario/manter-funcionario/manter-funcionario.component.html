@@ -1,8 +1,8 @@
-<div class="sm:px-6 w-full">
+<div class="sm:px-6 w-full min-h-screen dark:bg-gray-900 dark:bg-opacity-100">
     <div class="px-4 md:px-10 py-4 md:py-7">
         <div class="flex items-center justify-between">
             <p tabindex="0"
-                class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">
+                class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-white">
                 Tabela Funcionário</p>
             <div
                 class="py-3 px-4 flex items-center text-sm font-medium leading-none text-gray-600 bg-gray-200 hover:bg-gray-300 cursor-pointer rounded">
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
+    <div class=" py-4 md:py-7 px-4 md:px-8 xl:px-10">
         <div class="sm:flex items-center justify-between">
             <div class="relative">
                 <input type="text" placeholder="Pesquisar..."
@@ -28,19 +28,10 @@
                     </svg>
                 </div>
             </div>
-
-            <div>
-                <button [routerLink]="['/inserir-funcionario']" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded text-white">
-                    Adicionar
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </button>
-
+            <div class="pill-purple" [routerLink]="['/inserir-funcionario']">
+                <i class="fa-solid fa-plus"></i>
+                Adicionar
             </div>
-
         </div>
 
         <div class="mt-7 overflow-x-auto">
@@ -50,15 +41,15 @@
                     <tr tabindex="0" class="focus:outline-none h-16">
                         <th>
                             <div class="flex items-center pr-5 ml-5">
-                                <label for="" class="text-lg leading-none mr-2">Nome</label>
+                                <label for="" class="text-lg leading-none mr-2 text-white">Nome</label>
                             </div>
                         </th>
                         <th>
                             <div class="flex items-center">
-                                <label for="" class="text-lg leading-none ml-2">E-mail</label>
+                                <label for="" class="text-lg leading-none ml-2 text-white">E-mail</label>
                             </div>
                         </th>
-                        <th class="text-left">Data Nascimento</th>
+                        <th class="text-left text-white">Data Nascimento</th>
                     </tr>
                 </thead>
 
