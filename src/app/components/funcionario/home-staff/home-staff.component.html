@@ -1,16 +1,14 @@
 <section
   class="flex flex-col min-h-screen bg-opacity-100 bg-gray-900 justify-center"
 >
-  <div class="flex flex-col gap-y-6 mx-auto max-w-3xl px-6 py-16">
+  <div class="flex flex-col w-2/4 gap-y-6 mx-auto max-w-3xl px-6 py-16">
     <div class="flex flex-row justify-between items-center px-6 py-4">
-      <h2 class="text-white">Solicitações em aberto:</h2>
+      <h2 class="text-white text-2xl font-semibold p-0">Solicitações em aberto:</h2>
       <button class="pill-purple" [routerLink]="['/ver-solicitacoes']">
         Ver todas
       </button>
     </div>
     <ul class="list-none m-0 p-0">
-      <!-- TODO: adicionar id de cada um no router -->
-
       <li
         *ngFor="let solicitacao of solicitacoes"
         [routerLink]="['/efetuar-orcamento', solicitacao.id]"
