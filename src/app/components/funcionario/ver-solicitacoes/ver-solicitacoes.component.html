@@ -1,8 +1,10 @@
 <section class="flex flex-col min-h-screen bg-opacity-100 bg-gray-900">
   <div
-    class="ver-solicitacoes-container flex flex-col gap-y-6 mx-auto max-w-3xl px-6 py-16"
+    class="ver-solicitacoes-container flex flex-col w-2/4 gap-y-6 mx-auto max-w-3xl px-6 py-16"
   >
-    <h2 class="text-white px-6">Todas as solicitações</h2>
+    <app-breadcrumb [paths]="paths"></app-breadcrumb>
+
+    <h2 class="text-white text-2xl font-semibold p-0">Todas as solicitações</h2>
     <div
       class="w-full flex flex-col px-6 py-4 gap-x-4 border rounded-md bg-gray-400/5 border-white/5"
     >
@@ -118,9 +120,6 @@
               Aberta em {{ solicitacao.dtHrCriacao | date : "dd/MM/yyyy" }} às
               {{ solicitacao.dtHrCriacao | date : "HH:mm:ss" }}
             </p>
-            <svg viewBox="0 0 2 2" class="h-1 w-1 flex-none fill-gray-300">
-              <circle r="1" cx="1" cy="1"></circle>
-            </svg>
           </div>
           <p
             class="overflow-hidden text-ellipsis whitespace-nowrap text-sm text-gray-400"
@@ -133,25 +132,16 @@
             Estado atual: {{ solicitacao.estadoAtual }}
           </p>
         </div>
-        <div class="flex flex-row gap-x-1">
+        <div class="flex flex-row items-center gap-x-2">
           <p
             class="text-sm leading-5 text-opacity-1 text-gray-400 overflow-hidden text-ellipsis whitespace-nowrap"
           >
             {{ estadoAcoes[solicitacao.estadoAtual] || "" }}
           </p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-            class="w-5 h-5 flex-none text-opacity-1 text-gray-400"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
+          <i
+            *ngIf="estadoAcoes[solicitacao.estadoAtual]"
+            class="fa-solid fa-chevron-right text-opacity-1 text-gray-400 text-sm"
+          ></i>
         </div>
       </li>
     </ul>

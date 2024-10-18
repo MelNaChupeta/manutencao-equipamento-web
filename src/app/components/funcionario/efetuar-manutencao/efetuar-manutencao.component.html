@@ -1,8 +1,10 @@
 <section
   class="flex flex-col min-h-screen bg-opacity-100 bg-gray-900 justify-center items-center"
 >
-  <div class="flex flex-col max-w-screen-lg gap-6 py-12">
-    <h2 class="text-white">Efetuar Manutenção</h2>
+  <div class="flex flex-col w-2/4 gap-y-6 mx-auto max-w-3xl px-6 py-16">
+    <app-breadcrumb [paths]="paths"></app-breadcrumb>
+
+    <h2 class="text-white text-2xl font-semibold p-0">Efetuar Manutenção  #{{ id }}</h2>
 
     <!-- Product -->
     <div>
@@ -285,15 +287,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="flex flex-row justify-between">
-      <button
-        class="btn btn-secondary bg-transparent"
-        [routerLink]="['/ver-solicitacoes']"
-      >
-        Voltar
-      </button>
     </div>
   </div>
 </section>

@@ -6,6 +6,7 @@ import { Router, RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FuncionarioService } from '../../../services/funcionario.service';
+import { BreadcrumbComponent } from '../../breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-efetuar-orcamento',
@@ -16,6 +17,7 @@ import { FuncionarioService } from '../../../services/funcionario.service';
     NgxMaskPipe,
     FormsModule,
     RouterModule,
+    BreadcrumbComponent,
   ],
   providers: [provideNgxMask()],
 
@@ -26,6 +28,13 @@ export class EfetuarOrcamentoComponent implements OnInit {
   id: number | null = null;
   data: any;
   valor: string = '';
+
+  paths = [
+    { label: 'Início', path: '/home-staff' },
+    { label: 'Todas as solicitações', path: '/ver-solicitacoes' },
+    { label: 'Efetuar orçamento', path: '' }
+  ]
+
 
   constructor(
     private route: ActivatedRoute,

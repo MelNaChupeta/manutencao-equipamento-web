@@ -1,0 +1,15 @@
+<div class="breadcrumb flex flex-row text-white text-sm">
+  <div *ngFor="let path of paths; let i = index">
+    <a
+      *ngIf="i !== paths.length - 1"
+      [routerLink]="path.path"
+      class="text-gray-400 hover:text-indigo-400"
+    >
+      {{ path.label }}
+      <i class="fa-solid fa-chevron-right"></i>&nbsp;
+    </a>
+    <span *ngIf="i === paths.length - 1" class="font-bold text-gray-400">{{
+      path.label
+    }}</span>
+  </div>
+</div>

@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-// import mockFinalizarSolicitacao from './mockFinalizarSolicitacao.json';
 import { FuncionarioService } from '../../../services/funcionario.service';
+import { BreadcrumbComponent } from '../../breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-finalizar-solicitacao',
@@ -17,6 +17,7 @@ import { FuncionarioService } from '../../../services/funcionario.service';
     NgxMaskPipe,
     FormsModule,
     RouterModule,
+    BreadcrumbComponent
   ],
   templateUrl: './finalizar-solicitacao.component.html',
   styleUrl: './finalizar-solicitacao.component.scss',
@@ -24,6 +25,11 @@ import { FuncionarioService } from '../../../services/funcionario.service';
 export class FinalizarSolicitacaoComponent {
   id: number | null = null;
   solicitacaoData: any;
+  paths = [
+    { label: 'Início', path: '/home-staff' },
+    { label: 'Todas as solicitações', path: '/ver-solicitacoes' },
+    { label: 'Finalizar solicitação', path: '' }
+  ]
 
   constructor(
     private route: ActivatedRoute,
