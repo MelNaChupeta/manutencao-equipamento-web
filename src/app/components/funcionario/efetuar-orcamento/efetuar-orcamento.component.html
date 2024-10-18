@@ -2,6 +2,8 @@
   class="flex flex-col min-h-screen bg-opacity-100 bg-gray-900 justify-center items-center"
 >
   <div class="flex flex-col w-2/4 gap-y-6 mx-auto max-w-3xl px-6 py-16">
+    <app-breadcrumb [paths]="paths"></app-breadcrumb>
+
     <h2 class="text-white text-2xl font-semibold p-0">Efetuar orçamento  #{{ id }}</h2>
 
     <!-- Product -->
@@ -151,13 +153,7 @@
       </div>
     </div>
 
-    <div class="flex flex-row justify-between">
-      <button
-        class="btn btn-secondary bg-transparent"
-        [routerLink]="['/home-staff']"
-      >
-        Voltar
-      </button>
+    <div class="flex flex-row justify-end">
       <button class="btn btn-primary">Enviar</button>
     </div>
   </div>

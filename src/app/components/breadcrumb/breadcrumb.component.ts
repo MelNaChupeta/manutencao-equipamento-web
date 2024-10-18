@@ -11,5 +11,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './breadcrumb.component.scss',
 })
 export class BreadcrumbComponent {
-  @Input() paths: { name: string; url: string }[] = [];
+  @Input() paths: { label: string; path: string }[] = [];
 }

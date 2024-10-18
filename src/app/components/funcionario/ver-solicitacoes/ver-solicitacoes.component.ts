@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FuncionarioService } from '../../../services/funcionario.service';
+import { BreadcrumbComponent } from '../../breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-ver-solicitacoes',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, BreadcrumbComponent],
   templateUrl: './ver-solicitacoes.component.html',
   styleUrls: ['./ver-solicitacoes.component.scss'],
 })
@@ -16,6 +17,11 @@ export class VerSolicitacoesComponent implements OnInit {
     private router: Router,
     private funcionarioService: FuncionarioService
   ) {}
+
+  paths = [
+    { label: 'Início', path: '/home-staff' },
+    { label: 'Todas as solicitações', path: '' },
+  ]
 
   solicitacoes: any[] = [];
   filteredSolicitacoes: any[] = [];

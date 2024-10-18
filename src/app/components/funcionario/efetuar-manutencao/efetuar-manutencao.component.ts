@@ -6,6 +6,7 @@ import { Router, RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FuncionarioService } from '../../../services/funcionario.service';
+import { BreadcrumbComponent } from '../../breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-efetuar-manutencao',
@@ -16,6 +17,7 @@ import { FuncionarioService } from '../../../services/funcionario.service';
     NgxMaskPipe,
     FormsModule,
     RouterModule,
+    BreadcrumbComponent,
   ],
   templateUrl: './efetuar-manutencao.component.html',
   styleUrl: './efetuar-manutencao.component.scss',
@@ -30,6 +32,13 @@ export class EfetuarManutencaoComponent {
   currentTab: string = 'efetuar';
   descricaoManutencao: string = '';
   orientacoes: string = '';
+
+  paths = [
+    { label: 'Início', path: '/home-staff' },
+    { label: 'Todas as solicitações', path: '/ver-solicitacoes' },
+    { label: 'Efetuar manutenção', path: '' }
+  ]
+
 
   constructor(
     private route: ActivatedRoute,
@@ -46,7 +55,7 @@ export class EfetuarManutencaoComponent {
 
     if (this.id) {
       this.getManutencaoData(this.id);
-      this.getFuncionariosList()
+      this.getFuncionariosList();
     }
   }
 
@@ -56,7 +65,7 @@ export class EfetuarManutencaoComponent {
   }
 
   getManutencaoData(id: number) {
-    this.maintenanceData = this.funcionarioService.getManutencaoData(id)
+    this.maintenanceData = this.funcionarioService.getManutencaoData(id);
   }
 
   getFuncionariosList() {
