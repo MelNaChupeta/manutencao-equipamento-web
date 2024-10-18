@@ -90,4 +90,19 @@ body,
   .input-container-lg {
     @apply sm:col-span-6;
   }
+  html.light {
+    .text-white{
+      color: #000;
+    }
+
+    .bg-gray-900 {
+      background-color: rgb(250 250 250);
+    }
+    
+    .bg-indigo-700{
+      // background-color: red;
+
+    }
+  }
+  
 }

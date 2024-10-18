@@ -33,6 +33,10 @@ export class HeaderComponent implements OnInit, OnDestroy{
   
   user: User = {};
 
+  isDarkMode: boolean = false;
+  nextTheme:string = 'Trocar tema';
+  nextIcon:string = 'fa-sun';
+
   constructor(private renderer: Renderer2, 
               private userService: UserService,
               private router: Router) {
@@ -52,6 +56,31 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.userService.returnUser().subscribe((user) =>{
       this.user = user as User;
     });
+
+    const theme = localStorage.getItem('theme');
+
+    if (theme === 'dark') {
+      this.isDarkMode = true;
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
+      this.nextTheme = 'Modo claro';
+      this.nextIcon = 'fa-sun';
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+      this.nextTheme = 'Modo escuro';
+      this.nextIcon = 'fa-moon';
+
+    }
+    
+    if(!theme){
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      this.nextTheme = 'Modo claro';
+      this.nextIcon = 'fa-sun';
+    }
+
   } 
 
   ngOnDestroy(): void {
@@ -89,5 +118,23 @@ export class HeaderComponent implements OnInit, OnDestroy{
     }else{
       this.router.navigate(["/login"]);
     }
+  }
+
+  switchTheme():void {
+    this.isDarkMode = !this.isDarkMode;
+    if (this.isDarkMode) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+      localStorage.setItem('theme', 'dark');
+      this.nextTheme = 'Modo claro';
+      this.nextIcon = 'fa-sun';
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+      localStorage.setItem('theme', 'light');
+      this.nextTheme = 'Modo escuro';
+      this.nextIcon = 'fa-moon';
+    }
+
   }
 }
