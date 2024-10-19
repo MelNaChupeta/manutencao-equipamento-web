@@ -2,7 +2,7 @@
     <section class="section-container max-w-full">
         <h1 class="flex justify-between">
             <span class="ml-10">Lista de Categorias</span>
-            <button [routerLink]="['/categoria']" class="btn btn-primary mr-20">
+            <button (click)="novaCategoria()" class="btn btn-primary mr-20">
                 Adicionar <fa-icon [icon]="faPlus" ></fa-icon>
             </button>
         </h1>

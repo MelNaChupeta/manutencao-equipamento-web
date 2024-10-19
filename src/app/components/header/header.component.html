@@ -25,11 +25,6 @@
                     <span class="block text-sm   truncate text-indigo-400">{{user.email}}</span>
                 </div>
                 <ul class="py-2" aria-labelledby="user-menu-button">
-                    <li>
-                        <a class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-white flex justify-start">
-                            <fa-icon [icon]="faGear" class="mr-3 text-lg w-[20%]"></fa-icon> <p class="w-[80%] text-start">Configura&ccedil;&otilde;es</p>
-                        </a>
-                    </li>
                     <li *ngIf="user?.role == 'FUNCIONARIO'" class="cursor-pointer">
                         <a href="/manter-funcionario" class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-white flex justify-start">
                             <fa-icon [icon]="faPerson" class="mr-3 text-lg w-[20%]"></fa-icon> <p class="w-[80%] text-start">Funcionarios</p> 
@@ -38,6 +33,16 @@
                     <li *ngIf="user?.role == 'FUNCIONARIO'">
                         <a href="/categorias" class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-white flex justify-start">
                             <fa-icon [icon]="faComputer" class="mr-3 text-lg w-[20%]"></fa-icon> <p class="w-[80%] text-start">Categorias</p>
+                        </a>
+                    </li>
+                    <li *ngIf="user?.role == 'FUNCIONARIO'">
+                        <a href="/relatorio/receitas" class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-white flex justify-start">
+                            <fa-icon [icon]="faMoneyBill" class="mr-3 text-lg w-[20%]"></fa-icon> <p class="w-[80%] text-start">Receitas</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-white flex justify-start">
+                            <fa-icon [icon]="faGear" class="mr-3 text-lg w-[20%]"></fa-icon> <p class="w-[80%] text-start">Configura&ccedil;&otilde;es</p>
                         </a>
                     </li>
                     <li>

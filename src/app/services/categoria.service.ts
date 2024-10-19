@@ -47,7 +47,7 @@ export class CategoriaService {
         //return this.http.get<Categoria>(`${this.url+ '/categoria/'+id}`);
         let categorias= JSON.parse(localStorage[this.LS_CHAVE]) as Categoria[];
 
-          return of(categorias.find(c => c.id ===id)).pipe(delay(1000));
+        return of(categorias.find(c => c.id ===id)).pipe(delay(1000));
     }
     
     delete(id?:Number){

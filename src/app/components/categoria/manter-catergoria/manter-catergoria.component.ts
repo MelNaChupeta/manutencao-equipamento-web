@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
 import { faCircleNotch, faPencilSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Categoria } from '../../../models';
@@ -17,7 +17,8 @@ import { ProgressService } from '../../../services/progress.service';
   imports: [
     ReactiveFormsModule,
     CommonModule ,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterModule
   ],
   templateUrl: './manter-catergoria.component.html',
   styleUrl: './manter-catergoria.component.scss'
@@ -32,7 +33,7 @@ export class ManterCatergoriaComponent {
   faPencil:IconDefinition  = faPencilSquare;
   faTrash:IconDefinition  = faTrash;
   idCategoria!:number;
-  categoria?:Categoria = {};
+  categoria:Categoria = {};
 
 
   constructor(
@@ -63,6 +64,7 @@ export class ManterCatergoriaComponent {
 
    onSubmit(){
     if (this.categoriaForm.invalid) {
+      this.categoriaForm.markAllAsTouched();  
       return;
     }
     this.progressBarService.show();
@@ -123,11 +125,14 @@ export class ManterCatergoriaComponent {
        (response) => {
           this.progressBarService.hide();
           this.loadingCategoria = false;
-          this.categoria = response
-          this.categoriaForm.patchValue({
-            id: response?.id,
-            nome: response?.nome,
-          });
+          if(response) {
+            this.categoria = response;
+          }else{
+            this.modalService.open(ErrorModalComponent, {
+              title:"Atenção",
+              body:"Erro ao buscar categoria"
+            });
+          }
       },
       (error) => {
         this.progressBarService.hide();

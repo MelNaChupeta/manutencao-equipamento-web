@@ -1,7 +1,7 @@
 import { Component, OnDestroy, Renderer2, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faSignOut , faGear , faUser, IconDefinition , faComputer , faPerson } from '@fortawesome/free-solid-svg-icons';
+import { faSignOut , faGear , faUser, IconDefinition , faComputer , faPerson ,faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 import { User } from '../../models/user';
 import { UserService } from '../../services';
 import { Router } from '@angular/router';
@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   faUser:IconDefinition = faUser;
   faComputer:IconDefinition = faComputer;
   faPerson:IconDefinition = faPerson;
+  faMoneyBill:IconDefinition = faMoneyBill;
  
   menuActive:boolean = false;
   navActive:boolean = false;
