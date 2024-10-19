@@ -5,7 +5,7 @@
     <div class="max-w-screen-xl grid md:grid-cols-3 grid-cols-2 items-center  mx-auto p-3 h-16">
         <a (click)="goHome()" class="flex justify-start items-center col-span-1  rtl:space-x-reverse">
             <!--<img src="assets/logo.png" class="h-8 mr-4" alt="Manutencao logo" />-->
-            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white md:block hidden">Manuten&ccedil;&atilde;o Equipamentos</span>
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-gray-50 md:block hidden">Manuten&ccedil;&atilde;o Equipamentos</span>
         </a>
         <div class="flex justify-end items-center col-span-1 md:order-2 md:space-x-3 space-x-0 ">
             <button (click)="signin()" *ngIf="!user?.isAuthenticated" type="button" class="btn btn-primary mr-4 text-sm text-nowrap my-0" >
@@ -21,17 +21,17 @@
             </button>
             <div #menu *ngIf="user?.isAuthenticated" [ngClass]="{'menu-opened': menuActive, 'menu-closed': !menuActive}" class="z-50 absolute top-10  my-4 text-base list-none  divide-y  rounded-lg  bg-indigo-700 divide-indigo-600 shadow-sm shadow-gray-900 min-w-48" id="user-dropdown">
                 <div class="px-4 py-3">
-                    <span class="block text-sm text-white">{{user.name}}</span>
+                    <span class="block text-sm text-gray-50">{{user.name}}</span>
                     <span class="block text-sm   truncate text-indigo-400">{{user.email}}</span>
                 </div>
                 <ul class="py-2" aria-labelledby="user-menu-button">
                     <li *ngIf="user?.role == 'FUNCIONARIO'" class="cursor-pointer">
-                        <a href="/manter-funcionario" class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-white flex justify-start">
+                        <a href="/manter-funcionario" class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-gray-50 flex justify-start">
                             <fa-icon [icon]="faPerson" class="mr-3 text-lg w-[20%]"></fa-icon> <p class="w-[80%] text-start">Funcionarios</p> 
                         </a>
                     </li>
                     <li *ngIf="user?.role == 'FUNCIONARIO'">
-                        <a href="/categorias" class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-white flex justify-start">
+                        <a href="/categorias" class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-gray-50 flex justify-start">
                             <fa-icon [icon]="faComputer" class="mr-3 text-lg w-[20%]"></fa-icon> <p class="w-[80%] text-start">Categorias</p>
                         </a>
                     </li>
@@ -43,6 +43,12 @@
                     <li>
                         <a class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-white flex justify-start">
                             <fa-icon [icon]="faGear" class="mr-3 text-lg w-[20%]"></fa-icon> <p class="w-[80%] text-start">Configura&ccedil;&otilde;es</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a  (click)="switchTheme()" class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-gray-50 flex justify-start">
+                            <i [ngClass]="'mr-3 text-lg w-[20%] fa-regular ' + nextIcon" ></i>
+                            <p class="w-[80%] text-start">{{ nextTheme }}</p>
                         </a>
                     </li>
                     <li>
@@ -62,10 +68,10 @@
         <div #nav [ngClass]="{'nav-opened': navActive, 'nav-closed': !navActive}" class="items-center justify-end  w-full md:flex md:w-auto z-40" id="navbar-user">
             <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border  rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  bg-indigo-600 md:bg-indigo-800 border-indigo-800">
                 <li>
-                    <a (click)="goHome()" class="block py-2 px-3  bg-blue-700 rounded md:bg-transparent  text-white md:p-0 md:hover:text-blue-500" aria-current="page">In&iacute;cio</a>
+                    <a (click)="goHome()" class="block py-2 px-3  bg-blue-700 rounded md:bg-transparent  text-gray-50 md:p-0 md:hover:text-blue-500 cursor-pointer" aria-current="page">In&iacute;cio</a>
                 </li>
                 <li>
-                    <a href="#" class="block py-2 px-3  rounded   md:p-0 text-white md:hover:text-blue-500 hover:bg-indigo-700 hover:text-white md:hover:bg-transparent border-indigo-700">Contato</a>
+                    <a href="#" class="block py-2 px-3  rounded   md:p-0 text-gray-50 md:hover:text-blue-500 hover:bg-indigo-700 hover:text-gray-50 md:hover:bg-transparent border-indigo-700">Contato</a>
                 </li>
             </ul>
         </div>
