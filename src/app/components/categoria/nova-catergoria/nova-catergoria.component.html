@@ -1,14 +1,15 @@
+<section class="min-h-screen  dark:bg-gray-900 dark:bg-opacity-100">
 <div class="main-content-container">
     <div class="section-container">
         <form [formGroup]="categoriaForm" (ngSubmit)="onSubmit()">
             <div class="form-container">
 
                 <div class="w-full col-span-6 p-2 border-b-2 text-center relative">
-                    <h1>Cadastro Categoria</h1>
+                    <h1 class="text-white">Cadastro Categoria</h1>
                 </div>
 
                 <div class="input-container-lg">
-                    <label class="label-form">Nome categoria
+                    <label class="label-form text-white">Nome categoria
                         <input 
                             type="text" 
                             class="input-form" 
@@ -37,3 +38,4 @@
         </form>
     </div>
 </div>
+</section>
