@@ -1,12 +1,12 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { faCircleNotch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { FuncionarioService } from '../../../services/funcionario.service';
+import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TabelaComponent } from "../../estilo-tabela/estilo-tabela.component";
 import { funcionario } from '../../../models';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { faCircleNotch, faPencilSquare, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
+import { TabelaComponent } from '../../estilo-tabela/estilo-tabela.component';
+import { FuncionarioService } from '../../../services/funcionario.service';
 
 
 @Component({
@@ -23,7 +23,10 @@ import { funcionario } from '../../../models';
   styleUrl: './manter-funcionario.component.scss'
 })
 export class ManterFuncionarioComponent {
-  funcionarioForm: FormGroup;
+
+  faPencil:IconDefinition  = faPencilSquare;
+  faTrash:IconDefinition  = faTrash;
+  faPlus:IconDefinition  = faPlus;
   isValidating: boolean = false;
   isLoading: boolean = false;
   loadingCep: boolean = false;
@@ -33,30 +36,20 @@ export class ManterFuncionarioComponent {
   constructor(
     private fb: FormBuilder,
     private funcionarioService: FuncionarioService,
-    private router: Router) {
-    this.funcionarioForm = this.fb.group({
-      nome: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      dataNascimento: ['', [Validators.required]],
-      senha: ['', [Validators.required]]
-    })
+    private router: Router){
+    
   }
 
-  get nome() {
-    return this.funcionarioForm.get('nome');
-  }
+  colunas: any[] = [
+    { titulo: 'NOME', campo: 'name' },
+    { titulo: 'EMAIL', campo: 'email' },
+    { titulo: 'DATA NASCIMENTO', campo: 'dataNascimento' },
+  ];
 
-  get email() {
-    return this.funcionarioForm.get('email');
-  }
-
-  get dataNascimento() {
-    return this.funcionarioForm.get('dataNascimento');
-  }
-
-  get senha() {
-    return this.funcionarioForm.get('senha');
-  }
+  buttons = [
+    { icon: this.faPencil, iconClasses: 'text-3xl text-green  text-green-700', action: this.editar.bind(this) },
+    { icon: this.faTrash, iconClasses: 'text-3xl text-red text-red-700', action: this.remover.bind(this) }
+  ];
 
   ngOnInit(): void {
     this.funcionarios = this.listarTodos();
@@ -64,48 +57,18 @@ export class ManterFuncionarioComponent {
 
   listarTodos(): funcionario[] {
     return this.funcionarioService.listarTodos();
-    //return [
-    //  new funcionario(1, "Rafael", "Rafael")
-    //]
   }
 
-  remover($event: any, pessoa: funcionario): void {
-    $event.preventDefault();
+  remover(funcionario: funcionario): void {
     if (confirm(`Deseja realmente remover a pessoa ${funcionario.name}?`)) {
-    this.funcionarioService.remover(pessoa.id!);
-    this.funcionarios = this.listarTodos();
+      this.funcionarioService.remover(funcionario.id!);
+      this.funcionarios = this.listarTodos();
     }
-    }
-
-  async onSubmit() {
-    if (this.funcionarioForm.invalid) {
-      return;
-    }
-
-    this.isValidating = true;
-    this.isLoading = true;
-
-    const funcionario = this.funcionarioForm.value;
-
-    this.funcionarioService.funcionario(funcionario).subscribe({
-      next: (response) => {
-        setTimeout(() => {
-          this.isValidating = false;
-          this.isLoading = false;
-          this.router.navigate(['/']);
-        }, 3000);
-      },
-
-      error: (error) => {
-        this.isValidating = false;
-        this.isLoading = false;
-        this.router.navigate(['/']);
-
-        let message = 'Ocorreu um erro ao processar a requisi&ccedil;%atilde;o.';
-
-      }
-    });
-
   }
+
+  editar(funcionario: funcionario): void {
+    this.router.navigate(['/editar-funcionario', funcionario.id]);
+  }
+  
 
 }

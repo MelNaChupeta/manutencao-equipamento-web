@@ -4,7 +4,7 @@
             <div class="form-container">
 
                 <div class="w-full col-span-6 p-2 border-b-2 text-center relative">
-                    <h1>Editar Funcionário</h1>
+                    <h1>Editar Funcion&aacute;rio</h1>
                 </div>
 
                 <div class="input-container-md">
@@ -17,17 +17,18 @@
                             placeholder="Nome completo"
                             [(ngModel)]="funcionario.name"
                             #name="ngModel" 
-                            required
                             minlength="2"
+                            required
                         />
                     </label>
 
                     <div *ngIf="name.errors && (name.dirty || name.touched)" class="error-message">
-                        <div [hidden]="!name.errors['minlenth']">
-                            O nome deve conter ao menos 2 caracteres!!
-                        </div>
                         <div [hidden]="!name.errors['required']">
                             Digite o nome da pessoa.
+                        </div>
+                        
+                        <div [hidden]="!name.errors['minlength']">
+                            O nome deve conter ao menos 2 caracteres. 
                         </div>
                     </div>
 
@@ -40,7 +41,7 @@
                             class="input-form" 
                             id="email"
                             name="email"
-                            placeholder="email@exemplo.com"
+                            placeholder="email@manuetencaoeq.com.br"
                             [(ngModel)]="funcionario.email"
                             #email="ngModel" 
                             required
@@ -49,27 +50,38 @@
 
                     <div *ngIf="email.errors && (email.dirty || email.touched)" class="error-message">
                         <div [hidden]="!email.errors['required']">
-                            Email no formato errado!
+                            Digite o email.
                         </div>
                     </div>
 
                 </div>
 
-                <!--
-                <div class="input-container-sm">
+               
+                <div class="input-container-md">
                     <label class="label-form">Data Nascimento
                         <input 
                             type="date" 
-                            class="input-form"   
+                            class="input-form"  
+                            id="dataNascimento"
+                            name="dataNascimento" 
+                            [(ngModel)]="funcionario.dataNascimento"
+                            #dataNascimento="ngModel" 
+                            required
                         /> 
                     </label>
 
+                    <div *ngIf="dataNascimento.errors && (dataNascimento.dirty || dataNascimento.touched)" class="error-message">
+                        <div [hidden]="!dataNascimento.errors['required']">
+                            Digite sua data de nascimento.
+                        </div>
+                    </div>
+
                 </div>
-                -->
+               
                 <div class="input-container-lg">
                     <button type="button" class="btn btn-primary w-full" (click)="editarFuncionario()">
-                        Editar cadastro
-                    </button>
+                        Editar funcion&aacute;rio
+                    </button>                    
                     <button class="btn btn-secondary w-full" [routerLink]="['/manter-funcionario']">
                         Voltar
                     </button>
