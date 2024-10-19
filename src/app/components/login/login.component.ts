@@ -7,7 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService, UserService } from '../../services';
+import { AuthenticationService } from '../../services';
+import { Login } from '../../models';
+import { ProgressService } from '../../services/progress.service';
 
 @Component({
   selector: 'app-login',
@@ -20,11 +22,11 @@ export class LoginComponent {
   loginForm: FormGroup;
   isLoading: boolean = false;
   isValidating: boolean = false;
-
+  login:Login = {};
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
-    private userService: UserService,
+    private progessService : ProgressService,
     private router: Router
   ) {
     this.loginForm = this.fb.group({
@@ -46,30 +48,30 @@ export class LoginComponent {
       this.loginForm.markAllAsTouched();  // Mark all controls as touched
       return;
     }
-
+    this.progessService.show();
     this.isValidating = true;
     this.isLoading = true;
 
-    const user = this.loginForm.value;
-
-    this.authService.login(user.email, user.password).subscribe(
+  
+    this.authService.login(this.login?.email, this.login?.senha).subscribe(
        (response) => {
-          this.isLoading = false;
-          this.isValidating = false;
-          //this.userService.saveToken(response.message);
-
-          localStorage.setItem('userEmail', user.email);
-
-          if(user.email.includes("funcionario")) {
-            this.router.navigate(["/home-staff"])
-          }else{
-            this.router.navigate(["/home"])
-          }
-      },
-       (error) => {
+        this.progessService.hide();
         this.isLoading = false;
         this.isValidating = false;
-        if(user.email.includes("funcionario")) {
+        //this.userService.saveToken(response.message);
+
+
+        if(this.login?.email?.includes("funcionario")) {
+          this.router.navigate(["/home-staff"])
+        }else{
+          this.router.navigate(["/home"])
+        }
+      },
+       (error) => {
+        this.progessService.hide();
+        this.isLoading = false;
+        this.isValidating = false;
+        if(this.login?.email?.includes("funcionario")) {
           this.router.navigate(["/home-staff"])
         }else{
           this.router.navigate(["/home"])

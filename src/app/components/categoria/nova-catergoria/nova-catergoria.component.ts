@@ -82,7 +82,7 @@ export class NovaCatergoriaComponent {
   }
 
   cadastrar(categoria:Categoria) {
-      this.categoriaService.update(categoria).subscribe(
+      this.categoriaService.register(categoria).subscribe(
           (response) => {
              this.isLoading = false;
              this.progressBarService.hide();

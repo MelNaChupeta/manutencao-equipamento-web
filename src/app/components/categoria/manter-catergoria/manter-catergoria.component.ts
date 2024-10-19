@@ -79,8 +79,7 @@ export class ManterCatergoriaComponent {
   }
 
   editar(categoria:Categoria) {
-    this.categoriaService.update(categoria)
-    this.categoriaService.register(categoria).subscribe(
+    this.categoriaService.update(categoria).subscribe(
          (response) => {
             this.progressBarService.hide();
             this.isLoading = false;

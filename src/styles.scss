@@ -10,17 +10,21 @@ body,
 }
 
 @layer base {
+  body{
+    @apply bg-white dark:bg-gray-900 dark:bg-opacity-100
+  }
+
   h1 {
-    @apply text-3xl;
+    @apply text-3xl text-gray-900 dark:text-gray-300;
   }
   h2 {
-    @apply text-xl;
+    @apply text-xl text-gray-900 dark:text-gray-300;
   }
   h3 {
-    @apply text-lg;
+    @apply text-lg text-gray-900 dark:text-gray-300;
   }
   p {
-    @apply text-sm;
+    @apply text-sm  dark:text-gray-300;
   }
   .main-content-container {
     @apply mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8;
@@ -29,10 +33,10 @@ body,
     @apply mx-auto max-w-2xl;
   }
   .form-container {
-    @apply mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 border-2 px-12 py-8 rounded-2xl shadow-md shadow-slate-200;
+    @apply mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 border-2 px-12 py-8 rounded-2xl shadow-md shadow-slate-200 dark:shadow-black;
   }
   .btn {
-    @apply rounded-full text-base font-medium rounded-lg px-3 py-2 my-2;
+    @apply  text-base font-medium rounded-lg px-3 py-2 my-2;
   }
   .btn-primary {
     @apply rounded-full bg-indigo-600 px-3 py-2 my-2 text-lg text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
@@ -64,7 +68,7 @@ body,
   }
 
   .label-form {
-    @apply block text-sm font-medium leading-6 text-gray-900;
+    @apply block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300;
   }
   .input-form {
     @apply block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6;
@@ -91,10 +95,6 @@ body,
     @apply sm:col-span-6;
   }
   html.light {
-    .text-white{
-      color: #000;
-    }
-
     .bg-gray-900 {
       background-color: rgb(250 250 250);
     }

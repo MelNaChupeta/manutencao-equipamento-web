@@ -20,8 +20,8 @@ export class AuthenticationService {
     url = environment.URL_API;
     //url:string = "";
 
-    login(email:string , password:String){
-       let role:string = email.includes("funcionario")? "FUNCIONARIO" : "CLIENTE"; 
+    login(email?:string , password?:String){
+       let role:string = email?.includes("funcionario")? "FUNCIONARIO" : "CLIENTE"; 
        new SignJWT({email,password,isAuthenticated : true , role:role})
         .setProtectedHeader({ alg: 'HS256' })
         .setIssuedAt()

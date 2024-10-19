@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { faCircleNotch, faPencilSquare, faTrash , faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
-import { TabelaComponent } from '../../estilo-tabela/estilo-tabela.component';
+import { TabelaComponent } from '../../commom/estilo-tabela/estilo-tabela.component';
 import { ModalService } from '../../../services/modal.service';
 import { ConfirmModalComponent } from '../../commom/modal/confirm-modal/confirm-modal.component';
 import { ErrorModalComponent } from '../../commom/modal/error-modal/error-modal.component';

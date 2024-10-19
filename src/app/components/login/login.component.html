@@ -1,44 +1,53 @@
 <section class="min-h-screen  dark:bg-gray-900 dark:bg-opacity-100">
-<div class="main-content-container">
-    <div class="section-container">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="form-container">
-                <div class="w-full col-span-6 p-2 border-b-2 text-center relative">
-                    <h1 class="mb-2 text-white">Bem vindo!</h1>
+    <div class="main-content-container">
+        <div class="section-container">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-container">
+                    <div class="w-full col-span-6 p-2 border-b-2 text-center relative">
+                        <h1 class="mb-2 text-white">Bem vindo!</h1>
+                    </div>
+                    <div class="input-container-lg">
+                        <label class="label-form text-white">Login:
+                            <input  type="text" 
+                                    placeholder="email@example.com" 
+                                    formControlName="email" 
+                                    [(ngModel)]="login.email"
+                                    [ngClass]="{
+                                     'input-error':email?.invalid && email?.touched, 
+                                    }" 
+                                    class="input-form" />
+                        </label>
+                        <span *ngIf="email?.invalid && email?.touched" class="error-message">
+                            Preencha o email corretamente
+                        </span>
+                    </div>
+                    <div class="input-container-lg">
+                        <label class="label-form text-white">Senha:
+                            <input type="password" 
+                                   placeholder="******" 
+                                   [(ngModel)]="login.senha"
+                                   formControlName="password" 
+                                   [ngClass]="{
+                                        'input-error':password?.invalid && password?.touched, 
+                                    }" class="input-form" />
+                        </label>
+                        <span *ngIf="password?.invalid && password?.touched" class="error-message">
+                            Preencha a senha corretamente
+                        </span>
+                    </div>
+                    <div class="input-container-lg">
+                        <button type="submit" [disabled]="isLoading" class="btn btn-primary w-full">
+                            {{ isLoading ? 'Entrando...' : 'Entrar' }}
+                        </button>
+                        <button type="button" class="btn btn-secondary w-full">
+                            N&atilde;o possuo uma conta
+                        </button>
+                    </div>
+                    <div class="input-container-lg text-center text-sm underline text-gray-500 cursor-pointer">
+                        <a class="">esqueci minha senha</a>
+                    </div>
                 </div>
-                <div class="input-container-lg">
-                    <label class="label-form text-white">Login:
-                        <input type="text" placeholder="email@example.com" formControlName="email" [ngClass]="{
-                                'input-error':email?.invalid && email?.touched, 
-                            }" class="input-form" />
-                    </label>
-                    <span *ngIf="email?.invalid && email?.touched" class="error-message">
-                        Preencha o email corretamente
-                    </span>
-                </div>
-                <div class="input-container-lg">
-                    <label class="label-form text-white">Senha:
-                        <input type="password" placeholder="******" formControlName="password" [ngClass]="{
-                                    'input-error':password?.invalid && password?.touched, 
-                                }" class="input-form" />
-                    </label>
-                    <span *ngIf="password?.invalid && password?.touched" class="error-message">
-                        Preencha a senha corretamente
-                    </span>
-                </div>
-                <div class="input-container-lg">
-                    <button type="submit" [disabled]="isLoading" class="btn btn-primary w-full">
-                        {{ isLoading ? 'Entrando...' : 'Entrar' }}
-                    </button>
-                    <button type="button" class="btn btn-secondary w-full">
-                        N&atilde;o possuo uma conta
-                    </button>
-                </div>
-                <div class="input-container-lg text-center text-sm underline text-gray-500 cursor-pointer">
-                    <a class="">esqueci minha senha</a>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 </section>

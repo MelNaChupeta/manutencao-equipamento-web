@@ -1,9 +1,45 @@
 <div class="flex flex-col min-h-screen bg-opacity-100 bg-gray-900 justify-center p-16">
     <div class="flex items-center justify-between">
         <p tabindex="0"
-            class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800 text-white">
+            class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal ">
             Gerar Relatório de Receita por Categoria </p>
     </div>
-
-    <app-tabela [dados]="categorias" [colunas]="colunas" [buttons]="buttons"></app-tabela>
+    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 px-12 py-8 rounded-2xl">
+        <div class="input-container-md">
+            <label class="label-form">Data inicial
+                <input
+                    type="date"
+                    class="input-form"
+                    [(ngModel)]="dataInicial"
+                    [value]="dataInicial"
+                    id="start"
+                    name="date-start"
+                    [max]="todayStr"
+                    (change)="applyDateFilter()"
+                />
+            </label>
+        </div>
+        <div class="input-container-md">
+            <label class="label-form">Data inicial
+                <input
+                    type="date"
+                    class="input-form"
+                    [(ngModel)]="dataFinal"
+                    id="end"
+                    [value]="dataFinal"
+                    name="date-end"
+                    [max]="todayStr"
+                    [min]="dataInicial"
+                    (change)="applyDateFilter()"
+                />
+            </label>
+        </div>
+        <div class="input-container-lg flex justify-end">
+            <button (click)="generateReceitasPDF()" class="btn btn-primary mr-20 w-40">
+                PDF <fa-icon [icon]="faDownload" ></fa-icon>
+            </button>
+        </div>
+    </div>
+    
+    <app-tabela [dados]="receitasFiltered" [colunas]="colunas"></app-tabela>
 </div>
