@@ -1,12 +1,13 @@
+<section class="min-h-screen  dark:bg-gray-900 dark:bg-opacity-100">
 <div class="main-content-container">
     <div class="section-container">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-container">
                 <div class="w-full col-span-6 p-2 border-b-2 text-center relative">
-                    <h1 class="mb-2">Bem vindo!</h1>
+                    <h1 class="mb-2 text-white">Bem vindo!</h1>
                 </div>
                 <div class="input-container-lg">
-                    <label class="label-form">Login:
+                    <label class="label-form text-white">Login:
                         <input type="text" placeholder="email@example.com" formControlName="email" [ngClass]="{
                                 'input-error':email?.invalid && email?.touched, 
                             }" class="input-form" />
@@ -16,7 +17,7 @@
                     </span>
                 </div>
                 <div class="input-container-lg">
-                    <label class="label-form">Senha:
+                    <label class="label-form text-white">Senha:
                         <input type="password" placeholder="******" formControlName="password" [ngClass]="{
                                     'input-error':password?.invalid && password?.touched, 
                                 }" class="input-form" />
@@ -40,3 +41,4 @@
         </form>
     </div>
 </div>
+</section>
