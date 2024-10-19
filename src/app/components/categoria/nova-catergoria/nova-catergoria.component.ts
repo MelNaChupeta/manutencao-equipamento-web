@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
 import { faCircleNotch, faPencilSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Categoria } from '../../../models';
@@ -19,13 +19,15 @@ import { ProgressService } from '../../../services/progress.service';
     ReactiveFormsModule,
     CommonModule ,
     FontAwesomeModule,
-    ProgressBarComponent
+    ProgressBarComponent,
+    RouterModule
   ],
   templateUrl: './nova-catergoria.component.html',
   styleUrl: './nova-catergoria.component.scss'
 })
 export class NovaCatergoriaComponent {
   categoriaForm: FormGroup;
+  categoria:Categoria = {};
   isValidating: boolean = false; 
   isLoading: boolean = false;
   loadingCep:boolean = false;
@@ -70,13 +72,13 @@ export class NovaCatergoriaComponent {
 
    onSubmit(){
      if (this.categoriaForm.invalid) {
+      this.categoriaForm.markAllAsTouched();  
       return;
     }
 
     this.isLoading = true;
     this.progressBarService.show();
-    const categoria:Categoria = this.categoriaForm.value;
-    this.cadastrar(categoria);
+    this.cadastrar(this.categoria);
   }
 
   cadastrar(categoria:Categoria) {
@@ -97,7 +99,7 @@ export class NovaCatergoriaComponent {
           (error) => {
            this.isLoading = false;
            this.progressBarService.hide();
-           
+
            this.modalService.open(ErrorModalComponent, {
              title:"Atenção",
              body:"Erro ao alterar categoria"

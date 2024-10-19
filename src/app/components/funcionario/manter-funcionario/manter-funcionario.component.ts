@@ -47,8 +47,8 @@ export class ManterFuncionarioComponent {
   ];
 
   buttons = [
-    { icon: this.faPencil, iconClasses: 'text-3xl text-green  text-green-700', action: this.editar.bind(this) },
-    { icon: this.faTrash, iconClasses: 'text-3xl text-red text-red-700', action: this.remover.bind(this) }
+    { body: `<i class="fa-solid fa-pen-to-square"></i>`, class: 'text-3xl text-green  text-green-700', action: this.editar.bind(this) },
+    { body: `<i class="fa-solid fa-trash"></i>`, class: 'text-3xl text-red text-red-700', action: this.remover.bind(this) }
   ];
 
   ngOnInit(): void {

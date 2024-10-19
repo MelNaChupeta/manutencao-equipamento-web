@@ -38,8 +38,8 @@
                     <tr  *ngFor="let item of paginatedData" class="focus:outline-none h-16 border border-gray-100 rounded">
                         <td *ngFor="let coluna of colunas" class="text-center pl-5" >{{ item[coluna.campo] }}</td>
                         <td *ngIf="buttons.length > 0"  class="text-center pl-5">
-                            <button *ngFor="let button of buttons" (click)="onButtonClick(button.action, item)" class="mx-2">
-                                <fa-icon [icon]="button.icon"  [ngClass]="button.iconClasses" ></fa-icon>
+                            <button *ngFor="let button of buttons" (click)="onButtonClick(button.action, item)" class="mx-2" [ngClass] = "button.class">
+                                <div class="p-4" [innerHTML]="button.body"></div>
                             </button>
                         </td>
                     </tr>

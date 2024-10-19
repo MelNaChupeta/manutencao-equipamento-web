@@ -12,6 +12,7 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { ProgressService } from '../../../services/progress.service';
 import { ModalService } from '../../../services/modal.service';
 import { AlertModalComponent } from '../../commom/modal/alert-modal/alert-modal.component';
+import { Client } from '../../../models';
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -33,7 +34,7 @@ export class SignupComponent implements OnInit{
   isLoading: boolean = false;
   loadingCep:boolean = false;
   faLoading:IconDefinition = faCircleNotch;
-
+  cliente:Client = {};
   constructor(
     private fb: FormBuilder,
     private clienteService: ClienteService,
@@ -69,12 +70,10 @@ export class SignupComponent implements OnInit{
     ).subscribe(data => {
       this.loadingCep = false;
       if (data && !data.erro) {
-        this.signupForm.patchValue({
-          endereco: data.logradouro,
-          bairro: data.bairro,
-          cidade: data.localidade,
-          estado: data.uf
-        });
+        this.cliente.endereco = data.logradouro
+        this.cliente.cidade = data.localidade
+        this.cliente.uf = data.uf
+        this.cliente.bairro = data.bairro
       }
     });
   }
@@ -124,16 +123,15 @@ export class SignupComponent implements OnInit{
     this.isValidating = true;
     this.isLoading = true;
     this.progressBarService.show();
-    const client = this.signupForm.value;
 
-    this.clienteService.signup(client).subscribe({
+    this.clienteService.signup(this.cliente).subscribe({
       next: (response) => {
           this.progressBarService.hide();
           this.isValidating = false;
           this.isLoading = false;
           this.modalService.open(AlertModalComponent, {
             title:"Cadastro realizado com sucesso",
-            body:`<p>Um email foi enviado para <u><b>${client.email}</b></u> contendo a sua senha</p>`,
+            body:`<p>Um email foi enviado para <u><b>${this.cliente.email}</b></u> contendo a sua senha</p>`,
             onClose: () => {
               this.router.navigate(["/login/"]);
               
@@ -146,7 +144,6 @@ export class SignupComponent implements OnInit{
         this.isValidating = false;
         this.isLoading = false;
         this.router.navigate(['/']);
-
         let message = 'Ocorreu um erro ao processar a requisi&ccedil;%atilde;o.';
 
       }

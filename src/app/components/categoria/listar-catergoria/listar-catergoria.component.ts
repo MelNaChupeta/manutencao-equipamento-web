@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Categoria } from '../../../models';
 import { CategoriaService } from '../../../services';
 import { CommonModule } from '@angular/common';
@@ -54,13 +54,14 @@ export class ListarCatergoriaComponent  implements OnInit{
   ];
 
   buttons = [
-    { icon: this.faPencil, iconClasses: 'text-3xl text-green  text-green-700', action: this.editar.bind(this) },
-    { icon: this.faTrash, iconClasses: 'text-3xl text-red text-red-700', action: this.excluir.bind(this) }
+    { body: `<i class="fa-solid fa-pen-to-square"></i>`, class: 'text-3xl text-green  text-green-700', action: this.editar.bind(this) },
+    { body: `<i class="fa-solid fa-trash"></i>`, class: 'text-3xl text-red text-red-700', action: this.excluir.bind(this) }
   ];
 
   constructor(
     private categoriaService: CategoriaService,
     private router: Router,
+    private route: ActivatedRoute,
     private progressBarService: ProgressService,
     private modalService:ModalService){
     
@@ -85,11 +86,11 @@ export class ListarCatergoriaComponent  implements OnInit{
   }
 
   editar(item?:Categoria){
-    this.router.navigate(["/categoria/"+item?.id]);
+    this.router.navigate(["/categorias/"+item?.id], {relativeTo:this.route});
   }
   
   novaCategoria() {
-    this.router.navigate(["/categoria/"]);
+    this.router.navigate(["/categoria/criar"], {relativeTo:this.route});
   }
 
   listar() {

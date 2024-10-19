@@ -16,7 +16,7 @@ export class TabelaComponent {
   
   @Input() dados: any[] = [];
   @Input() colunas: { titulo: string, campo: string }[] = [];
-  @Input() buttons: { icon: IconDefinition, iconClasses:string, action: (item: any) => void }[] = [];
+  @Input() buttons: { class: string, body:string, action: (item: any) => void }[] = [];
   
   sortedColumn: string | null = null;
   sortDirection: 'asc' | 'desc' = 'asc';
