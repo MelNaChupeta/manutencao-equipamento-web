@@ -44,7 +44,7 @@ export class InserirFuncionarioComponent{
         title:"Sucesso",
         body:"Funcionario Cadastrado com sucesso",
         onClose: () => {
-          this.router.navigate(['/manter-funcionario']);
+          this.router.navigate(['/funcionario/manter']);
         },
       }); 
     }

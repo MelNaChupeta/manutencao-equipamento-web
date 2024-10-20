@@ -39,7 +39,7 @@
                         <button type="submit" [disabled]="isLoading" class="btn btn-primary w-full">
                             {{ isLoading ? 'Entrando...' : 'Entrar' }}
                         </button>
-                        <button type="button" class="btn btn-secondary w-full">
+                        <button type="button" [routerLink]="['/cadastro']" class="btn btn-secondary w-full">
                             N&atilde;o possuo uma conta
                         </button>
                     </div>

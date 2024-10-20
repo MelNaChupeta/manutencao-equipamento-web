@@ -4,14 +4,14 @@
   <div class="flex flex-col w-2/4 gap-y-6 mx-auto max-w-3xl px-6 py-16">
     <div class="flex flex-row justify-between items-center px-6 py-4">
       <h2 class="text-white text-2xl font-semibold p-0">Solicitações em aberto:</h2>
-      <button class="pill-purple" [routerLink]="['/ver-solicitacoes']">
+      <button class="pill-purple" [routerLink]="['/solicitacoes/listar']">
         Ver todas
       </button>
     </div>
     <ul class="list-none m-0 p-0">
       <li
         *ngFor="let solicitacao of solicitacoes"
-        [routerLink]="['/efetuar-orcamento', solicitacao.id]"
+        [routerLink]="['/solicitacao/orcar', solicitacao.id]"
         class="relative flex items-center px-6 py-4 gap-x-16 border-b border-white/5 cursor-pointer hover:bg-gray-400/5"
       >
         <div class="min-w-0 flex-auto">

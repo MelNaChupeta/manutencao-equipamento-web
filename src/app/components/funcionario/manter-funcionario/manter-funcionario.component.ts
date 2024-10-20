@@ -65,7 +65,7 @@ export class ManterFuncionarioComponent {
   remover(funcionario: funcionario): void {
     this.modalService.open(ConfirmModalComponent, {
       title:"Confirmar Ação",
-      body:"tem certeza que deseja excluir esse item ?",
+      body:"Tem certeza que deseja excluir esse item?",
       onConfirm: () => {
         this.funcionarioService.remover(funcionario.id!);
         this.funcionarios = this.listarTodos();
@@ -74,7 +74,7 @@ export class ManterFuncionarioComponent {
   }
 
   editar(funcionario: funcionario): void {
-    this.router.navigate(['/editar-funcionario', funcionario.id]);
+    this.router.navigate(['/funcionario/editar', funcionario.id]);
   }
   
 

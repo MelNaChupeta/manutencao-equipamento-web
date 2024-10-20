@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthenticationService } from '../../services';
 import { Login } from '../../models';
 import { ProgressService } from '../../services/progress.service';
@@ -14,7 +14,7 @@ import { ProgressService } from '../../services/progress.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
@@ -62,9 +62,9 @@ export class LoginComponent {
 
 
         if(this.login?.email?.includes("funcionario")) {
-          this.router.navigate(["/home-staff"])
+          this.router.navigate(["/inicio/funcionarios"])
         }else{
-          this.router.navigate(["/home"])
+          this.router.navigate(["/inicio/clientes"])
         }
       },
        (error) => {
@@ -72,9 +72,9 @@ export class LoginComponent {
         this.isLoading = false;
         this.isValidating = false;
         if(this.login?.email?.includes("funcionario")) {
-          this.router.navigate(["/home-staff"])
+          this.router.navigate(["/inicio/funcionarios"])
         }else{
-          this.router.navigate(["/home"])
+          this.router.navigate(["/inicio/clientes"])
         }
 
         let message =

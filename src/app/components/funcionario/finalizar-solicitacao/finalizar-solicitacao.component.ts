@@ -26,8 +26,8 @@ export class FinalizarSolicitacaoComponent {
   id: number | null = null;
   solicitacaoData: any;
   paths = [
-    { label: 'Início', path: '/home-staff' },
-    { label: 'Todas as solicitações', path: '/ver-solicitacoes' },
+    { label: 'Início', path: '/inicio/funcionarios' },
+    { label: 'Todas as solicitações', path: '/solicitacoes/listar' },
     { label: 'Finalizar solicitação', path: '' },
   ];
 

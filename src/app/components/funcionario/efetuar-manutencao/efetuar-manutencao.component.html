@@ -241,7 +241,7 @@
 
           <div class="flex flex-row justify-end">
             <button
-              class="btn btn-secondary bg-transparent mt-4"
+              class="pill-purple mt-4"
               [routerLink]="['/ver-solicitacoes']"
               (click)="sendMaintenance()"
             >
@@ -276,10 +276,10 @@
 
           <div class="flex flex-row justify-end">
             <button
-              class="btn btn-secondary bg-transparent mt-4"
+              class="pill-purple mt-4"
               [routerLink]="['/ver-solicitacoes']"
               [disabled]="!funcionarioEscolhido"
-              [ngClass]="{'btn-secondary-disabled' : !funcionarioEscolhido}"
+              [ngClass]="{'pill-disabled mt-4' : !funcionarioEscolhido}"
               (click)="redirect()"
             >
               Redirecionar

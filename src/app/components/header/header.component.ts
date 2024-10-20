@@ -101,7 +101,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   }
 
   signin(): void {
-    this.router.navigate(["/signup"]);
+    this.router.navigate(["/cadastro"]);
   }
 
   signout(): void {
@@ -112,9 +112,9 @@ export class HeaderComponent implements OnInit, OnDestroy{
   goHome():void {
     if(this.userService.isLoggedIn()){
       if(this.user.role == UserRole.funcionario) {
-        this.router.navigate(["/home-staff"]);
+        this.router.navigate(["/inicio/funcionarios"]);
       }else{
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/inicio/clientes"]);
       }
     }else{
       this.router.navigate(["/login"]);

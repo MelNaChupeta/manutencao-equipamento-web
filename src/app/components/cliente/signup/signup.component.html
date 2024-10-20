@@ -177,8 +177,8 @@
                     <button type="submit" [disabled]="isLoading" class="btn btn-primary w-full">
                         {{ isLoading ? 'Cadastrando...' : 'Finalizar cadastro' }}
                     </button>
-                    <button type="submit" class="btn btn-secondary w-full">
-                        Já uma tenho conta
+                    <button type="submit" [routerLink]="['/login']" class="btn btn-secondary w-full">
+                        Já tenho uma conta
                     </button>
                 </div>
             </div>

@@ -22,37 +22,37 @@ import { UserRole } from './models/userRole';
 
 export const routes: Routes = [
     {
-        path: 'home',
+        path: 'inicio/clientes',
         component: HomeComponent,
         canActivate: [AuthGuard] 
     },
     {
-        path: 'home-staff',
+        path: 'inicio/funcionarios',
         component: HomeStaffComponent,
         canActivate: [AuthGuard] 
     },
     {
-        path: 'ver-solicitacoes',
+        path: 'solicitacoes/listar',
         component: VerSolicitacoesComponent,
         canActivate: [AuthGuard] 
     },
     {
-        path: 'finalizar-solicitacao/:idSolicitacao',
+        path: 'solicitacao/finalizar/:idSolicitacao',
         component: FinalizarSolicitacaoComponent,
         canActivate: [AuthGuard] 
     },
     {
-        path: 'efetuar-orcamento/:idSolicitacao',
+        path: 'solicitacao/orcar/:idSolicitacao',
         component: EfetuarOrcamentoComponent,
         canActivate: [AuthGuard] 
     },
     {
-        path: 'efetuar-manutencao/:idSolicitacao',
+        path: 'solicitacao/resolver/:idSolicitacao',
         component: EfetuarManutencaoComponent,
         canActivate: [AuthGuard] 
     },
     {
-        path: 'manter-funcionario',
+        path: 'funcionario/manter',
         component: ManterFuncionarioComponent,
         canActivate: [AuthGuard],
         data: {
@@ -60,7 +60,7 @@ export const routes: Routes = [
         } 
     },
     {
-        path: 'inserir-funcionario',
+        path: 'funcionario/cadastrar',
         component: InserirFuncionarioComponent,
         canActivate: [AuthGuard] ,
         data: {
@@ -68,7 +68,7 @@ export const routes: Routes = [
         }
     },
     {
-        path: 'editar-funcionario/:idFuncionario',
+        path: 'funcionario/editar/:idFuncionario',
         component: EditarFuncionarioComponent,
         canActivate: [AuthGuard] ,
         data: {
@@ -76,7 +76,7 @@ export const routes: Routes = [
         }
     },
     {
-        path: 'signup',
+        path: 'cadastro',
         component: SignupComponent,
     },
     {
@@ -88,7 +88,7 @@ export const routes: Routes = [
         component: LoginComponent,
     },
     {
-        path: 'solicitacao',
+        path: 'solicitacao/cadastrar',
         component: NovaSolicitacaoComponent,
         canActivate: [AuthGuard] 
     },
@@ -103,7 +103,7 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: 'categoria/criar',
+        path: 'categoria/cadastrar',
         component: NovaCatergoriaComponent,
         canActivate: [AuthGuard],
         data: {
@@ -111,7 +111,7 @@ export const routes: Routes = [
         }
     },
     {
-        path: 'categorias',
+        path: 'categorias/listar',
         component: ListarCatergoriaComponent,
         canActivate: [AuthGuard],
         data: {

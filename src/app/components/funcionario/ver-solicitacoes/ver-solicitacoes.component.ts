@@ -19,7 +19,7 @@ export class VerSolicitacoesComponent implements OnInit {
   ) {}
 
   paths = [
-    { label: 'Início', path: '/home-staff' },
+    { label: 'Início', path: '/inicio/funcionarios' },
     { label: 'Todas as solicitações', path: '' },
   ]
 
@@ -74,13 +74,13 @@ export class VerSolicitacoesComponent implements OnInit {
 
   goTo(solicitacao: any) {
     if (solicitacao.estadoAtual === 'aberta') {
-      this.router.navigate(['/efetuar-orcamento', solicitacao.id]);
+      this.router.navigate(['/solicitacao/orcar', solicitacao.id]);
     } else if (solicitacao.estadoAtual === 'aprovada') {
-      this.router.navigate(['/efetuar-manutencao', solicitacao.id]);
+      this.router.navigate(['/solicitacao/resolver', solicitacao.id]);
     } else if (solicitacao.estadoAtual === 'redirecionada') {
-      this.router.navigate(['/efetuar-manutencao', solicitacao.id]);
+      this.router.navigate(['/solicitacao/resolver', solicitacao.id]);
     } else if (solicitacao.estadoAtual === 'paga') {
-      this.router.navigate(['/finalizar-solicitacao', solicitacao.id]);
+      this.router.navigate(['/solicitacao/finalizar', solicitacao.id]);
     }
   }
 

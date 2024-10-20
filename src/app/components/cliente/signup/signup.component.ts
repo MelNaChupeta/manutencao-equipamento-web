@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ViaCepService } from '../../../services';
 import { ClienteService } from '../../../services/cliente.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
-import { debounceTime, switchMap, catchError } from 'rxjs/operators';
+import { switchMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
@@ -21,7 +21,8 @@ import { Client } from '../../../models';
     CommonModule, 
     NgxMaskDirective, 
     NgxMaskPipe,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterModule
   ],
   providers: [provideNgxMask()],
   templateUrl: './signup.component.html',

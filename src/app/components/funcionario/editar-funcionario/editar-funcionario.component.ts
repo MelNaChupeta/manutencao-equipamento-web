@@ -42,7 +42,7 @@ export class EditarFuncionarioComponent implements OnInit {
       title:"Atenção",
       body:"Erro ao buscar funcionario",
       onClose: () => {
-        this.router.navigate(['/manter-funcionario']);
+        this.router.navigate(['/funcionario/manter']);
       },
     });   
   }
@@ -51,9 +51,9 @@ export class EditarFuncionarioComponent implements OnInit {
     this.funcionarioService.atualizar(this.funcionario);
     this.modalService.open(AlertModalComponent, {
       title:"Sucesso",
-      body:"Funcionario alterado com sucesso",
+      body:"Funcionário alterado com sucesso",
       onClose: () => {
-        this.router.navigate(['/manter-funcionario']);
+        this.router.navigate(['/funcionario/manter']);
       },
     });   
   }
