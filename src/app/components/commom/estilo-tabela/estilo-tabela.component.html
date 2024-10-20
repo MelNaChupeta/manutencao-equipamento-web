@@ -1,5 +1,5 @@
 <div class="sm:px-6 w-full">
-    <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 dark:bg-gray-900 dark:bg-opacity-100">
+    <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10  dark:bg-gray-900 dark:bg-opacity-100">
         <div class="sm:flex items-center justify-between">
             <div class="relative">
                 <input type="text" (input)="ngOnChanges()" [(ngModel)]="filter" placeholder="Pesquisar..." class="pl-10 pr-4 py-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600 border-gray-100">
@@ -23,7 +23,7 @@
         </div>
 
         <div class="mt-7 overflow-x-auto">
-            <table class="w-full whitespace-nowrap text-white">
+            <table class="w-full whitespace-nowrap text-gray-900 dark:text-white">
                 <thead>                                            
                     <tr tabindex="0"  class="focus:outline-none h-16 border border-gray-100 rounded">
                         <th *ngFor="let coluna of colunas" (click)="sortByColumn(coluna.campo)" class="cursor-pointer max-w-48">

@@ -14,7 +14,13 @@
             <button (click)="login()"  *ngIf="!user?.isAuthenticated" type="button" class="btn btn-secondary text-sm text-nowrap my-0" >
                Entrar
             </button>
-            
+            <a (click)="goHome()" class="block py-2 px-3  bg-blue-700 rounded md:bg-transparent  text-gray-50 md:p-0 cursor-pointer" aria-current="page">
+                <i [ngClass]="'fa fa-home'" ></i>
+            </a>
+            <a  *ngIf="user?.isAuthenticated" (click)="switchTheme()" class="px-4 py-2 text-sm  text-indigo-200 hover:text-gray-50 flex justify-start">
+                <i [ngClass]="'mr-3 text-lg w-[20%] fa-regular ' + nextIcon" ></i>
+               <!-- <p class="w-[80%] text-start">{{ nextTheme }}</p>-->
+            </a>
             <button (click)="toggleMenu()" *ngIf="user?.isAuthenticated" #menuButton type="button" class="flex text-sm bg-indigo-800 rounded-full md:me-0 focus:ring-4 focus:ring-indigo-600" id="user-menu-button" >
                 <span class="sr-only">Open user menu</span>
                 <img class="w-8 h-8 rounded-full" src="assets/user2.png" alt="user photo">
@@ -62,14 +68,14 @@
             </button>
         </div>
         <div #nav [ngClass]="{'nav-opened': navActive, 'nav-closed': !navActive}" class="items-center justify-end  w-full md:flex md:w-auto z-40" id="navbar-user">
-            <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border  rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  bg-indigo-600 md:bg-indigo-800 border-indigo-800">
+            <!--<ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border  rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  bg-indigo-600 md:bg-indigo-800 border-indigo-800">
                 <li>
                     <a (click)="goHome()" class="block py-2 px-3  bg-blue-700 rounded md:bg-transparent  text-gray-50 md:p-0 md:hover:text-blue-500 cursor-pointer" aria-current="page">In&iacute;cio</a>
                 </li>
                 <li>
                     <a href="#" class="block py-2 px-3  rounded   md:p-0 text-gray-50 md:hover:text-blue-500 hover:bg-indigo-700 hover:text-gray-50 md:hover:bg-transparent border-indigo-700">Contato</a>
                 </li>
-            </ul>
+            </ul>-->
         </div>
     </div>
   </nav>

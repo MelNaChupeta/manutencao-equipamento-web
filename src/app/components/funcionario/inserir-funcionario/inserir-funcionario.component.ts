@@ -6,6 +6,9 @@ import { Router, RouterModule } from '@angular/router';
 import { funcionario } from '../../../models';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ModalService } from '../../../services/modal.service';
+import { ErrorModalComponent } from '../../commom/modal/error-modal/error-modal.component';
+import { AlertModalComponent } from '../../commom/modal/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-inserir-funcionario',
@@ -30,21 +33,21 @@ export class InserirFuncionarioComponent{
 
   constructor(
     private funcionarioService: FuncionarioService,
+    private modalService:ModalService,
     private router: Router){
   }
 
   inserirFuncionario(): void {
-    if (this.formFuncionario.form.invalid) {
-      const confirmExit = window.confirm('O formulário não foi preenchido corretamente. Deseja sair sem finalizar o cadastro?');
-      if (!confirmExit) {
-        return; 
-      }
-      this.router.navigate(['/manter-funcionario']);
-    } else {
+    if (!this.formFuncionario.form.invalid) { 
       this.funcionarioService.inserir(this.funcionario);
-      this.router.navigate(['/manter-funcionario']);
+      this.modalService.open(AlertModalComponent, {
+        title:"Sucesso",
+        body:"Funcionario Cadastrado com sucesso",
+        onClose: () => {
+          this.router.navigate(['/manter-funcionario']);
+        },
+      }); 
     }
   }
-  
 
 }

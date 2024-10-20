@@ -7,6 +7,8 @@ import { faCircleNotch, faPencilSquare, faTrash, faPlus } from '@fortawesome/fre
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
 import { TabelaComponent } from '../../commom/estilo-tabela/estilo-tabela.component';
 import { FuncionarioService } from '../../../services/funcionario.service';
+import { ModalService } from '../../../services/modal.service';
+import { ConfirmModalComponent } from '../../commom/modal/confirm-modal/confirm-modal.component';
 
 
 @Component({
@@ -35,6 +37,7 @@ export class ManterFuncionarioComponent {
 
   constructor(
     private fb: FormBuilder,
+    private modalService: ModalService,
     private funcionarioService: FuncionarioService,
     private router: Router){
     
@@ -60,10 +63,14 @@ export class ManterFuncionarioComponent {
   }
 
   remover(funcionario: funcionario): void {
-    if (confirm(`Deseja realmente remover a pessoa ${funcionario.name}?`)) {
-      this.funcionarioService.remover(funcionario.id!);
-      this.funcionarios = this.listarTodos();
-    }
+    this.modalService.open(ConfirmModalComponent, {
+      title:"Confirmar Ação",
+      body:"tem certeza que deseja excluir esse item ?",
+      onConfirm: () => {
+        this.funcionarioService.remover(funcionario.id!);
+        this.funcionarios = this.listarTodos();
+      }
+    });
   }
 
   editar(funcionario: funcionario): void {
