@@ -18,13 +18,13 @@ body,
     @apply text-3xl text-gray-900 dark:text-gray-300;
   }
   h2 {
-    @apply text-xl text-gray-900 dark:text-gray-300;
+    @apply text-xl text-gray-900 ;
   }
   h3 {
     @apply text-lg text-gray-900 dark:text-gray-300;
   }
   p {
-    @apply text-sm  dark:text-gray-300;
+    @apply text-sm;
   }
   .main-content-container {
     @apply mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8;
@@ -95,6 +95,11 @@ body,
   .pill-disabled {
     @apply text-gray-400 bg-gray-400/25 hover:bg-gray-400/35 ring-gray-400/20 cursor-not-allowed flex-none rounded-full px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
   }
+
+  .pill-grey {
+    @apply text-gray-400 bg-gray-400/10 hover:bg-gray-400/20 ring-gray-400/30 cursor-pointer flex-none rounded-full px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
+  }
+
   .pill-purple {
     @apply text-indigo-400 bg-indigo-400/10 hover:bg-indigo-400/20 ring-indigo-400/30 cursor-pointer flex-none rounded-full px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
   }

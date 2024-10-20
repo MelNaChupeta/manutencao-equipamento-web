@@ -1,3 +1,6 @@
+import { Cliente, clientes } from './clientes';
+import { Funcionario, funcionarios } from './funcionarios';
+
 export enum TipoEquipamento {
   notebook = 'Notebook/laptop',
   desktop = 'Desktop',
@@ -28,12 +31,7 @@ export enum EstadoSolicitacao {
 export interface Movimentacao {
   dtHrMovimentacao: Date;
   estadoMovimentacao: EstadoSolicitacao;
-}
-
-export interface Funcionario {
-  nome: string;
-  email: string;
-  dataNascimento: Date;
+  autorMovimentacao: Funcionario | Cliente;
 }
 
 export interface ItemOrcamento {
@@ -47,6 +45,20 @@ export interface Orcamento {
   itens: ItemOrcamento[];
   funcionarioOrcador: Funcionario | null;
   aprovado: boolean;
+  justificativaRejeicao: string;
+}
+
+function calculaDiasDesdeUltimaMov(movimentacoes: Movimentacao[]): number {
+  if (movimentacoes && movimentacoes.length > 0) {
+    const ultimaMovimentacao = movimentacoes[0].dtHrMovimentacao;
+    const hoje = new Date();
+    const diferencaTempo = Math.abs(
+      hoje.getTime() - new Date(ultimaMovimentacao).getTime()
+    );
+    return Math.floor(diferencaTempo / (1000 * 60 * 60 * 24));
+  } else {
+    return 0;
+  }
 }
 
 export interface Solicitacao {
@@ -59,7 +71,6 @@ export interface Solicitacao {
   estadoAtual: EstadoSolicitacao;
   historicoMovimentacao: Movimentacao[];
   orcamento: Orcamento;
-  justificativaRejeicao: string;
 }
 
 export const solicitacoes: Solicitacao[] = [
@@ -79,6 +90,7 @@ export const solicitacoes: Solicitacao[] = [
           'Thu Sep 12 2024 01:35:21 GMT-0300 (Brasilia Standard Time)'
         ),
         estadoMovimentacao: EstadoSolicitacao.aberta,
+        autorMovimentacao: clientes[0],
       },
     ],
     orcamento: {
@@ -86,8 +98,8 @@ export const solicitacoes: Solicitacao[] = [
       itens: [],
       funcionarioOrcador: null,
       aprovado: false,
+      justificativaRejeicao: '',
     },
-    justificativaRejeicao: '',
   },
   {
     id: '2',
@@ -105,12 +117,14 @@ export const solicitacoes: Solicitacao[] = [
           'Mon Sep 09 2024 14:55:09 GMT-0300 (Brasilia Standard Time)'
         ),
         estadoMovimentacao: EstadoSolicitacao.aberta,
+        autorMovimentacao: clientes[0],
       },
       {
         dtHrMovimentacao: new Date(
           'Wed Sep 11 2024 09:51:54 GMT-0300 (Brasilia Standard Time)'
         ),
         estadoMovimentacao: EstadoSolicitacao.orcada,
+        autorMovimentacao: funcionarios[0],
       },
     ],
     orcamento: {
@@ -123,10 +137,10 @@ export const solicitacoes: Solicitacao[] = [
           valorItem: 700.0,
         },
       ],
-      funcionarioOrcador: null,
+      funcionarioOrcador: funcionarios[0],
       aprovado: false,
+      justificativaRejeicao: '',
     },
-    justificativaRejeicao: '',
   },
   {
     id: '3',
@@ -144,18 +158,21 @@ export const solicitacoes: Solicitacao[] = [
           'Mon Sep 09 2024 14:55:09 GMT-0300 (Brasilia Standard Time)'
         ),
         estadoMovimentacao: EstadoSolicitacao.aberta,
+        autorMovimentacao: clientes[1],
       },
       {
         dtHrMovimentacao: new Date(
           'Wed Sep 11 2024 09:51:54 GMT-0300 (Brasilia Standard Time)'
         ),
         estadoMovimentacao: EstadoSolicitacao.orcada,
+        autorMovimentacao: funcionarios[1],
       },
       {
         dtHrMovimentacao: new Date(
           'Wed Sep 12 2024 14:32:04 GMT-0300 (Brasilia Standard Time)'
         ),
         estadoMovimentacao: EstadoSolicitacao.aprovada,
+        autorMovimentacao: clientes[1],
       },
     ],
     orcamento: {
@@ -174,10 +191,10 @@ export const solicitacoes: Solicitacao[] = [
           valorItem: 150.0,
         },
       ],
-      funcionarioOrcador: null,
+      funcionarioOrcador: funcionarios[1],
       aprovado: true,
+      justificativaRejeicao: '',
     },
-    justificativaRejeicao: '',
   },
   {
     id: '4',
@@ -195,18 +212,21 @@ export const solicitacoes: Solicitacao[] = [
           'Wed Sep 08 2024 12:09:12 GMT-0300 (Brasilia Standard Time)'
         ),
         estadoMovimentacao: EstadoSolicitacao.aberta,
+        autorMovimentacao: clientes[2],
       },
       {
         dtHrMovimentacao: new Date(
           'Wed Sep 11 2024 16:23:35 GMT-0300 (Brasilia Standard Time)'
         ),
         estadoMovimentacao: EstadoSolicitacao.orcada,
+        autorMovimentacao: funcionarios[1],
       },
       {
         dtHrMovimentacao: new Date(
           'Mon Sep 12 2024 19:53:41 GMT-0300 (Brasilia Standard Time)'
         ),
         estadoMovimentacao: EstadoSolicitacao.rejeitada,
+        autorMovimentacao: clientes[2],
       },
     ],
     orcamento: {
@@ -225,9 +245,65 @@ export const solicitacoes: Solicitacao[] = [
           valorItem: 2000.0,
         },
       ],
-      funcionarioOrcador: null,
+      funcionarioOrcador: funcionarios[1],
       aprovado: false,
+      justificativaRejeicao: '',
     },
-    justificativaRejeicao: '',
+  },
+  {
+    id: '5',
+    equipamento: 'iPad mini 6ª geração',
+    descricaoEquipamento:
+      'iPad mini 6ª geração A15 Bionic 8,3" Wi-Fi 64GB Estelar',
+    categoria: TipoEquipamento.tablet,
+    dtHrCriacao: new Date(
+      'Mon Sep 02 2024 15:11:09 GMT-0300 (Brasilia Standard Time)'
+    ),
+    descricaoProblema: 'Conector não carrega',
+    estadoAtual: EstadoSolicitacao.aguardandoPagamento,
+    historicoMovimentacao: [
+      {
+        dtHrMovimentacao: new Date(
+          'Mon Sep 02 2024 15:11:09 GMT-0300 (Brasilia Standard Time)'
+        ),
+        estadoMovimentacao: EstadoSolicitacao.aberta,
+        autorMovimentacao: clientes[3],
+      },
+      {
+        dtHrMovimentacao: new Date(
+          'Wed Sep 04 2024 16:23:35 GMT-0300 (Brasilia Standard Time)'
+        ),
+        estadoMovimentacao: EstadoSolicitacao.orcada,
+        autorMovimentacao: funcionarios[1],
+      },
+      {
+        dtHrMovimentacao: new Date(
+          'Wed Sep 04 2024 19:53:41 GMT-0300 (Brasilia Standard Time)'
+        ),
+        estadoMovimentacao: EstadoSolicitacao.aprovada,
+        autorMovimentacao: clientes[3],
+      },
+      {
+        dtHrMovimentacao: new Date(
+          'Mon Sep 09 2024 10:31:54 GMT-0300 (Brasilia Standard Time)'
+        ),
+        estadoMovimentacao: EstadoSolicitacao.aguardandoPagamento,
+        autorMovimentacao: funcionarios[1],
+      },
+    ],
+    orcamento: {
+      valorTotal: 500.0,
+      itens: [
+        {
+          nomeItem: 'Reparo do conector lightning',
+          valorUnitario: 500.0,
+          quantidadeItem: 1,
+          valorItem: 500.0,
+        },
+      ],
+      funcionarioOrcador: funcionarios[1],
+      aprovado: true,
+      justificativaRejeicao: '',
+    },
   },
 ];

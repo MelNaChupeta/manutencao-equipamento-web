@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { EstadoSolicitacao, Solicitacao, solicitacoes } from '../../../solicitacoes';
+import {
+  EstadoSolicitacao,
+  Solicitacao,
+  solicitacoes,
+} from '../../../solicitacoes';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +16,7 @@ import { EstadoSolicitacao, Solicitacao, solicitacoes } from '../../../solicitac
 })
 export class HomeComponent {
   solicitacoes = [...solicitacoes];
+
   constructor(private router: Router) {}
 
   shouldShowActionButton(solicitacao: Solicitacao): boolean {
@@ -37,5 +42,22 @@ export class HomeComponent {
       default:
         return '';
     }
+  }
+
+  calculaDiasDesdeUltimaMovimentacao(solicitacao: Solicitacao): number {
+    const movimentacoes = solicitacao.historicoMovimentacao.sort((a, b) => {
+      return b.dtHrMovimentacao.getTime() - a.dtHrMovimentacao.getTime();
+    });
+
+    if (movimentacoes.length > 0) {
+      const ultimaMovimentacao = movimentacoes[0].dtHrMovimentacao;
+      const hoje = new Date();
+      const diferencaTempo = Math.abs(
+        hoje.getTime() - ultimaMovimentacao.getTime()
+      );
+      return Math.floor(diferencaTempo / (1000 * 60 * 60 * 24));
+    }
+
+    return 0;
   }
 }

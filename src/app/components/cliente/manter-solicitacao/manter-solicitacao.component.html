@@ -62,26 +62,52 @@
       </div>
     </div>
     <div
+      *ngIf="solicitacao?.orcamento?.valorTotal"
       class="relative flex flex-col px-6 py-4 gap-x-16 border rounded-md bg-gray-400/5 border-white/5"
     >
-      <p class="text-gray-400 text-md mb-2">Orçamento</p>
-      <ul class="list-none m-0 p-0 gap-4">
-        <li
-          *ngFor="let itemOrcamento of solicitacao?.orcamento?.itens"
-          class="relative flex items-start gap-x-6 justify-between"
-        >
-          <p class="text-white whitespace-nowrap">
-            {{ itemOrcamento.nomeItem }}
-          </p>
-          <p class="text-white whitespace-nowrap">
-            {{
-              itemOrcamento.valorItem | currency : "BRL" : "symbol" : "1.2-2"
-            }}
-          </p>
-        </li>
-      </ul>
-      <div class="flex items-start justify-between">
-        <p>Valor total</p>
+      <p class="text-white text-lg mb-2">Orçamento</p>
+      <div class="table w-full">
+        <div class="table-header-group">
+          <div class="table-row">
+            <div class="table-cell text-sm text-gray-400 text-left">Item</div>
+            <div class="table-cell text-sm text-gray-400 text-left">
+              Valor unitário
+            </div>
+            <div class="table-cell text-sm text-gray-400 text-left">
+              Quantidade
+            </div>
+            <div class="table-cell text-sm text-gray-400 text-right">
+              Valor do item
+            </div>
+          </div>
+        </div>
+        <div class="table-row-group">
+          <div
+            *ngFor="let itemOrcamento of solicitacao?.orcamento?.itens"
+            class="table-row"
+          >
+            <div class="table-cell text-sm text-white text-left">
+              {{ itemOrcamento.nomeItem }}
+            </div>
+            <div class="table-cell text-sm text-white text-left">
+              {{
+                itemOrcamento.valorUnitario
+                  | currency : "BRL" : "symbol" : "1.2-2"
+              }}
+            </div>
+            <div class="table-cell text-sm text-white text-left">
+              {{ itemOrcamento.quantidadeItem }}
+            </div>
+            <div class="table-cell text-sm text-white text-right">
+              {{
+                itemOrcamento.valorItem | currency : "BRL" : "symbol" : "1.2-2"
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-start justify-between pt-6">
+        <p class="text-white">Valor total</p>
         <p class="text-white whitespace-nowrap">
           {{
             solicitacao?.orcamento?.valorTotal
@@ -93,15 +119,48 @@
     <div
       class="relative flex flex-col px-6 py-4 gap-x-16 border rounded-md bg-gray-400/5 border-white/5"
     >
-      <p class="text-gray-400 text-md mb-2">Atualizações</p>
+      <p class="text-white text-lg mb-2">Atualizações</p>
       <ul class="list-none m-0 p-0 gap-4">
         <li
-          *ngFor="let movimentacao of solicitacao?.historicoMovimentacao"
-          class="relative flex items-start gap-x-6 p-2"
+          *ngFor="let movimentacao of getHistoricoMovimentacoes(solicitacao!)"
+          class="relative flex items-start gap-x-6 p-2 justify-between"
         >
-          <fa-icon [icon]="faCircleCheck" class="h-1 w-1 text-white"></fa-icon>
-          <p class="text-white whitespace-nowrap">
-            {{ movimentacao.estadoMovimentacao }}
+          <div class="flex flex-row gap-x-6">
+            <div
+              class="text-opacity-100 fill-gray-500 bg-gray-500/5 rounded-full flex-none p-1"
+            >
+              <div
+                class="h-2 w-2 rounded-full"
+                [ngClass]="{
+                  'bg-gray-500': movimentacao.estadoMovimentacao === 'aberta',
+                  'bg-amber-900': movimentacao.estadoMovimentacao === 'orçada',
+                  'bg-red-600': movimentacao.estadoMovimentacao === 'rejeitada',
+                  'bg-yellow-300':
+                    movimentacao.estadoMovimentacao === 'aprovada',
+                  'bg-violet-400':
+                    movimentacao.estadoMovimentacao === 'redirecionada',
+                  'bg-cyan-400':
+                    movimentacao.estadoMovimentacao === 'aguardando pagamento',
+                  'bg-orange-400': movimentacao.estadoMovimentacao === 'paga',
+                  'bg-lime-400':
+                    movimentacao.estadoMovimentacao === 'finalizada'
+                }"
+              ></div>
+            </div>
+            <div class="flex flex-col">
+              <p class="text-white whitespace-nowrap">
+                Solicitação {{ movimentacao.estadoMovimentacao }}
+              </p>
+              <p class="text-gray-400 whitespace-nowrap">
+                Realizada por {{ movimentacao.autorMovimentacao.nome }}
+              </p>
+            </div>
+          </div>
+          <p class="text-gray-400 whitespace-nowrap">
+            {{
+              movimentacao.dtHrMovimentacao
+                | date : "dd 'de' MMMM 'de' yyyy 'às' HH:mm" : "" : "pt-BR"
+            }}
           </p>
         </li>
       </ul>
@@ -118,3 +177,10 @@
   (rejeita)="handleRejeicao($event)"
 >
 </app-modal-orcamento-rejeitado>
+<app-modal-pagamento
+  [isOpen]="isModalPagamentoOpen"
+  [solicitacao]="solicitacao"
+  (fecha)="fechaModalPagamento()"
+  (paga)="handlePagamento()"
+>
+</app-modal-pagamento>

@@ -1,0 +1,19 @@
+<div class="fixed inset-0 flex items-center justify-center z-50" *ngIf="isOpen">
+  <div class="absolute inset-0 bg-gray-800 opacity-80"></div>
+  <div
+    class="bg-opacity-100 bg-gray-900 border bg-gray-400/5 border-white/5 rounded-md shadow-lg z-10 p-6 w-1/3"
+  >
+    <h2 class="text-white text-lg font-semibold">Pagamento</h2>
+    <p class="text-white mt-4">
+      Orçamento no valor de {{ solicitacao?.orcamento?.valorTotal | currency: 'BRL': 'symbol': '1.2-2'}}
+    </p>
+    <div class="mt-6 flex justify-between">
+      <button (click)="fechaModalPagamento()" class="pill-grey">
+        Cancelar pagamento
+      </button>
+      <button (click)="confirmaPagamento()" class="pill-purple">
+        Pagar serviço
+      </button>
+    </div>
+  </div>
+</div>

@@ -8,7 +8,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 import { EstadoSolicitacao } from '../../../models';
 import { ModalOrcamentoAprovadoComponent } from '../../../modal-orcamento-aprovado/modal-orcamento-aprovado.component';
-import { ModalOrcamentoRejeitadoComponent } from "../../../modal-orcamento-rejeitado/modal-orcamento-rejeitado.component";
+import { ModalOrcamentoRejeitadoComponent } from '../../../modal-orcamento-rejeitado/modal-orcamento-rejeitado.component';
+import { Funcionario } from '../../../funcionarios';
+import { Cliente } from '../../../clientes';
+import { ModalPagamentoComponent } from "../../../modal-pagamento/modal-pagamento.component";
 
 registerLocaleData(localePT);
 
@@ -21,7 +24,8 @@ registerLocaleData(localePT);
     NgOptimizedImage,
     FontAwesomeModule,
     ModalOrcamentoAprovadoComponent,
-    ModalOrcamentoRejeitadoComponent
+    ModalOrcamentoRejeitadoComponent,
+    ModalPagamentoComponent
 ],
   templateUrl: './manter-solicitacao.component.html',
   styleUrl: './manter-solicitacao.component.scss',
@@ -33,6 +37,7 @@ export class ManterSolicitacaoComponent implements OnInit {
   faCircleCheck = faCircleCheck;
   isModalOrcamentoAprovadoOpen = false;
   isModalOrcamentoRejeitadoOpen = false;
+  isModalPagamentoOpen = false;
   mensagemModalOrcamentoAprovado = '';
 
   fases = [
@@ -76,12 +81,12 @@ export class ManterSolicitacaoComponent implements OnInit {
       case EstadoSolicitacao.orcada:
         return [
           {
-            textoBotao: 'Aprovar orçamento',
-            acao: () => this.aprovarOrcamento(),
-          },
-          {
             textoBotao: 'Rejeitar orçamento',
             acao: () => this.rejeitarOrcamento(),
+          },
+          {
+            textoBotao: 'Aprovar orçamento',
+            acao: () => this.aprovarOrcamento(),
           },
         ];
       case EstadoSolicitacao.rejeitada:
@@ -95,7 +100,7 @@ export class ManterSolicitacaoComponent implements OnInit {
         return [];
       case EstadoSolicitacao.aguardandoPagamento:
         return [
-          { textoBotao: 'Pagar serviço', acao: () => this.pagarOrcamento() },
+          { textoBotao: 'Pagar serviço', acao: () => this.pagarServico(this.solicitacao!) },
         ];
       case EstadoSolicitacao.paga:
         return [];
@@ -147,12 +152,38 @@ export class ManterSolicitacaoComponent implements OnInit {
   handleRejeicao(justificativaRejeicao: string) {
     if (this.solicitacao) {
       this.solicitacao.estadoAtual = 'rejeitada' as EstadoSolicitacao;
+      this.solicitacao.orcamento.justificativaRejeicao = justificativaRejeicao;
     }
+  }
+
+  fechaModalPagamento() {
+    this.isModalPagamentoOpen = false;
+  }
+
+  pagarServico(solicitacao: Solicitacao) {
+    this.solicitacao = solicitacao;
+    this.isModalPagamentoOpen = true;
+  }
+
+  handlePagamento() {
+    if (this.solicitacao) {
+      this.solicitacao.estadoAtual = 'paga' as EstadoSolicitacao;
+      const novaMovimentacao: Movimentacao = {
+        dtHrMovimentacao: new Date(),
+        estadoMovimentacao: EstadoSolicitacao.paga,
+        autorMovimentacao: this.getUsuario(),
+      };
+      this.solicitacao.historicoMovimentacao.push(novaMovimentacao);
+    }
+  }
+
+  getUsuario(): Funcionario | Cliente {
+    return this.solicitacao?.historicoMovimentacao[0].autorMovimentacao as Funcionario | Cliente;
   }
 
   resgatarOrcamento() {
     if (this.solicitacao) {
-      this.solicitacao.estadoAtual = 'orcada' as EstadoSolicitacao;
+      this.solicitacao.estadoAtual = 'orçada' as EstadoSolicitacao;
     }
   }
 
@@ -160,5 +191,11 @@ export class ManterSolicitacaoComponent implements OnInit {
     if (this.solicitacao) {
       this.solicitacao.estadoAtual = 'paga' as EstadoSolicitacao;
     }
+  }
+
+  getHistoricoMovimentacoes(solicitacao: Solicitacao) {
+    return solicitacao.historicoMovimentacao.sort((a, b) => {
+      return b.dtHrMovimentacao.getTime() - a.dtHrMovimentacao.getTime();
+    });
   }
 }

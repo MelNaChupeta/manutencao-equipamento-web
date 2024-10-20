@@ -1,4 +1,6 @@
-<section class="flex flex-col min-h-screen bg-opacity-100 bg-gray-900 justify-center">
+<section
+  class="flex flex-col min-h-screen bg-opacity-100 bg-gray-900 justify-center"
+>
   <div class="flex flex-col gap-y-6 mx-auto max-w-3xl px-6 py-16">
     <h2 class="text-white px-6">Minhas solicitações</h2>
     <ul class="list-none m-0 p-0">
@@ -21,7 +23,7 @@
                   'bg-red-600': solicitacao.estadoAtual === 'rejeitada',
                   'bg-yellow-300': solicitacao.estadoAtual === 'aprovada',
                   'bg-violet-400': solicitacao.estadoAtual === 'redirecionada',
-                  'bg-cyan-400': solicitacao.estadoAtual === 'arrumada',
+                  'bg-cyan-400': solicitacao.estadoAtual === 'aguardando pagamento',
                   'bg-orange-400': solicitacao.estadoAtual === 'paga',
                   'bg-lime-400': solicitacao.estadoAtual === 'finalizada'
                 }"
@@ -46,12 +48,19 @@
             class="mt-3 flex items-center gap-x-2.5 text-sm leading-5 text-opacity-1 text-gray-300"
           >
             <p class="overflow-hidden text-ellipsis whitespace-nowrap">
-              Aberta em 02/09/2024
+              Aberta em
+              {{
+                solicitacao.dtHrCriacao
+                  | date : "dd/MM/yyyy 'às' HH:mm" : "" : "pt-BR"
+              }}
             </p>
             <svg viewBox="0 0 2 2" class="h-1 w-1 flex-none fill-gray-300">
               <circle r="1" cx="1" cy="1"></circle>
             </svg>
-            <p class="whitespace-nowrap">Atualizada 2 dias atrás</p>
+            <p class="whitespace-nowrap">
+              Atualizada {{ calculaDiasDesdeUltimaMovimentacao(solicitacao) }} dias
+              atrás
+            </p>
           </div>
           <p
             class="overflow-hidden text-ellipsis whitespace-nowrap text-sm text-gray-400"
