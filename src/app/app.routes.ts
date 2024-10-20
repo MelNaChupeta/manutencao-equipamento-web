@@ -17,6 +17,8 @@ import { NovaCatergoriaComponent } from './components/categoria/nova-catergoria/
 import { InserirFuncionarioComponent } from './components/funcionario/inserir-funcionario/inserir-funcionario.component';
 import { EditarFuncionarioComponent } from './components/funcionario/editar-funcionario/editar-funcionario.component';
 import { RelatorioReceitaComponent } from './components/funcionario/relatorio-receita/relatorio-receita.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { UserRole } from './models/userRole';
 
 export const routes: Routes = [
     {
@@ -52,17 +54,26 @@ export const routes: Routes = [
     {
         path: 'manter-funcionario',
         component: ManterFuncionarioComponent,
-        canActivate: [AuthGuard] 
+        canActivate: [AuthGuard],
+        data: {
+            role: UserRole.funcionario
+        } 
     },
     {
         path: 'inserir-funcionario',
         component: InserirFuncionarioComponent,
-        canActivate: [AuthGuard] 
+        canActivate: [AuthGuard] ,
+        data: {
+            role: UserRole.funcionario
+        }
     },
     {
         path: 'editar-funcionario/:idFuncionario',
         component: EditarFuncionarioComponent,
-        canActivate: [AuthGuard] 
+        canActivate: [AuthGuard] ,
+        data: {
+            role: UserRole.funcionario
+        }
     },
     {
         path: 'signup',
@@ -70,6 +81,10 @@ export const routes: Routes = [
     },
     {
         path: 'login',
+        component: LoginComponent,
+    },
+    {
+        path: '',
         component: LoginComponent,
     },
     {
@@ -90,16 +105,27 @@ export const routes: Routes = [
     {
         path: 'categoria/criar',
         component: NovaCatergoriaComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        data: {
+            role: UserRole.funcionario
+        }
     },
     {
         path: 'categorias',
         component: ListarCatergoriaComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        data: {
+            role: UserRole.funcionario
+        }
     },
     {
         path: 'relatorio/receitas',
         component: RelatorioReceitaComponent,
-        canActivate: [AuthGuard]
-    }
+        canActivate: [AuthGuard],
+        data: {
+            role: UserRole.funcionario
+        }
+    },
+    { path: '**', pathMatch: 'full',  
+        component: PageNotFoundComponent }, 
 ];

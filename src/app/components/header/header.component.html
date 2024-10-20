@@ -14,7 +14,7 @@
             <button (click)="login()"  *ngIf="!user?.isAuthenticated" type="button" class="btn btn-secondary text-sm text-nowrap my-0" >
                Entrar
             </button>
-            <a (click)="goHome()" class="block py-2 px-3  bg-blue-700 rounded md:bg-transparent  text-gray-50 md:p-0 cursor-pointer" aria-current="page">
+            <a  *ngIf="user?.isAuthenticated" (click)="goHome()" class="block py-2 px-3  bg-blue-700 rounded md:bg-transparent  text-gray-50 md:p-0 cursor-pointer" aria-current="page">
                 <i [ngClass]="'fa fa-home'" ></i>
             </a>
             <a  *ngIf="user?.isAuthenticated" (click)="switchTheme()" class="px-4 py-2 text-sm  text-indigo-200 hover:text-gray-50 flex justify-start">
