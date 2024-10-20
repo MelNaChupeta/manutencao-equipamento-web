@@ -5,21 +5,44 @@
     nfIf="solicitacao"
     class="flex flex-col w-2/4 gap-y-6 mx-auto max-w-3xl px-6 py-16"
   >
-    <div class="flex flex-row gap-6">
+    <div class="flex flex-row justify-between">
       <h2 class="text-white text-2xl font-semibold p-0">
         Solicitação #{{ solicitacao?.id }}
       </h2>
-      <div class="pill-purple">
-        <!--badge-->
-        {{ solicitacao?.estadoAtual }}
+      <div class="flex flex-row gap-6">
+        <div
+          *ngFor="let botao of getBotoesAcaoCliente()"
+          (click)="botao.acao()"
+          class="pill-purple"
+        >
+          <!--badge-->
+          {{ botao.textoBotao }}
+        </div>
       </div>
     </div>
 
-    <p class="text-gray-400 text-md">
-      {{
-        solicitacao?.dtHrCriacao | date : "EEEE dd MMMM YYYY hh:mm a" : "pt-BR"
-      }}
-    </p>
+    <div class="inline-flex items-center gap-x-4">
+      <div
+        [ngClass]="{
+        'etiqueta-cinza': solicitacao?.estadoAtual === 'aberta',
+        'etiqueta-marrom': solicitacao?.estadoAtual === 'orçada',
+        'etiqueta-vermelha': solicitacao?.estadoAtual === 'rejeitada',
+        'etiqueta-amarela': solicitacao?.estadoAtual === 'aprovada',
+        'etiqueta-roxa': solicitacao?.estadoAtual === 'redirecionada',
+        'etiqueta-azul': solicitacao?.estadoAtual === 'aguardando pagamento',
+        'etiqueta-laranja': solicitacao?.estadoAtual === 'paga',
+        'etiqueta-verde': solicitacao?.estadoAtual === 'finalizada',
+      }"
+      >
+        {{ solicitacao?.estadoAtual }}
+      </div>
+      <p class="text-gray-400 text-md">
+        {{
+          solicitacao?.dtHrCriacao
+            | date : "EEEE dd MMMM YYYY hh:mm a" : "pt-BR"
+        }}
+      </p>
+    </div>
     <div
       class="relative flex flex-row px-6 py-4 gap-x-4 border rounded-md bg-gray-400/5 border-white/5 cursor-pointer"
     >
@@ -53,9 +76,12 @@
           </p>
         </li>
       </ul>
-      <p class="text-white whitespace-nowrap">
-        {{ solicitacao?.orcamento?.valorTotal }}
-      </p>
+      <div class="flex items-start justify-between">
+        <p>Valor total</p>
+        <p class="text-white whitespace-nowrap">
+          {{ solicitacao?.orcamento?.valorTotal }}
+        </p>
+      </div>
     </div>
     <div
       class="relative flex flex-col px-6 py-4 gap-x-16 border rounded-md bg-gray-400/5 border-white/5"
@@ -64,7 +90,7 @@
       <ul class="list-none m-0 p-0 gap-4">
         <li
           *ngFor="let movimentacao of solicitacao?.historicoMovimentacao"
-          class="relative flex items-start gap-x-6"
+          class="relative flex items-start gap-x-6 p-2"
         >
           <fa-icon [icon]="faCircleCheck" class="h-1 w-1 text-white"></fa-icon>
           <p class="text-white whitespace-nowrap">

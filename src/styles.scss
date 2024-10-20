@@ -59,6 +59,38 @@ body,
   .btn-editar {
     @apply flex items-center justify-center p-2 rounded-full bg-blue-500 px-3 py-2 my-2 text-lg text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
   }
+
+  .etiqueta-cinza {
+    @apply text-gray-300 bg-gray-300/10 ring-gray-300/30 block rounded-md px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
+  }
+  
+  .etiqueta-marrom {
+    @apply text-amber-700 bg-amber-700/10 ring-amber-700/30 block rounded-md px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
+  }
+
+  .etiqueta-vermelha {
+    @apply text-red-500 bg-red-500/10 ring-red-500/30 block rounded-md px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
+  }
+
+  .etiqueta-amarela {
+    @apply text-yellow-300 bg-yellow-300/10 ring-yellow-300/30 block rounded-md px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
+  }
+  
+  .etiqueta-roxa {
+    @apply text-violet-400 bg-violet-400/10 ring-violet-400/30 block rounded-md px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
+  }
+
+  .etiqueta-azul {
+    @apply text-cyan-400 bg-cyan-400/10 ring-cyan-400/30 block rounded-md px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
+  }
+
+  .etiqueta-laranja {
+    @apply text-orange-400 bg-orange-400/10 ring-orange-400/30 block rounded-md px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
+  }
+
+  .etiqueta-verde {
+    @apply text-lime-400 bg-lime-400/10 ring-lime-400/30 block rounded-md px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
+  }
   
   .pill-disabled {
     @apply text-gray-400 bg-gray-400/25 hover:bg-gray-400/35 ring-gray-400/20 cursor-not-allowed flex-none rounded-full px-4 py-2 text-sm leading-4 font-medium ring-1 ring-inset ring-offset-white shadow-sm;
