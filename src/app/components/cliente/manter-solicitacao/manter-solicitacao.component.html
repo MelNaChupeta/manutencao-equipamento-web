@@ -37,14 +37,16 @@
         {{ solicitacao?.estadoAtual }}
       </div>
       <p class="text-gray-400 text-md">
+        Solicitação criada em
         {{
           solicitacao?.dtHrCriacao
-            | date : "EEEE dd MMMM YYYY hh:mm a" : "pt-BR"
+            | date : "dd 'de' MMMM 'de' yyyy 'às' HH:mm" : "" : "pt-BR"
         }}
       </p>
     </div>
+
     <div
-      class="relative flex flex-row px-6 py-4 gap-x-4 border rounded-md bg-gray-400/5 border-white/5 cursor-pointer"
+      class="relative flex flex-row px-6 py-4 gap-x-4 border rounded-md bg-gray-400/5 border-white/5"
     >
       <div class="relative flex">
         <img [ngSrc]="imagemControle" width="120" height="80" />
@@ -72,14 +74,19 @@
             {{ itemOrcamento.nomeItem }}
           </p>
           <p class="text-white whitespace-nowrap">
-            {{ itemOrcamento.valorItem }}
+            {{
+              itemOrcamento.valorItem | currency : "BRL" : "symbol" : "1.2-2"
+            }}
           </p>
         </li>
       </ul>
       <div class="flex items-start justify-between">
         <p>Valor total</p>
         <p class="text-white whitespace-nowrap">
-          {{ solicitacao?.orcamento?.valorTotal }}
+          {{
+            solicitacao?.orcamento?.valorTotal
+              | currency : "BRL" : "symbol" : "1.2-2"
+          }}
         </p>
       </div>
     </div>
@@ -101,3 +108,7 @@
     </div>
   </div>
 </section>
+<app-modal-orcamento-aprovado
+  [isOpen]="isModalOrcamentoAprovadoOpen"
+  [message]="mensagemModalOrcamentoAprovado"
+></app-modal-orcamento-aprovado>
