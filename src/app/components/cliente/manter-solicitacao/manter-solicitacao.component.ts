@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 import { EstadoSolicitacao } from '../../../models';
 import { ModalOrcamentoAprovadoComponent } from '../../../modal-orcamento-aprovado/modal-orcamento-aprovado.component';
+import { ModalOrcamentoRejeitadoComponent } from "../../../modal-orcamento-rejeitado/modal-orcamento-rejeitado.component";
 
 registerLocaleData(localePT);
 
@@ -20,7 +21,8 @@ registerLocaleData(localePT);
     NgOptimizedImage,
     FontAwesomeModule,
     ModalOrcamentoAprovadoComponent,
-  ],
+    ModalOrcamentoRejeitadoComponent
+],
   templateUrl: './manter-solicitacao.component.html',
   styleUrl: './manter-solicitacao.component.scss',
 })
@@ -30,6 +32,7 @@ export class ManterSolicitacaoComponent implements OnInit {
   movimentacao?: Movimentacao;
   faCircleCheck = faCircleCheck;
   isModalOrcamentoAprovadoOpen = false;
+  isModalOrcamentoRejeitadoOpen = false;
   mensagemModalOrcamentoAprovado = '';
 
   fases = [
@@ -134,6 +137,14 @@ export class ManterSolicitacaoComponent implements OnInit {
   }
 
   rejeitarOrcamento() {
+    this.isModalOrcamentoRejeitadoOpen = true;
+  }
+
+  fechaModalRejeicao() {
+    this.isModalOrcamentoRejeitadoOpen = false;
+  }
+
+  handleRejeicao(justificativaRejeicao: string) {
     if (this.solicitacao) {
       this.solicitacao.estadoAtual = 'rejeitada' as EstadoSolicitacao;
     }

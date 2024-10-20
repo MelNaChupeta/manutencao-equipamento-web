@@ -59,6 +59,7 @@ export interface Solicitacao {
   estadoAtual: EstadoSolicitacao;
   historicoMovimentacao: Movimentacao[];
   orcamento: Orcamento;
+  justificativaRejeicao: string;
 }
 
 export const solicitacoes: Solicitacao[] = [
@@ -86,6 +87,7 @@ export const solicitacoes: Solicitacao[] = [
       funcionarioOrcador: null,
       aprovado: false,
     },
+    justificativaRejeicao: '',
   },
   {
     id: '2',
@@ -124,6 +126,7 @@ export const solicitacoes: Solicitacao[] = [
       funcionarioOrcador: null,
       aprovado: false,
     },
+    justificativaRejeicao: '',
   },
   {
     id: '3',
@@ -174,6 +177,7 @@ export const solicitacoes: Solicitacao[] = [
       funcionarioOrcador: null,
       aprovado: true,
     },
+    justificativaRejeicao: '',
   },
   {
     id: '4',
@@ -224,5 +228,6 @@ export const solicitacoes: Solicitacao[] = [
       funcionarioOrcador: null,
       aprovado: false,
     },
+    justificativaRejeicao: '',
   },
 ];

@@ -112,3 +112,9 @@
   [isOpen]="isModalOrcamentoAprovadoOpen"
   [message]="mensagemModalOrcamentoAprovado"
 ></app-modal-orcamento-aprovado>
+<app-modal-orcamento-rejeitado
+  [isOpen]="isModalOrcamentoRejeitadoOpen"
+  (fecha)="fechaModalRejeicao()"
+  (rejeita)="handleRejeicao($event)"
+>
+</app-modal-orcamento-rejeitado>
