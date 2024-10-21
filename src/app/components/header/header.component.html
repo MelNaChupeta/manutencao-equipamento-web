@@ -32,12 +32,12 @@
                 </div>
                 <ul class="py-2" aria-labelledby="user-menu-button">
                     <li *ngIf="user?.role == 'FUNCIONARIO'" class="cursor-pointer">
-                        <a href="/manter-funcionario" class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-gray-50 flex justify-start">
+                        <a href="/funcionario/manter" class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-gray-50 flex justify-start">
                             <fa-icon [icon]="faPerson" class="mr-3 text-lg w-[20%]"></fa-icon> <p class="w-[80%] text-start">Funcionarios</p> 
                         </a>
                     </li>
                     <li *ngIf="user?.role == 'FUNCIONARIO'">
-                        <a href="/categorias" class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-gray-50 flex justify-start">
+                        <a href="/categorias/listar" class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-gray-50 flex justify-start">
                             <fa-icon [icon]="faComputer" class="mr-3 text-lg w-[20%]"></fa-icon> <p class="w-[80%] text-start">Categorias</p>
                         </a>
                     </li>

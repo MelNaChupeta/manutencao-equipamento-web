@@ -86,11 +86,11 @@ export class ListarCatergoriaComponent  implements OnInit{
   }
 
   editar(item?:Categoria){
-    this.router.navigate(["/categorias/"+item?.id], {relativeTo:this.route});
+    this.router.navigate(["/categoria/editar/"+item?.id], {relativeTo:this.route});
   }
   
   novaCategoria() {
-    this.router.navigate(["/categoria/criar"], {relativeTo:this.route});
+    this.router.navigate(["/categoria/cadastrar"], {relativeTo:this.route});
   }
 
   listar() {

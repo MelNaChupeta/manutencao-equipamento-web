@@ -98,7 +98,7 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: 'categorias/:idCategoria',
+        path: 'categoria/editar/:idCategoria',
         component: ManterCatergoriaComponent,
         canActivate: [AuthGuard]
     },

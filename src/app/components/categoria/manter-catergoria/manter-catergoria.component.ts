@@ -87,7 +87,7 @@ export class ManterCatergoriaComponent {
               title:"Sucesso",
               body:"Categoria alterada com sucesso",
               onClose: () => {
-                this.router.navigate(["/categorias/"]);
+                this.router.navigate(["/categorias/listar"]);
                 
               },
             });      
