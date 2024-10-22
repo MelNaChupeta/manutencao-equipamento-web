@@ -4,9 +4,9 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { FuncionarioService } from '../../../services/funcionario.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { funcionario } from '../../../models';
-import { AlertModalComponent } from '../../commom/modal/alert-modal/alert-modal.component';
+import { AlertModalComponent } from '../../common/modal/alert-modal/alert-modal.component';
 import { ModalService } from '../../../services/modal.service';
-import { ErrorModalComponent } from '../../commom/modal/error-modal/error-modal.component';
+import { ErrorModalComponent } from '../../common/modal/error-modal/error-modal.component';
 
 @Component({
   selector: 'app-editar-funcionario',

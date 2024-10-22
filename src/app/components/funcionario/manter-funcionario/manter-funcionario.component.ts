@@ -5,10 +5,10 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { faCircleNotch, faPencilSquare, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
-import { TabelaComponent } from '../../commom/estilo-tabela/estilo-tabela.component';
+import { TabelaComponent } from '../../common/estilo-tabela/estilo-tabela.component';
 import { FuncionarioService } from '../../../services/funcionario.service';
 import { ModalService } from '../../../services/modal.service';
-import { ConfirmModalComponent } from '../../commom/modal/confirm-modal/confirm-modal.component';
+import { ConfirmModalComponent } from '../../common/modal/confirm-modal/confirm-modal.component';
 
 
 @Component({

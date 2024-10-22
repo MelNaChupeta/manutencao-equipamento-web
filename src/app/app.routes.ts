@@ -11,9 +11,9 @@ import { EfetuarOrcamentoComponent } from './components/funcionario/efetuar-orca
 import { NovaSolicitacaoComponent } from './components/cliente/nova-solicitacao/nova-solicitacao.component';
 import { ManterSolicitacaoComponent } from './components/cliente/manter-solicitacao/manter-solicitacao.component';
 import { ManterFuncionarioComponent } from './components/funcionario/manter-funcionario/manter-funcionario.component';
-import { ListarCatergoriaComponent } from './components/categoria/listar-catergoria/listar-catergoria.component';
-import { ManterCatergoriaComponent } from './components/categoria/manter-catergoria/manter-catergoria.component';
-import { NovaCatergoriaComponent } from './components/categoria/nova-catergoria/nova-catergoria.component';
+import { ListarCategoriaComponent } from './components/categoria/listar-categoria/listar-categoria.component';
+import { ManterCategoriaComponent } from './components/categoria/manter-categoria/manter-categoria.component';
+import { NovaCategoriaComponent } from './components/categoria/nova-categoria/nova-categoria.component';
 import { InserirFuncionarioComponent } from './components/funcionario/inserir-funcionario/inserir-funcionario.component';
 import { EditarFuncionarioComponent } from './components/funcionario/editar-funcionario/editar-funcionario.component';
 import { RelatorioReceitaComponent } from './components/funcionario/relatorio-receita/relatorio-receita.component';
@@ -99,12 +99,12 @@ export const routes: Routes = [
     },
     {
         path: 'categoria/editar/:idCategoria',
-        component: ManterCatergoriaComponent,
+        component: ManterCategoriaComponent,
         canActivate: [AuthGuard]
     },
     {
         path: 'categoria/cadastrar',
-        component: NovaCatergoriaComponent,
+        component: NovaCategoriaComponent,
         canActivate: [AuthGuard],
         data: {
             role: UserRole.funcionario
@@ -112,7 +112,7 @@ export const routes: Routes = [
     },
     {
         path: 'categorias/listar',
-        component: ListarCatergoriaComponent,
+        component: ListarCategoriaComponent,
         canActivate: [AuthGuard],
         data: {
             role: UserRole.funcionario

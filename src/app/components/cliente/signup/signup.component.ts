@@ -11,7 +11,7 @@ import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawes
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { ProgressService } from '../../../services/progress.service';
 import { ModalService } from '../../../services/modal.service';
-import { AlertModalComponent } from '../../commom/modal/alert-modal/alert-modal.component';
+import { AlertModalComponent } from '../../common/modal/alert-modal/alert-modal.component';
 import { Client } from '../../../models';
 @Component({
   selector: 'app-signup',

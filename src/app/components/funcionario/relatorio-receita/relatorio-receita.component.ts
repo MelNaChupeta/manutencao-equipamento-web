@@ -3,7 +3,7 @@ import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawes
 import { faCircleNotch, faDownload } from '@fortawesome/free-solid-svg-icons';
 import jsPDF from 'jspdf';
 import { Categoria } from '../../../models';
-import { TabelaComponent } from '../../commom/estilo-tabela/estilo-tabela.component';
+import { TabelaComponent } from '../../common/estilo-tabela/estilo-tabela.component';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

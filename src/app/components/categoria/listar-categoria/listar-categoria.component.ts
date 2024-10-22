@@ -6,14 +6,14 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { faCircleNotch, faPencilSquare, faTrash , faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
-import { TabelaComponent } from '../../commom/estilo-tabela/estilo-tabela.component';
+import { TabelaComponent } from '../../common/estilo-tabela/estilo-tabela.component';
 import { ModalService } from '../../../services/modal.service';
-import { ConfirmModalComponent } from '../../commom/modal/confirm-modal/confirm-modal.component';
-import { ErrorModalComponent } from '../../commom/modal/error-modal/error-modal.component';
+import { ConfirmModalComponent } from '../../common/modal/confirm-modal/confirm-modal.component';
+import { ErrorModalComponent } from '../../common/modal/error-modal/error-modal.component';
 import { ProgressService } from '../../../services/progress.service';
 
 @Component({
-  selector: 'app-listar-catergoria',
+  selector: 'app-listar-categoria',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -22,10 +22,10 @@ import { ProgressService } from '../../../services/progress.service';
     TabelaComponent,
     RouterModule
   ],
-  templateUrl: './listar-catergoria.component.html',
-  styleUrl: './listar-catergoria.component.scss'
+  templateUrl: './listar-categoria.component.html',
+  styleUrl: './listar-categoria.component.scss'
 })
-export class ListarCatergoriaComponent  implements OnInit{
+export class ListarCategoriaComponent  implements OnInit{
   
   isLoading:boolean = false;
   loadingCategoria:boolean = false;
@@ -90,11 +90,11 @@ export class ListarCatergoriaComponent  implements OnInit{
   }
   
   novaCategoria() {
-    this.router.navigate(["/categoria/cadastrar"], {relativeTo:this.route});
+    this.router.navigate(["/categoria/cadastrar"]);
   }
 
   listar() {
-     this.progressBarService.show();
+     //this.progressBarService.show();
      this.categoriaService.findAll().subscribe(
       (response) => {
           this.progressBarService.hide();

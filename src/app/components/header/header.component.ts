@@ -6,11 +6,11 @@ import { User } from '../../models/user';
 import { UserService } from '../../services';
 import { Router } from '@angular/router';
 import { UserRole } from '../../models/userRole';
-import { ProgressBarComponent } from '../commom/progress-bar/progress-bar.component';
+import { ProgressBarComponent } from '../common/progress-bar/progress-bar.component';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule,FontAwesomeModule , ProgressBarComponent ],
+  imports: [CommonModule, FontAwesomeModule, ProgressBarComponent ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

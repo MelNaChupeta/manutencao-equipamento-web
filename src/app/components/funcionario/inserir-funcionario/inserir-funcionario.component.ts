@@ -7,8 +7,8 @@ import { funcionario } from '../../../models';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalService } from '../../../services/modal.service';
-import { ErrorModalComponent } from '../../commom/modal/error-modal/error-modal.component';
-import { AlertModalComponent } from '../../commom/modal/alert-modal/alert-modal.component';
+import { ErrorModalComponent } from '../../common/modal/error-modal/error-modal.component';
+import { AlertModalComponent } from '../../common/modal/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-inserir-funcionario',

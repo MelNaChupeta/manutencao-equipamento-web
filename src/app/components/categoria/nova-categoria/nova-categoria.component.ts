@@ -6,14 +6,14 @@ import { faCircleNotch, faPencilSquare, faTrash } from '@fortawesome/free-solid-
 import { Categoria } from '../../../models';
 import { CategoriaService } from '../../../services';
 import { CommonModule } from '@angular/common';
-import { AlertModalComponent } from '../../commom/modal/alert-modal/alert-modal.component';
+import { AlertModalComponent } from '../../common/modal/alert-modal/alert-modal.component';
 import { ModalService } from '../../../services/modal.service';
-import { ErrorModalComponent } from '../../commom/modal/error-modal/error-modal.component';
-import { ProgressBarComponent } from '../../commom/progress-bar/progress-bar.component';
+import { ErrorModalComponent } from '../../common/modal/error-modal/error-modal.component';
+import { ProgressBarComponent } from '../../common/progress-bar/progress-bar.component';
 import { ProgressService } from '../../../services/progress.service';
 
 @Component({
-  selector: 'app-nova-catergoria',
+  selector: 'app-nova-categoria',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -22,10 +22,10 @@ import { ProgressService } from '../../../services/progress.service';
     ProgressBarComponent,
     RouterModule
   ],
-  templateUrl: './nova-catergoria.component.html',
-  styleUrl: './nova-catergoria.component.scss'
+  templateUrl: './nova-categoria.component.html',
+  styleUrl: './nova-categoria.component.scss'
 })
-export class NovaCatergoriaComponent {
+export class NovaCategoriaComponent {
   categoriaForm: FormGroup;
   categoria:Categoria = {};
   isValidating: boolean = false; 

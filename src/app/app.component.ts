@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
-import { NavigationComponent } from './components/commom/navigation/navigation.component';
+import { NavigationComponent } from './components/common/navigation/navigation.component';
 import { UserService } from './services';
 import { User } from './models';
 import { CommonModule } from '@angular/common';

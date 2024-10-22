@@ -1,6 +1,6 @@
 import { Injectable, ComponentRef, ApplicationRef, EnvironmentInjector, ViewContainerRef, TemplateRef, Type, createComponent } from "@angular/core";
 import { Options } from "../models/modalOptions";
-import { BaseModalComponent } from "../components/commom/modal/base-modal/base-modal.component";
+import { BaseModalComponent } from "../components/common/modal/base-modal/base-modal.component";
 
 @Injectable({
   providedIn: 'root',

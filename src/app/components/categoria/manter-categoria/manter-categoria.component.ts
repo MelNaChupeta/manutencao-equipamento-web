@@ -6,13 +6,13 @@ import { faCircleNotch, faPencilSquare, faTrash } from '@fortawesome/free-solid-
 import { Categoria } from '../../../models';
 import { CategoriaService } from '../../../services';
 import { CommonModule } from '@angular/common';
-import { AlertModalComponent } from '../../commom/modal/alert-modal/alert-modal.component';
-import { ErrorModalComponent } from '../../commom/modal/error-modal/error-modal.component';
+import { AlertModalComponent } from '../../common/modal/alert-modal/alert-modal.component';
+import { ErrorModalComponent } from '../../common/modal/error-modal/error-modal.component';
 import { ModalService } from '../../../services/modal.service';
 import { ProgressService } from '../../../services/progress.service';
 
 @Component({
-  selector: 'app-manter-catergoria',
+  selector: 'app-manter-categoria',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -20,10 +20,10 @@ import { ProgressService } from '../../../services/progress.service';
     FontAwesomeModule,
     RouterModule
   ],
-  templateUrl: './manter-catergoria.component.html',
-  styleUrl: './manter-catergoria.component.scss'
+  templateUrl: './manter-categoria.component.html',
+  styleUrl: './manter-categoria.component.scss'
 })
-export class ManterCatergoriaComponent {
+export class ManterCategoriaComponent {
   categoriaForm: FormGroup;
   isValidating: boolean = false; 
   isLoading: boolean = false;
