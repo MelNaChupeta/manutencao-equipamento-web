@@ -64,6 +64,6 @@ export class FinalizarSolicitacaoComponent {
 
     console.log('finalizando ...', data);
 
-    this.router.navigate(['/ver-solicitacoes']);
+    this.router.navigate(['/solicitacoes/listar']);
   }
 }
