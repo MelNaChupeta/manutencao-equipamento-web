@@ -4,10 +4,10 @@
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="form-container">
                     <div class="w-full col-span-6 p-2 border-b-2 text-center relative">
-                        <h1 class="mb-2 text-white">Bem vindo!</h1>
+                        <h1 class="mb-2 dark:text-white">Bem vindo!</h1>
                     </div>
                     <div class="input-container-lg">
-                        <label class="label-form text-white">Login:
+                        <label class="label-form dark:text-white">Login:
                             <input  type="text" 
                                     placeholder="email@example.com" 
                                     formControlName="email" 
@@ -22,7 +22,7 @@
                         </span>
                     </div>
                     <div class="input-container-lg">
-                        <label class="label-form text-white">Senha:
+                        <label class="label-form dark:text-white">Senha:
                             <input type="password" 
                                    placeholder="******" 
                                    [(ngModel)]="login.senha"
