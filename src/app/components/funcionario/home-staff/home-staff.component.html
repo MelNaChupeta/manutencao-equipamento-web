@@ -3,7 +3,7 @@
 >
   <div class="flex flex-col w-2/4 gap-y-6 mx-auto max-w-3xl px-6 py-16">
     <div class="flex flex-row justify-between items-center px-6 py-4">
-      <h2 class="text-white text-2xl font-semibold p-0">Solicitações em aberto:</h2>
+      <h2 class="text-2xl font-semibold p-0 dark:text-white">Solicitações em aberto:</h2>
       <button class="pill-purple" [routerLink]="['/solicitacoes/listar']">
         Ver todas
       </button>
@@ -12,13 +12,13 @@
       <li
         *ngFor="let solicitacao of solicitacoes"
         [routerLink]="['/solicitacao/orcar', solicitacao.id]"
-        class="relative flex items-center px-6 py-4 gap-x-16 border-b border-white/5 cursor-pointer hover:bg-gray-400/5"
+        class="relative flex items-center px-6 py-4 gap-x-16 border-b cursor-pointer hover:bg-gray-400/5 dark:border-white/5"
       >
         <div class="min-w-0 flex-auto">
           <!--info container-->
           <div class="flex items-center gap-x-3">
             <h5
-              class="min-w-0 text-sm font-semibold leading-6 text-opacity-1 text-white"
+              class="min-w-0 text-sm font-semibold leading-6 text-opacity-1 dark:text-white"
             >
               <a class="flex gap-x-2 text-inherit">
                 <span class="overflow-hidden text-ellipsis whitespace-nowrap">

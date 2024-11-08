@@ -4,15 +4,17 @@
   <div class="flex flex-col w-2/4 gap-y-6 mx-auto max-w-3xl px-6 py-16">
     <app-breadcrumb [paths]="paths"></app-breadcrumb>
 
-    <h2 class="text-white text-2xl font-semibold p-0">Efetuar Manutenção  #{{ id }}</h2>
+    <h2 class="text-2xl font-semibold p-0 dark:text-white">
+      Efetuar Manutenção #{{ id }}
+    </h2>
 
     <!-- Product -->
     <div>
-      <h3 class="text-white font-bold">Produto:</h3>
+      <h3 class="font-bold dark:text-white">Produto:</h3>
       <div
-        class="w-full max-w-2xl bg-gray-400/5 px-6 py-4 border rounded-md border-white/5"
+        class="w-full max-w-2xl bg-gray-400/5 px-6 py-4 border rounded-md dark:border-white/5"
       >
-        <table class="table-auto w-full text-white">
+        <table class="table-auto w-full dark:text-white">
           <tbody>
             <tr>
               <td class="font-bold pr-4 whitespace-nowrap align-top text-right">
@@ -72,11 +74,11 @@
 
     <!-- client -->
     <div>
-      <h3 class="text-white font-bold">Cliente:</h3>
+      <h3 class="font-bold dark:text-white">Cliente:</h3>
       <div
-        class="w-full max-w-2xl bg-gray-400/5 px-6 py-4 border rounded-md border-white/5"
+        class="w-full max-w-2xl bg-gray-400/5 px-6 py-4 border rounded-md dark:border-white/5"
       >
-        <table class="table-auto w-full text-white">
+        <table class="table-auto w-full dark:text-white">
           <tbody>
             <tr>
               <td class="font-bold pr-4 whitespace-nowrap align-top text-right">
@@ -173,11 +175,11 @@
 
     <!-- orçamento -->
     <div>
-      <h3 class="text-white font-bold">Valor da Manutenção:</h3>
+      <h3 class="font-bold dark:text-white">Valor da Manutenção:</h3>
       <div
-        class="flex items-center w-full max-w-2xl bg-gray-400/5 px-6 py-4 gap-4 border rounded-md border-white/5"
+        class="flex items-center w-full max-w-2xl bg-gray-400/5 px-6 py-4 gap-4 border rounded-md dark:border-white/5"
       >
-        <h4 class="font-bold text-white">
+        <h4 class="font-bold dark:text-white">
           {{ maintenanceData.preco | currency : "BRL" : "symbol" : "1.2-2" }}
         </h4>
       </div>
@@ -185,9 +187,9 @@
 
     <!-- efetuar / redirecionar manutenção -->
     <div>
-      <h3 class="text-white font-bold">Ações:</h3>
+      <h3 class="font-bold dark:text-white">Ações:</h3>
       <div
-        class="flex flex-col w-full max-w-2xl bg-gray-400/5 px-6 py-4 gap-4 border rounded-md border-white/5"
+        class="flex flex-col w-full max-w-2xl bg-gray-400/5 px-6 py-4 gap-4 border rounded-md dark:border-white/5"
       >
         <!-- tabs -->
         <div class="tabs flex flex-row w-full">
@@ -211,7 +213,7 @@
 
         <!-- tab : efetuar manutenção (RF014) -->
         <div class="flex flex-col px-3 py-4" *ngIf="currentTab === 'efetuar'">
-          <label class="label-form text-white" for="descricaoManutencao">
+          <label class="label-form dark:text-white" for="descricaoManutencao">
             Descrição da manutenção:
           </label>
 
@@ -225,7 +227,7 @@
             placeholder="Descreva a manutenção que foi efetuada ..."
           ></textarea>
 
-          <label class="label-form text-white mt-4" for="orientacoes">
+          <label class="label-form mt-4 dark:text-white" for="orientacoes">
             Orientações para o cliente:
           </label>
 
@@ -255,7 +257,7 @@
           class="flex flex-col px-3 py-4"
           *ngIf="currentTab === 'redirecionar'"
         >
-          <label class="label-form text-white mt-4" for="funcionario">
+          <label class="label-form mt-4 dark:text-white" for="funcionario">
             Selecione um funcionário para redirecionar a solicitação:
           </label>
 
@@ -279,7 +281,7 @@
               class="pill-purple mt-4"
               [routerLink]="['/solicitacoes/listar']"
               [disabled]="!funcionarioEscolhido"
-              [ngClass]="{'pill-disabled mt-4' : !funcionarioEscolhido}"
+              [ngClass]="{ 'pill-disabled mt-4': !funcionarioEscolhido }"
               (click)="redirect()"
             >
               Redirecionar
