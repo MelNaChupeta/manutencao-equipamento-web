@@ -1,0 +1,39 @@
+.toaster {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.toast {
+  padding: 10px 20px;
+  color: #fff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 350px;
+}
+
+.toast.success {
+  background-color: #49e649;
+}
+
+.toast.error {
+  background-color: #f44336;
+}
+
+.toast.info {
+  background-color: #2196f3;
+}
+
+.toast.warning {
+  background-color: #ff9800;
+}
+
+button {
+  background: none;
+  border: none;
+  color: inherit;
+}

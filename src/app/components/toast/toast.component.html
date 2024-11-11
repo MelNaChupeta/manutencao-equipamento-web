@@ -1,0 +1,12 @@
+<div class="toaster flex flex-col">
+  <div
+    *ngFor="let toast of toasts"
+    class="toast gap-x-3"
+    [ngClass]="toast.type"
+    (click)="removeToast(toast.id)"
+  >
+    <i [class]="icon"></i>
+    <span>{{ toast.message }}</span>
+    <button (click)="removeToast(toast.id)" class="cursor-pointer">✖</button>
+  </div>
+</div>
