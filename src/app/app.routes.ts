@@ -17,6 +17,7 @@ import { NovaCategoriaComponent } from './components/categoria/nova-categoria/no
 import { InserirFuncionarioComponent } from './components/funcionario/inserir-funcionario/inserir-funcionario.component';
 import { EditarFuncionarioComponent } from './components/funcionario/editar-funcionario/editar-funcionario.component';
 import { RelatorioReceitaComponent } from './components/funcionario/relatorio-receita/relatorio-receita.component';
+import { RelatorioReceitaCategoriaComponent } from './components/funcionario/relatorio-receita-categoria/relatorio-receita-categoria.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UserRole } from './models/userRole';
 
@@ -121,6 +122,14 @@ export const routes: Routes = [
     {
         path: 'relatorio/receitas',
         component: RelatorioReceitaComponent,
+        canActivate: [AuthGuard],
+        data: {
+            role: UserRole.funcionario
+        }
+    },
+    {
+        path: 'relatorio/receitas/categoria',
+        component: RelatorioReceitaCategoriaComponent,
         canActivate: [AuthGuard],
         data: {
             role: UserRole.funcionario
