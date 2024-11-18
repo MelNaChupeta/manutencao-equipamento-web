@@ -5,10 +5,10 @@
       [ngClass]="toast.type"
       (click)="removeToast(toast.id)"
     >
-      <span>{{ toast.message }}</span>
-      <button (click)="removeToast(toast.id)">✖</button>
-    </div>
-  </div> -->
+  </div>
+</div> -->
 <div *ngIf="toastService.message" class="toast" [ngClass]="toastService.type">
-  {{ toastService.message }}
+    <i [ngClass]="toastService.icon + ' icon'"></i>
+    <span>{{ toastService.message }}</span>
+    <button (click)="clearToast()">✖</button>
 </div>

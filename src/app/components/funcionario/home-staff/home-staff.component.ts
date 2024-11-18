@@ -28,11 +28,29 @@ export class HomeStaffComponent implements OnInit {
   ngOnInit(): void {
     this.solicitacoes = this.listarSolicitacoesAbertas();
   }
-  // showSuccess(): void {
-  //   this.toastService.showToast('This is a success message!', 'success');
-  // }
-
+  
   listarSolicitacoesAbertas(): any[] {
     return this.funcionarioService.listarSolicitacoesAbertas();
   }
+
+
+
+  showSuccess(): void {
+    this.toastService.showToast('This is a success message!', 'success',50000);
+  }
+
+  showError(): void {
+    this.toastService.showToast('This is an error message!', 'error');
+  }
+
+  showInfo(): void {
+    this.toastService.showToast('This is an info message!', 'info');
+  }
+
+  showWarning(): void {
+    this.toastService.showToast('This is a warning message!', 'warning');
+  }
+
+
+
 }

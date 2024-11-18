@@ -11,6 +11,13 @@ import { CommonModule } from '@angular/common';
 })
 export class ToastComponent {
   constructor(public toastService: ToastService) {}
+
+  icon:string = ''
+
+  clearToast(): void {
+    this.toastService.clearToast();
+  }
+
 }
 
 
