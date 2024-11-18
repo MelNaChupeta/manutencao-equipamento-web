@@ -46,6 +46,12 @@
                             <fa-icon [icon]="faMoneyBill" class="mr-3 text-lg w-[20%]"></fa-icon> <p class="w-[80%] text-start">Receitas</p>
                         </a>
                     </li>
+
+                    <li *ngIf="user?.role == 'FUNCIONARIO'">
+                        <a href="/relatorio/receitas/categoria" class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-white flex justify-start">
+                            <fa-icon [icon]="faMoneyBill" class="mr-3 text-lg w-[20%]"></fa-icon> <p class="w-[80%] text-start">Receita por categoria</p>
+                        </a>
+                    </li>
                    
                     <li>
                         <a  (click)="switchTheme()" class="px-4 py-2 text-sm  hover:bg-indigo-600 text-indigo-200 hover:text-gray-50 flex justify-start">
