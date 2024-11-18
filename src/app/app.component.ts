@@ -5,6 +5,7 @@ import { NavigationComponent } from './components/common/navigation/navigation.c
 import { UserService } from './services';
 import { User } from './models';
 import { CommonModule } from '@angular/common';
+import { ToastComponent } from "./components/common/toast/toast.component";
 
 
 @Component({
@@ -16,7 +17,7 @@ import { CommonModule } from '@angular/common';
     </nav>
     <router-outlet />`,
   standalone: true,
-  imports: [RouterLink, RouterOutlet , HeaderComponent , NavigationComponent ,CommonModule],
+  imports: [RouterLink, RouterOutlet, HeaderComponent, NavigationComponent, CommonModule, ToastComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

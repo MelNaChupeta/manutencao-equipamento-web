@@ -9,4 +9,6 @@
       <button (click)="removeToast(toast.id)">✖</button>
     </div>
   </div> -->
-  
+<div *ngIf="toastService.message" class="toast" [ngClass]="toastService.type">
+  {{ toastService.message }}
+</div>
