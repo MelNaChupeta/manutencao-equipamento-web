@@ -1,14 +1,12 @@
-<!-- <div class="toaster">
-    <div
-      *ngFor="let toast of toasts"
-      class="toast"
-      [ngClass]="toast.type"
-      (click)="removeToast(toast.id)"
-    >
-  </div>
-</div> -->
-<div *ngIf="toastService.message" class="toast" [ngClass]="toastService.type">
-    <i [ngClass]="toastService.icon + ' icon'"></i>
-    <span>{{ toastService.message }}</span>
-    <button (click)="clearToast()">✖</button>
+<div
+  *ngIf="toastService.message"
+  class="toast fixed flex flex-row items-center bottom-10 right-10 rounded text-base bg-gray-900 animate-fade-in-out"
+  [ngClass]="toastService.type"
+>
+  <i [ngClass]="toastService.icon" class="icon text-white px-5 text-2xl"></i>
+  <span class="py-3 dark:text-white">{{ toastService.message }}</span>
+  <i
+    class="fa-solid fa-xmark cursor-pointer mx-5 text-black dark:text-white"
+    (click)="clearToast()"
+  ></i>
 </div>

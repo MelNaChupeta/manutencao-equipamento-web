@@ -35,21 +35,21 @@ export class HomeStaffComponent implements OnInit {
 
 
 
-  showSuccess(): void {
-    this.toastService.showToast('This is a success message!', 'success',50000);
-  }
+  // showSuccess(): void {
+  //   this.toastService.showToast('This is a success message!', 'success',50000);
+  // }
 
-  showError(): void {
-    this.toastService.showToast('This is an error message!', 'error');
-  }
+  // showError(): void {
+  //   this.toastService.showToast('This is an error message!', 'error');
+  // }
 
-  showInfo(): void {
-    this.toastService.showToast('This is an info message!', 'info');
-  }
+  // showInfo(): void {
+  //   this.toastService.showToast('This is an info message!', 'info');
+  // }
 
-  showWarning(): void {
-    this.toastService.showToast('This is a warning message!', 'warning');
-  }
+  // showWarning(): void {
+  //   this.toastService.showToast('This is a warning message!', 'warning');
+  // }
 
 
 
