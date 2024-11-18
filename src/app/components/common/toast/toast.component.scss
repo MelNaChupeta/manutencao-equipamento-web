@@ -1,0 +1,44 @@
+.toast {
+  animation: fade-in-out 0.3s ease-in-out;
+  max-width: 300px;
+  z-index: 1000;
+}
+
+.toast.success {
+  border: 1px solid #4caf50;
+  .icon {
+    color: #4caf50;
+  }
+}
+.toast.error {
+  border: 1px solid #f44336;
+
+  .icon {
+    color: #f44336;
+  }
+}
+
+.toast.info {
+  border: 1px solid #2196f3;
+  .icon {
+    color: #2196f3;
+  }
+}
+
+.toast.warning {
+  border: 1px solid #ff9800;
+  .icon {
+    color: #ff9800;
+  }
+}
+
+@keyframes fade-in-out {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
