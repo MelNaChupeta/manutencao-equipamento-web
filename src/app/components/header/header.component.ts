@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   isDarkMode: boolean = false;
   nextTheme:string = 'Trocar tema';
-  nextIcon:string = 'fa-sun';
+  nextIcon:string = 'fa-toggle-off';
 
   constructor(private renderer: Renderer2, 
               private userService: UserService,
@@ -65,12 +65,12 @@ export class HeaderComponent implements OnInit, OnDestroy{
       document.documentElement.classList.remove('light');
       document.documentElement.classList.add('dark');
       this.nextTheme = 'Modo claro';
-      this.nextIcon = 'fa-sun';
+      this.nextIcon = 'fa-toggle-off';
     } else {
       document.documentElement.classList.remove('dark');
       document.documentElement.classList.add('light');
       this.nextTheme = 'Modo escuro';
-      this.nextIcon = 'fa-moon';
+      this.nextIcon = 'fa-toggle-on';
 
     }
     
@@ -79,7 +79,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
       this.nextTheme = 'Modo claro';
-      this.nextIcon = 'fa-sun';
+      this.nextIcon = 'fa-toggle-off';
     }
 
   } 
@@ -128,13 +128,13 @@ export class HeaderComponent implements OnInit, OnDestroy{
       document.documentElement.classList.remove('light');
       localStorage.setItem('theme', 'dark');
       this.nextTheme = 'Modo claro';
-      this.nextIcon = 'fa-sun';
+      this.nextIcon = 'fa-toggle-off';
     } else {
       document.documentElement.classList.remove('dark');
       document.documentElement.classList.add('light');
       localStorage.setItem('theme', 'light');
       this.nextTheme = 'Modo escuro';
-      this.nextIcon = 'fa-moon';
+      this.nextIcon = 'fa-toggle-on';
     }
 
   }

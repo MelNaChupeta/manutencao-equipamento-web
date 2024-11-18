@@ -32,7 +32,7 @@ export class HomeComponent {
       case 'aberta':
         return '';
       case 'orçada':
-        return 'Aprovar ou rejeitar';
+        return 'Aprovar';
       case 'aprovada':
         return '';
       case 'rejeitada':

@@ -17,7 +17,7 @@ import { ProgressService } from '../../../services/progress.service';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    CommonModule ,
+    CommonModule,
     FontAwesomeModule,
     ProgressBarComponent,
     RouterModule
