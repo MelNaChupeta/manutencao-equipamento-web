@@ -33,8 +33,6 @@ export class HomeStaffComponent implements OnInit {
     return this.funcionarioService.listarSolicitacoesAbertas();
   }
 
-
-
   // showSuccess(): void {
   //   this.toastService.showToast('This is a success message!', 'success',50000);
   // }
