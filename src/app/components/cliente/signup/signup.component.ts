@@ -18,8 +18,8 @@ import { Client } from '../../../models';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    CommonModule, 
-    NgxMaskDirective, 
+    CommonModule,
+    NgxMaskDirective,
     NgxMaskPipe,
     FontAwesomeModule,
     RouterModule
@@ -29,35 +29,35 @@ import { Client } from '../../../models';
   styleUrl: './signup.component.scss'
 })
 
-export class SignupComponent implements OnInit{
+export class SignupComponent implements OnInit {
   signupForm: FormGroup;
-  isValidating: boolean = false; 
+  isValidating: boolean = false;
   isLoading: boolean = false;
-  loadingCep:boolean = false;
-  faLoading:IconDefinition = faCircleNotch;
-  cliente:Client = {};
+  loadingCep: boolean = false;
+  faLoading: IconDefinition = faCircleNotch;
+  cliente: Client = {};
   constructor(
     private fb: FormBuilder,
     private clienteService: ClienteService,
     private viaCepService: ViaCepService,
     private progressBarService: ProgressService,
     private modalService: ModalService,
-    private router: Router){
-      this.signupForm = this.fb.group({
-        cpf: ['', [Validators.required]],
-        nome: ['', [Validators.required]],
-        email: ['', [Validators.required, Validators.email]],
-        celular: ['', [Validators.required]],
-        cep: ['', [Validators.required]],
-        endereco: ['', [Validators.required]],
-        bairro: ['', [Validators.required]],
-        cidade: ['', [Validators.required]],
-        estado: ['', [Validators.required]]
-      });
+    private router: Router) {
+    this.signupForm = this.fb.group({
+      cpf: ['', [Validators.required]],
+      nome: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      celular: ['', [Validators.required]],
+      cep: ['', [Validators.required]],
+      endereco: ['', [Validators.required]],
+      bairro: ['', [Validators.required]],
+      cidade: ['', [Validators.required]],
+      estado: ['', [Validators.required]]
+    });
   }
   ngOnInit(): void {
     this.signupForm.get("cep")?.valueChanges.pipe(
-      
+
       switchMap(value => {
         this.loadingCep = true;
         if (value && value.length === 8) {
@@ -79,45 +79,45 @@ export class SignupComponent implements OnInit{
     });
   }
 
-  get cpf(){
+  get cpf() {
     return this.signupForm.get('cpf');
   }
 
-  get nome(){
+  get nome() {
     return this.signupForm.get('nome');
   }
 
-  get email(){
+  get email() {
     return this.signupForm.get('email');
   }
 
-  get celular(){
+  get celular() {
     return this.signupForm.get('celular');
   }
 
-  get cep(){
+  get cep() {
     return this.signupForm.get('cep');
   }
 
-  get endereco(){
+  get endereco() {
     return this.signupForm.get('endereco');
   }
 
-  get bairro(){
+  get bairro() {
     return this.signupForm.get('bairro');
   }
 
-  get cidade(){
+  get cidade() {
     return this.signupForm.get('cidade');
   }
 
-  get estado(){
+  get estado() {
     return this.signupForm.get('estado');
   }
 
-  async onSubmit(){
+  async onSubmit() {
     if (this.signupForm.invalid) {
-      this.signupForm.markAllAsTouched();  
+      this.signupForm.markAllAsTouched();
       return;
     }
 
@@ -127,17 +127,17 @@ export class SignupComponent implements OnInit{
 
     this.clienteService.signup(this.cliente).subscribe({
       next: (response) => {
-          this.progressBarService.hide();
-          this.isValidating = false;
-          this.isLoading = false;
-          this.modalService.open(AlertModalComponent, {
-            title:"Cadastro realizado com sucesso",
-            body:`<p>Um email foi enviado para <u><b>${this.cliente.email}</b></u> contendo a sua senha</p>`,
-            onClose: () => {
-              this.router.navigate(["/login/"]);
-              
-            },
-          });      
+        this.progressBarService.hide();
+        this.isValidating = false;
+        this.isLoading = false;
+        this.modalService.open(AlertModalComponent, {
+          title: "Cadastro realizado com sucesso",
+          body: `<p>Um email foi enviado para <u><b>${this.cliente.email}</b></u> contendo a sua senha</p>`,
+          onClose: () => {
+            this.router.navigate(["/login/"]);
+
+          },
+        });
       },
 
       error: (error) => {
@@ -149,6 +149,27 @@ export class SignupComponent implements OnInit{
 
       }
     });
+  }
+
+  validaCPF(strCPF: string): boolean {
+    var Soma;
+    var Resto;
+    Soma = 0;
+    if (strCPF == "00000000000") return false;
+
+    for (var i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11)) Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+
+    Soma = 0;
+    for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11)) Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+    return true;
   }
 
 }
