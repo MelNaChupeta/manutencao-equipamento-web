@@ -21,17 +21,7 @@ export class AuthenticationService {
     //url:string = "";
 
     login(email?:string , password?:String){
-       let role:string = email?.includes("funcionario")? "FUNCIONARIO" : "CLIENTE"; 
-       new SignJWT({email,password,isAuthenticated : true , role:role})
-        .setProtectedHeader({ alg: 'HS256' })
-        .setIssuedAt()
-        .setExpirationTime('24h')
-        .sign(this.secretKey)
-        .then((jwt) => {
-            this.userService.saveToken(jwt);
-        });
-        return of("").pipe(delay(1000));
-        //return this.http.post<any>(`${this.url+ '/auth'}`, {email,password});
+        return this.http.post<any>(`${this.url+ '/auth'}`, {email,password});
     }
 
     logout(): void{

@@ -1,12 +1,12 @@
 export class User {
     id?: number;
-    name?: string;
+    nome?: string;
     email?: string;
     role?: string;
     isAuthenticated?: boolean;
-    constructor(id?: number, name?: string, email?: string) {
+    constructor(id?: number, nome?: string, email?: string) {
         this.id = id;
-        this.name = name;
+        this.nome = nome;
         this.email = email;
     }
 }

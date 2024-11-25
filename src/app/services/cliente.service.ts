@@ -28,15 +28,7 @@ export class ClienteService {
     url:string = environment.URL_API;
 
     signup(cliente: Client){
-        //return this.http.post<Client>(`${this.url+ '/Client/register'}`, {Client});
-        let clientes= this.findAll();
-
-        cliente.id = new Date().getTime();
-
-        clientes.push(cliente);
-
-        localStorage[this.LS_CHAVE] = JSON.stringify(clientes); 
-        return of(clientes).pipe(delay(1000));
+        return this.http.post<Client>(`${this.url+ '/cliente/registrar'}`, cliente);
     }
     
     update(cliente: Client){

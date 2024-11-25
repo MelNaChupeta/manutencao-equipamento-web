@@ -16,7 +16,7 @@
                             id="name"
                             name="name" 
                             placeholder="Nome completo"
-                            [(ngModel)]="funcionario.name"
+                            [(ngModel)]="funcionario.nome"
                             #name="ngModel" 
                             minlength="2"
                             required
@@ -64,10 +64,11 @@
                             type="date" 
                             class="input-form"  
                             id="dataNascimento"
-                            name="dataNascimento" 
-                            [(ngModel)]="funcionario.dataNascimento"
+                            name="dtNascimento" 
+                            [(ngModel)]="funcionario.dtNascimento"
                             #dataNascimento="ngModel" 
                             required
+                            mask="d0/M0/0000"
                         /> 
                     </label>
 

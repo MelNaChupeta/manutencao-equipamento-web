@@ -13,6 +13,7 @@ import { ProgressService } from '../../../services/progress.service';
 import { ModalService } from '../../../services/modal.service';
 import { AlertModalComponent } from '../../common/modal/alert-modal/alert-modal.component';
 import { Client } from '../../../models';
+import { ErrorModalComponent } from '../../common/modal/error-modal/error-modal.component';
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -73,7 +74,7 @@ export class SignupComponent implements OnInit {
       if (data && !data.erro) {
         this.cliente.endereco = data.logradouro
         this.cliente.cidade = data.localidade
-        this.cliente.uf = data.uf
+        this.cliente.estado = data.uf
         this.cliente.bairro = data.bairro
       }
     });
@@ -135,18 +136,19 @@ export class SignupComponent implements OnInit {
           body: `<p>Um email foi enviado para <u><b>${this.cliente.email}</b></u> contendo a sua senha</p>`,
           onClose: () => {
             this.router.navigate(["/login/"]);
-
           },
         });
-      },
-
-      error: (error) => {
+      }, error: (response) => {
         this.progressBarService.hide();
-        this.isValidating = false;
-        this.isLoading = false;
-        this.router.navigate(['/']);
-        let message = 'Ocorreu um erro ao processar a requisi&ccedil;%atilde;o.';
-
+        let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
+        
+        if(response.error?.message)
+          message = response.error?.message;
+        
+        this.modalService.open(ErrorModalComponent, {
+          title: "Erro ao cadastrar",
+          body: `<p>${message}</p>`,
+        });
       }
     });
   }

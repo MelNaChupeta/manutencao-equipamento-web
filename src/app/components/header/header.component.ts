@@ -40,6 +40,9 @@ export class HeaderComponent implements OnInit, OnDestroy{
   constructor(private renderer: Renderer2, 
               private userService: UserService,
               private router: Router) {
+    this.userService.returnUser().subscribe((user) =>{
+      this.user = user as User;
+    });
   }
   
   ngOnInit(): void {
@@ -53,9 +56,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
       }
     });
     
-    this.userService.returnUser().subscribe((user) =>{
-      this.user = user as User;
-    });
+    
 
     const theme = localStorage.getItem('theme');
 

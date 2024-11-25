@@ -3,11 +3,11 @@ export class Client extends User {
   cep?:string;
   endereco?:string;
   cidade?:string;
+  estado?:string
   bairro?:string;
-  uf?:string;
   celular?:string;
   cpf?:string;
-  constructor(id: number, name: string, email: string,) {
-    super(id, name, email);
+  constructor(id: number, nome: string, email: string,) {
+    super(id, nome, email);
   }
 }

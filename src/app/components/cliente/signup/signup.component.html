@@ -33,7 +33,7 @@
                         <input 
                             type="text" 
                             class="input-form" 
-                            [(ngModel)]="cliente.name"
+                            [(ngModel)]="cliente.nome"
                             placeholder="Nome completo"
                             formControlName="nome"
                             [ngClass]="{'input-error': nome?.invalid && nome?.touched,}"
@@ -162,7 +162,7 @@
                             type="text" 
                             class="input-form" 
                             placeholder="UF"
-                            [(ngModel)]="cliente.uf"
+                            [(ngModel)]="cliente.estado"
                             formControlName="estado"
                             [ngClass]="{'input-error': estado?.invalid && estado?.touched,}"    
                         /> 

@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { funcionario } from '../../../models';
+import { Funcionario } from '../../../models';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { faCircleNotch, faPencilSquare, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,9 @@ import { TabelaComponent } from '../../common/estilo-tabela/estilo-tabela.compon
 import { FuncionarioService } from '../../../services/funcionario.service';
 import { ModalService } from '../../../services/modal.service';
 import { ConfirmModalComponent } from '../../common/modal/confirm-modal/confirm-modal.component';
+import { ProgressService } from '../../../services/progress.service';
+import { AlertModalComponent } from '../../common/modal/alert-modal/alert-modal.component';
+import { ErrorModalComponent } from '../../common/modal/error-modal/error-modal.component';
 
 
 @Component({
@@ -33,20 +36,21 @@ export class ManterFuncionarioComponent {
   isLoading: boolean = false;
   loadingCep: boolean = false;
   faLoading: IconDefinition = faCircleNotch;
-  funcionarios: funcionario[] = [];
+  funcionarios: Funcionario[] = [];
 
   constructor(
     private fb: FormBuilder,
     private modalService: ModalService,
     private funcionarioService: FuncionarioService,
+    private progressBarService: ProgressService,
     private router: Router){
     
   }
 
   colunas: any[] = [
-    { titulo: 'NOME', campo: 'name' },
+    { titulo: 'NOME', campo: 'nome' },
     { titulo: 'EMAIL', campo: 'email' },
-    { titulo: 'DATA NASCIMENTO', campo: 'dataNascimento' },
+    { titulo: 'DATA NASCIMENTO', campo: 'dtNascimento' },
   ];
 
   buttons = [
@@ -55,25 +59,58 @@ export class ManterFuncionarioComponent {
   ];
 
   ngOnInit(): void {
-    this.funcionarios = this.listarTodos();
+     this.listarTodos();
   }
 
-  listarTodos(): funcionario[] {
-    return this.funcionarioService.listarTodos();
-  }
-
-  remover(funcionario: funcionario): void {
-    this.modalService.open(ConfirmModalComponent, {
-      title:"Confirmar Ação",
-      body:"Tem certeza que deseja excluir esse item?",
-      onConfirm: () => {
-        this.funcionarioService.remover(funcionario.id!);
-        this.funcionarios = this.listarTodos();
+  listarTodos() {
+    this.progressBarService.show();
+    this.funcionarioService.listarTodos().subscribe({
+      next: (response) => {
+        this.progressBarService.hide();
+        this.funcionarios = response;
+      }, error: (response) => {
+        this.progressBarService.hide();
+        let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
+        
+        if(response.error?.message)
+          message = response.error?.message;
+        
+        this.modalService.open(ErrorModalComponent, {
+          title: "Erro ao buscar lista",
+          body: `<p>${message}</p>`,
+        });
       }
     });
   }
 
-  editar(funcionario: funcionario): void {
+  remover(funcionario: Funcionario): void {
+    this.modalService.open(ConfirmModalComponent, {
+      title:"Confirmar Ação",
+      body:"Tem certeza que deseja excluir esse item?",
+      onConfirm: () => {
+        this.progressBarService.show();
+        this.funcionarioService.remover(funcionario.id!).subscribe({
+          next: (response) => {
+            this.progressBarService.hide();
+            this.listarTodos();
+          }, error: (response) => {
+            this.progressBarService.hide();
+            let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
+            
+            if(response.error?.message)
+              message = response.error?.message;
+            
+            this.modalService.open(ErrorModalComponent, {
+              title: "Erro ao remover funcionario",
+              body: `<p>${message}</p>`,
+            });
+          }
+        });
+      }
+    });
+  }
+
+  editar(funcionario: Funcionario): void {
     this.router.navigate(['/funcionario/editar', funcionario.id]);
   }
   
