@@ -32,10 +32,10 @@ export interface ItemOrcamento {
 }
 export interface Orcamento {
   valorOrcamento: number;
-  itens: ItemOrcamento[];
-  funcionarioOrcador: Funcionario | null;
-  aprovado: boolean;
-  justificativaRejeicao: string;
+  itens?: ItemOrcamento[];
+  funcionarioOrcador?: Funcionario | null;
+  aprovado?: boolean;
+  justificativaRejeicao?: string;
 }
 
 function calculaDiasDesdeUltimaMov(movimentacoes: Movimentacao[]): number {

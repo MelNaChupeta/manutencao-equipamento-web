@@ -69,7 +69,7 @@ export class LoginComponent {
       },
       error: (response) => {
         this.progessService.hide();
-        let message = 'Ocorreu um erro ao processar a requisi&ccedil;%atilde;o.';
+        let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
         
         if(response.error?.message)
           message = response.error?.message;

@@ -19,9 +19,14 @@ export class SolicitacaoService {
   
   
     registrar(solicitacao: Solicitacao){
-      return this.http.post<Solicitacao>(`${this.url+ '/solicitacao/registrar'}`,  {idCategoria:solicitacao.categoria?.id , 
+      return this.http.post<Solicitacao>(`${this.url}/solicitacao/registrar`,  {idCategoria:solicitacao.categoria?.id , 
                                                                                     descricaoProblema : solicitacao.descricaoProblema , 
                                                                                     descricaoEquipamento : solicitacao.descricaoEquipamento});
+    }
+    
+    efeturarOrcamento(solicitacao: Solicitacao){
+      return this.http.post<Solicitacao>(`${this.url}/solicitacao/efetuarOrcamento/${solicitacao.id}`,  {id:solicitacao.id , 
+                                                                                    valorOrcamento : solicitacao.orcamento?.valorOrcamento });
     }
 
     buscarTodas(): Observable<Solicitacao[]> {

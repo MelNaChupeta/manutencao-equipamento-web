@@ -224,7 +224,7 @@ export class ManterSolicitacaoComponent implements OnInit {
   getHistoricoMovimentacoes(solicitacao: Solicitacao) {
     if(solicitacao) {
       return solicitacao.historicoMovimentacao?.sort((a, b) => {
-        return b.dtHrMovimentacao.getTime() - a.dtHrMovimentacao.getTime();
+        return new Date(b.dtHrMovimentacao).getTime() - new Date(a.dtHrMovimentacao).getTime();
       });
     }
     return [];

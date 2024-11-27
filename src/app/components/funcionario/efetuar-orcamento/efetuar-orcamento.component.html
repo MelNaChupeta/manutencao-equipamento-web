@@ -21,7 +21,7 @@
                 Data da solicitação:
               </td>
               <td class="align-top text-left">
-                {{ data.product.datetime | date : "dd/MM/yyyy 'às' HH:mm:ss" }}
+                {{ solicitacao.dtHrCriacao | date : "dd/MM/yyyy 'às' HH:mm:ss" }}
               </td>
             </tr>
             <tr>
@@ -31,7 +31,7 @@
                 Estado:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.product.status }}
+                {{ solicitacao.estadoAtual}}
               </td>
             </tr>
             <tr>
@@ -41,7 +41,7 @@
                 Categoria:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.product.category }}
+                {{ solicitacao.categoria?.nome }}
               </td>
             </tr>
             <tr>
@@ -51,7 +51,7 @@
                 Descrição do produto:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.product.equipmentDescription }}
+                {{ solicitacao.descricaoEquipamento }}
               </td>
             </tr>
             <tr>
@@ -61,7 +61,7 @@
                 Descrição do defeito:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.product.defectDescription }}
+                {{ solicitacao.descricaoProblema }}
               </td>
             </tr>
           </tbody>
@@ -81,7 +81,7 @@
               <td class="font-bold pr-4 whitespace-nowrap align-top text-right">
                 Nome:
               </td>
-              <td class="align-top text-left">{{ data.client.name }}</td>
+              <td class="align-top text-left">{{ solicitacao.cliente?.nome }}</td>
             </tr>
             <tr>
               <td
@@ -89,7 +89,7 @@
               >
                 Email:
               </td>
-              <td class="align-top text-left pt-4">{{ data.client.email }}</td>
+              <td class="align-top text-left pt-4">{{ solicitacao.cliente?.email }}</td>
             </tr>
             <tr>
               <td
@@ -98,7 +98,7 @@
                 Telefone:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.client.phoneNumber }}
+                {{ solicitacao.cliente?.celular }}
               </td>
             </tr>
             <tr>
@@ -107,7 +107,7 @@
               >
                 CPF:
               </td>
-              <td class="align-top text-left pt-4">{{ data.client.cpf }}</td>
+              <td class="align-top text-left pt-4">{{ solicitacao.cliente?.cpf }}</td>
             </tr>
             <tr>
               <td
@@ -116,7 +116,7 @@
                 Endereço:
               </td>
               <td class="align-top text-left pt-4">
-                {{ data.client.address }}
+                {{ solicitacao.cliente?.endereco }}
               </td>
             </tr>
             <tr>
@@ -125,7 +125,7 @@
               >
                 CEP:
               </td>
-              <td class="align-top text-left pt-4">{{ data.client.cep }}</td>
+              <td class="align-top text-left pt-4">{{ solicitacao.cliente?.cep }}</td>
             </tr>
           </tbody>
         </table>
@@ -143,7 +143,7 @@
             *ngFor="let item of items; let i = index"
             class="item flex flex-row gap-x-6 p-3"
           >
-            <div class="w-full">
+            <!--<div class="w-full">
               <label for="name" class="text-sm dark:text-white">Item:</label>
               <input
                 id="name"
@@ -154,7 +154,7 @@
                 [ngModel]="item.name"
                 required
               />
-            </div>
+            </div>-->
 
             <div class="w-full">
               <label for="name" class="text-sm dark:text-white">Preço:</label>
@@ -168,22 +168,22 @@
                 prefix="R$ "
                 type="text"
                 [dropSpecialCharacters]="true"
-                [(ngModel)]="item.price"
+                [(ngModel)]="valorOrcamento"
                 (ngModelChange)="updateTotal()"
               />
             </div>
-            <div class="flex items-end pb-2 text-lg dark:text-white">
+            <!--<div class="flex items-end pb-2 text-lg dark:text-white">
               <i
                 class="fa-solid fa-xmark cursor-pointer"
                 (click)="removeItem(i)"
               ></i>
-            </div>
+            </div>-->
           </div>
-          <div class="flex justify-center p-3">
+          <!--<div class="flex justify-center p-3">
             <button class="pill-purple" (click)="addItem()">
               Adicionar novo item
             </button>
-          </div>
+          </div>-->
           <div class="flex flex-row justify-end gap-x-3 p-3 dark:text-white">
             <p>Total:</p>
             <h4 class="font-semibold">

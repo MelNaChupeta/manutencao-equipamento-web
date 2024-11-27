@@ -60,11 +60,12 @@ export class HomeStaffComponent implements OnInit {
           this.progressBarService.hide();
           this.solicitacoes = response;
       },
-      error: (error) => {
+      error: (response) => {
+        let message = response.error?.message ? response.error?.message : "Erro ao buscar s"
         this.progressBarService.hide();
         this.modalService.open(ErrorModalComponent, {
           title:"Atenção",
-          body:"Erro ao buscar categorias"
+          body:""
         });  
       }
     });
