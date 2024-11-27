@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { Solicitacao, solicitacoes, Movimentacao } from '../../../solicitacoes';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgOptimizedImage, registerLocaleData } from '@angular/common';
 import localePT from '@angular/common/locales/pt';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
-import { EstadoSolicitacao } from '../../../models';
+import { Client, EstadoSolicitacao, Funcionario, Movimentacao, Solicitacao, User } from '../../../models';
 import { ModalOrcamentoAprovadoComponent } from '../../../modal-orcamento-aprovado/modal-orcamento-aprovado.component';
 import { ModalOrcamentoRejeitadoComponent } from '../../../modal-orcamento-rejeitado/modal-orcamento-rejeitado.component';
-import { Funcionario } from '../../../funcionarios';
-import { Cliente } from '../../../clientes';
+
 import { ModalPagamentoComponent } from "../../../modal-pagamento/modal-pagamento.component";
+import { ModalService } from '../../../services/modal.service';
+import { ProgressService } from '../../../services/progress.service';
+import { SolicitacaoService } from '../../../services/solicitacao.service';
+import { ErrorModalComponent } from '../../common/modal/error-modal/error-modal.component';
 
 registerLocaleData(localePT);
 
@@ -32,7 +34,6 @@ registerLocaleData(localePT);
 })
 export class ManterSolicitacaoComponent implements OnInit {
   solicitacao?: Solicitacao;
-  solicitacoes = solicitacoes;
   movimentacao?: Movimentacao;
   faCircleCheck = faCircleCheck;
   isModalOrcamentoAprovadoOpen = false;
@@ -54,19 +55,43 @@ export class ManterSolicitacaoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private currencyPipe: CurrencyPipe
+    private router: Router,
+    private currencyPipe: CurrencyPipe,
+    private solicitacaoService: SolicitacaoService,
+    private modalService: ModalService,
+    private progressBarService :ProgressService
   ) {}
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     const idSolicitacaoFromRoute = routeParams.get('idSolicitacao');
-    this.solicitacao = solicitacoes.find(
-      (solicitacao) => solicitacao.id === idSolicitacaoFromRoute
-    );
-    if (!this.solicitacao) {
-      console.error(`Solicitação #${idSolicitacaoFromRoute} não encontrada!`);
+   
+    if(idSolicitacaoFromRoute) {
+      this.progressBarService.show();
+      this.solicitacaoService.findById(idSolicitacaoFromRoute).subscribe({
+        next: (response) => {
+          this.progressBarService.hide();
+          this.solicitacao = response;
+          this.atualizaFase();
+        }, error: (response) => {
+          this.progressBarService.hide();
+          let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
+          
+          if(response.error?.message)
+            message = response.error?.message;
+          
+          this.modalService.open(ErrorModalComponent, {
+            title: "Erro ao buscar categoria",
+            body: `<p>${message}</p>`,
+            onClose: () => {
+              this.router.navigate(['/inicio/clientes']);
+            },
+          });
+        }
+      });
+      
     }
-    this.atualizaFase();
+    
   }
 
   imagemControle = '../../../../assets/controle.png';
@@ -131,7 +156,7 @@ export class ManterSolicitacaoComponent implements OnInit {
     if (this.solicitacao) {
       this.solicitacao.estadoAtual = 'aprovada' as EstadoSolicitacao;
       const valorFormatadoBr = this.currencyPipe.transform(
-        this.solicitacao.orcamento.valorTotal,
+        this.solicitacao.orcamento?.valorOrcamento,
         'BRL',
         'symbol',
         '1.2-2'
@@ -152,7 +177,8 @@ export class ManterSolicitacaoComponent implements OnInit {
   handleRejeicao(justificativaRejeicao: string) {
     if (this.solicitacao) {
       this.solicitacao.estadoAtual = 'rejeitada' as EstadoSolicitacao;
-      this.solicitacao.orcamento.justificativaRejeicao = justificativaRejeicao;
+      if(this.solicitacao.orcamento)
+        this.solicitacao.orcamento.justificativaRejeicao = justificativaRejeicao;
     }
   }
 
@@ -173,12 +199,14 @@ export class ManterSolicitacaoComponent implements OnInit {
         estadoMovimentacao: EstadoSolicitacao.paga,
         autorMovimentacao: this.getUsuario(),
       };
-      this.solicitacao.historicoMovimentacao.push(novaMovimentacao);
+      this.solicitacao.historicoMovimentacao?.push(novaMovimentacao);
     }
   }
 
-  getUsuario(): Funcionario | Cliente {
-    return this.solicitacao?.historicoMovimentacao[0].autorMovimentacao as Funcionario | Cliente;
+  getUsuario(): Funcionario | Client {
+    if(this.solicitacao?.historicoMovimentacao)
+      return this.solicitacao?.historicoMovimentacao[0]?.autorMovimentacao;
+    return new User;
   }
 
   resgatarOrcamento() {
@@ -194,8 +222,11 @@ export class ManterSolicitacaoComponent implements OnInit {
   }
 
   getHistoricoMovimentacoes(solicitacao: Solicitacao) {
-    return solicitacao.historicoMovimentacao.sort((a, b) => {
-      return b.dtHrMovimentacao.getTime() - a.dtHrMovimentacao.getTime();
-    });
+    if(solicitacao) {
+      return solicitacao.historicoMovimentacao?.sort((a, b) => {
+        return b.dtHrMovimentacao.getTime() - a.dtHrMovimentacao.getTime();
+      });
+    }
+    return [];
   }
 }

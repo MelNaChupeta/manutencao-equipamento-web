@@ -57,12 +57,12 @@
           {{ solicitacao?.equipamento }}
         </p>
         <p class="text-gray-400 px-6 py-0 whitespace-nowrap">
-          {{ solicitacao?.categoria }}
+          {{ solicitacao?.categoria?.nome }}
         </p>
       </div>
     </div>
     <div
-      *ngIf="solicitacao?.orcamento?.valorTotal"
+      *ngIf="solicitacao?.valorOrcamento"
       class="relative flex flex-col px-6 py-4 gap-x-16 border rounded-md bg-gray-400/5 dark:border-white/5"
     >
       <p class="text-lg mb-2 dark:text-white">Orçamento</p>
@@ -81,36 +81,13 @@
             </div>
           </div>
         </div>
-        <div class="table-row-group">
-          <div
-            *ngFor="let itemOrcamento of solicitacao?.orcamento?.itens"
-            class="table-row"
-          >
-            <div class="table-cell text-sm text-left dark:text-white">
-              {{ itemOrcamento.nomeItem }}
-            </div>
-            <div class="table-cell text-sm text-left dark:text-white">
-              {{
-                itemOrcamento.valorUnitario
-                  | currency : "BRL" : "symbol" : "1.2-2"
-              }}
-            </div>
-            <div class="table-cell text-sm text-left dark:text-white">
-              {{ itemOrcamento.quantidadeItem }}
-            </div>
-            <div class="table-cell text-sm text-right dark:text-white">
-              {{
-                itemOrcamento.valorItem | currency : "BRL" : "symbol" : "1.2-2"
-              }}
-            </div>
-          </div>
-        </div>
+        
       </div>
       <div class="flex items-start justify-between pt-6">
         <p class="dark:text-white">Valor total</p>
         <p class="whitespace-nowrap dark:text-white">
           {{
-            solicitacao?.orcamento?.valorTotal
+            solicitacao?.valorOrcamento
               | currency : "BRL" : "symbol" : "1.2-2"
           }}
         </p>
@@ -179,7 +156,6 @@
 </app-modal-orcamento-rejeitado>
 <app-modal-pagamento
   [isOpen]="isModalPagamentoOpen"
-  [solicitacao]="solicitacao"
   (fecha)="fechaModalPagamento()"
   (paga)="handlePagamento()"
 >

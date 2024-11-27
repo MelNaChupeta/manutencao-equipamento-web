@@ -35,18 +35,7 @@ export class ListarCategoriaComponent  implements OnInit{
   faPlus:IconDefinition  = faPlus;
   isModalOpen = false;
   categoria:Categoria = {};
-  categorias:Categoria[] = [
-    /*{ nome: 'notebook', id: 10 },
-    { nome: 'desktop', id: 9  },
-    { nome: 'celular', id: 8 },
-    { nome: 'tablet', id: 7 },
-    { nome: 'periferico', id: 6 },
-    { nome: 'camera', id: 5 },
-    { nome: 'televisao', id: 4 },
-    { nome: 'drone', id : 3},
-    { nome: 'videogameConsole', id:2},
-    { nome: 'videogameAcessorio', id : 1 },*/
-  ];
+  categorias:Categoria[] = [];
 
   colunas:any[] = [
     { titulo: 'ID', campo: 'id' },
@@ -94,54 +83,44 @@ export class ListarCategoriaComponent  implements OnInit{
   }
 
   listar() {
-     //this.progressBarService.show();
-     this.categoriaService.findAll().subscribe(
-      (response) => {
+     this.progressBarService.show();
+     this.categoriaService.findAll().subscribe({
+      next: (response) => {
           this.progressBarService.hide();
           this.isLoading = false;
           this.categorias = response;
       },
-       (error) => {
+      error: (error) => {
         this.progressBarService.hide();
         this.isLoading = false;
         this.modalService.open(ErrorModalComponent, {
           title:"Atenção",
           body:"Erro ao buscar categorias"
-        });    
+        });  
       }
-    )/*.subscribe({
-      next: (response) => {
-          this.isLoading = false;
-          this.categorias = response;
-      },
-      error: (error) => {
-        this.isLoading = false;
-        let message = 'Ocorreu um erro ao processar a requisição.';
-      }
-    })*/
+    });
   }
-
-
- /* onDeleteModalClose() {
-    console.log("closed");
-  }*/
 
   onDeleteModalConfirm(id?:number) {
     this.isModalOpen = false;
     this.progressBarService.show();
-    this.categoriaService.delete(id)
-    this.progressBarService.hide();
-    
-    /*.subscribe({
+    this.categoriaService.delete(id).subscribe({
       next: (response) => {
-          this.isLoading = false;
-      },
-      error: (error) => {
-        this.isLoading = false;
-        let message = 'Ocorreu um erro ao processar a requisição.';
+        this.progressBarService.hide();
+        this.listar();
+      }, error: (response) => {
+        this.progressBarService.hide();
+        let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
+        
+        if(response.error?.message)
+          message = response.error?.message;
+        
+        this.modalService.open(ErrorModalComponent, {
+          title: "Erro ao remover categoria",
+          body: `<p>${message}</p>`,
+        });
       }
-    });*/
-    this.listar();
+    });
   }
 
   

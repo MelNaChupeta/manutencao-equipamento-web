@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FuncionarioService } from '../../../services/funcionario.service';
 import { ToastService } from '../../../services/toast.service';
+import { ModalService } from '../../../services/modal.service';
+import { ProgressService } from '../../../services/progress.service';
+import { SolicitacaoService } from '../../../services/solicitacao.service';
+import { ErrorModalComponent } from '../../common/modal/error-modal/error-modal.component';
 
 
 export interface Solicitacao {
@@ -23,15 +27,16 @@ export interface Solicitacao {
 export class HomeStaffComponent implements OnInit {
   solicitacoes: any[] = [];
 
-  constructor(private funcionarioService: FuncionarioService,private toastService: ToastService) {}
+  constructor(private funcionarioService: FuncionarioService,
+              private toastService: ToastService,
+              private solicitacaoService: SolicitacaoService,
+              private modalService: ModalService,
+              private progressBarService :ProgressService) {}
 
   ngOnInit(): void {
-    this.solicitacoes = this.listarSolicitacoesAbertas();
+    this.buscarSolicitacoes();
   }
   
-  listarSolicitacoesAbertas(): any[] {
-    return this.funcionarioService.listarSolicitacoesAbertas();
-  }
 
   // showSuccess(): void {
   //   this.toastService.showToast('This is a success message!', 'success',50000);
@@ -49,6 +54,20 @@ export class HomeStaffComponent implements OnInit {
   //   this.toastService.showToast('This is a warning message!', 'warning');
   // }
 
-
+  buscarSolicitacoes() {
+    this.solicitacaoService.buscarTodas().subscribe({
+      next: (response) => {
+          this.progressBarService.hide();
+          this.solicitacoes = response;
+      },
+      error: (error) => {
+        this.progressBarService.hide();
+        this.modalService.open(ErrorModalComponent, {
+          title:"Atenção",
+          body:"Erro ao buscar categorias"
+        });  
+      }
+    });
+  }
 
 }

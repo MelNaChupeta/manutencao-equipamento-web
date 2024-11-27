@@ -36,18 +36,7 @@ export class NovaCategoriaComponent {
   faPencil:IconDefinition  = faPencilSquare;
   faTrash:IconDefinition  = faTrash;
   idCategoria!:number;
-  categorias:Categoria[] = [
-    { nome: 'notebook', id: 10 },
-    { nome: 'desktop', id: 9  },
-    { nome: 'celular', id: 8 },
-    { nome: 'tablet', id: 7 },
-    { nome: 'periferico', id: 6 },
-    { nome: 'camera', id: 5 },
-    { nome: 'televisao', id: 4 },
-    { nome: 'drone', id : 3},
-    { nome: 'videogameConsole', id:2},
-    { nome: 'videogameAcessorio', id : 1 },
-  ];
+  categorias:Categoria[] = [];
 
 
   constructor(
@@ -82,41 +71,30 @@ export class NovaCategoriaComponent {
   }
 
   cadastrar(categoria:Categoria) {
-      this.categoriaService.register(categoria).subscribe(
-          (response) => {
-             this.isLoading = false;
-             this.progressBarService.hide();
-
-             this.modalService.open(AlertModalComponent, {
-               title:"Sucesso",
-               body:"Categoria alterada com sucesso",
-               onClose: () => {
-                 this.router.navigate(["/categorias/listar"]);
-                 
-               },
-             });      
-         },
-          (error) => {
-           this.isLoading = false;
-           this.progressBarService.hide();
-
-           this.modalService.open(ErrorModalComponent, {
-             title:"Atenção",
-             body:"Erro ao alterar categoria"
-           });      
-         }
-    );  
-              
-   /*.subscribe({
-      next: (response) => {
-          this.isValidating = false;
+      this.categoriaService.register(categoria).subscribe({
+        next: (response) => {
+          this.progressBarService.hide();
           this.isLoading = false;
-      },
-      error: (error) => {
-        this.isValidating = false;
-        this.isLoading = false;
-        let message = 'Ocorreu um erro ao processar a requisição.';
-      }
-    });*/
+          this.modalService.open(AlertModalComponent, {
+            title:"Sucesso",
+            body:"Categoria cadastrada com sucesso",
+            onClose: () => {
+              this.router.navigate(['/categorias/listar']);
+            },
+          }); 
+        }, error: (response) => {
+          this.progressBarService.hide();
+          this.isLoading = false;
+          let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
+          
+          if(response.error?.message)
+              message = response.error?.message;
+          
+          this.modalService.open(ErrorModalComponent, {
+            title: "Erro ao inserir categoria",
+            body: `<p>${message}</p>`,
+          });
+        }
+    });
   }
 }

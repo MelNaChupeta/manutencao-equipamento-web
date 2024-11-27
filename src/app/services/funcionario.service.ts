@@ -23,15 +23,12 @@ import { environment } from '../../environments/environment';
 
 export class FuncionarioService {
 
-  LS_CHAVE = "funcionarios";
   url:string = environment.URL_API;
 
   constructor(
-    private router: Router,
     private http: HttpClient,
     private userService: UserService) {}
 
-  private secretKey = new TextEncoder().encode('your-256-bit-secret');
 
   funcionario(funcionario: Funcionario){
     return this.http.post<Funcionario>(`${this.url+ 'auth'}`, {funcionario});
@@ -39,7 +36,7 @@ export class FuncionarioService {
 
   returnUser(): Observable<User>{
     return this.userService.returnUser();
-}
+  }
 
   listarTodos(): Observable<Funcionario[]>{
     return this.http.get<Funcionario[]>(`${this.url}/funcionario`);

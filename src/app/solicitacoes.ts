@@ -1,5 +1,6 @@
 import { Cliente, clientes } from './clientes';
 import { Funcionario, funcionarios } from './funcionarios';
+import { EstadoSolicitacao } from './models';
 
 export enum TipoEquipamento {
   notebook = 'Notebook/laptop',
@@ -16,17 +17,6 @@ export enum TipoEquipamento {
   videogameAcessorio = 'Acessório de videogame',
 }
 
-export enum EstadoSolicitacao {
-  aberta = 'aberta',
-  orcada = 'orçada',
-  aprovada = 'aprovada',
-  rejeitada = 'rejeitada',
-  redirecionada = 'redirecionada',
-  arrumada = 'arrumada',
-  aguardandoPagamento = 'aguardando pagamento',
-  paga = 'paga',
-  finalizada = 'finalizada',
-}
 
 export interface Movimentacao {
   dtHrMovimentacao: Date;
@@ -41,7 +31,7 @@ export interface ItemOrcamento {
   valorItem: number;
 }
 export interface Orcamento {
-  valorTotal: number;
+  valorOrcamento: number;
   itens: ItemOrcamento[];
   funcionarioOrcador: Funcionario | null;
   aprovado: boolean;
@@ -74,7 +64,7 @@ export interface Solicitacao {
 }
 
 export const solicitacoes: Solicitacao[] = [
-  {
+ /* {
     id: '1a',
     equipamento: 'Notebook Dell Latitude 5450',
     descricaoEquipamento: 'Notebook pessoal, 512GB SSD, 32GB RAM, ano 2023',
@@ -305,5 +295,5 @@ export const solicitacoes: Solicitacao[] = [
       aprovado: true,
       justificativaRejeicao: '',
     },
-  },
+  },*/
 ];

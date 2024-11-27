@@ -31,7 +31,7 @@ export class InserirFuncionarioComponent{
   @ViewChild('formFuncionario') formFuncionario! : NgForm;
   funcionario: Funcionario = new Funcionario();
   funcionarios: Funcionario[] =[];
-
+  isLoading:boolean = false;
   constructor(
     private funcionarioService: FuncionarioService,
     private progressBarService: ProgressService,
@@ -42,10 +42,10 @@ export class InserirFuncionarioComponent{
   inserirFuncionario(): void {
     if (!this.formFuncionario.form.invalid) { 
       this.progressBarService.show();
-
       this.funcionarioService.inserir(this.funcionario).subscribe({
         next: (response) => {
           this.progressBarService.hide();
+          this.isLoading = false;
           this.modalService.open(AlertModalComponent, {
             title:"Sucesso",
             body:"Funcionario Cadastrado com sucesso",
@@ -55,6 +55,7 @@ export class InserirFuncionarioComponent{
           }); 
         }, error: (response) => {
           this.progressBarService.hide();
+          this.isLoading = false;
           let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
           
           if(response.error?.message)

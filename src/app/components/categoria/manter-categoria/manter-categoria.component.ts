@@ -79,71 +79,56 @@ export class ManterCategoriaComponent {
   }
 
   editar(categoria:Categoria) {
-    this.categoriaService.update(categoria).subscribe(
-         (response) => {
-            this.progressBarService.hide();
-            this.isLoading = false;
-            this.modalService.open(AlertModalComponent, {
-              title:"Sucesso",
-              body:"Categoria alterada com sucesso",
-              onClose: () => {
-                this.router.navigate(["/categorias/listar"]);
-                
-              },
-            });      
-        },
-         (error) => {
-          this.progressBarService.hide();
-          this.isLoading = false;
-          this.modalService.open(ErrorModalComponent, {
-            title:"Atenção",
-            body:"Erro ao alterar categoria"
-          });      
-        }
-    ); 
-     
-     
-    
-    /*.subscribe({
+    this.categoriaService.update(categoria).subscribe({
       next: (response) => {
-          this.isValidating = false;
-          this.isLoading = false;
-      },
-      error: (error) => {
-        this.isValidating = false;
+        this.progressBarService.hide();
         this.isLoading = false;
-        let message = 'Ocorreu um erro ao processar a requisição.';
+        this.modalService.open(AlertModalComponent, {
+          title:"Sucesso",
+          body:"Categoria alterada com sucesso",
+          onClose: () => {
+            this.router.navigate(['/categorias/listar']);
+          },
+        }); 
+      }, error: (response) => {
+        this.progressBarService.hide();
+        this.isLoading = false;
+        let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
+        
+        if(response.error?.message)
+          message = response.error?.message;
+        
+        this.modalService.open(ErrorModalComponent, {
+          title: "Erro ao editar categoria",
+          body: `<p>${message}</p>`,
+        });
       }
-    });*/
+    });
   }
 
   findById(id:number) {
     this.loadingCategoria = true;
     this.progressBarService.show();
-    this.categoriaService.findById(id).subscribe(
-       (response) => {
-          this.progressBarService.hide();
-          this.loadingCategoria = false;
-          if(response) {
-            this.categoria = response;
-          }else{
-            this.modalService.open(ErrorModalComponent, {
-              title:"Atenção",
-              body:"Erro ao buscar categoria"
-            });
-          }
-      },
-      (error) => {
+    this.categoriaService.findById(id).subscribe({
+      next: (response) => {
         this.progressBarService.hide();
-        this.isValidating = false;
-        this.isLoading = false;
-        let message = 'Ocorreu um erro ao processar a requisição.';
+        this.categoria = response;
+      }, error: (response) => {
+        this.progressBarService.hide();
+        let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
+        
+        if(response.error?.message)
+          message = response.error?.message;
+        
         this.modalService.open(ErrorModalComponent, {
-          title:"Atenção",
-          body:message
+          title: "Erro ao buscar categoria",
+          body: `<p>${message}</p>`,
+          onClose: () => {
+            this.router.navigate(['/categorias/listar']);
+          },
         });
       }
-    );
+    });
    
   }
 }

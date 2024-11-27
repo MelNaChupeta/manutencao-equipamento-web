@@ -129,7 +129,6 @@ export class SignupComponent implements OnInit {
     this.clienteService.signup(this.cliente).subscribe({
       next: (response) => {
         this.progressBarService.hide();
-        this.isValidating = false;
         this.isLoading = false;
         this.modalService.open(AlertModalComponent, {
           title: "Cadastro realizado com sucesso",
@@ -140,6 +139,7 @@ export class SignupComponent implements OnInit {
         });
       }, error: (response) => {
         this.progressBarService.hide();
+        this.isLoading = false;
         let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
         
         if(response.error?.message)

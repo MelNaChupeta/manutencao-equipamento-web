@@ -14,7 +14,7 @@
             class="input-form"
             id="descricaoEquipamento"
             name="descricaoEquipamento"
-            [(ngModel)]="solicitacao.equipmentDescription"
+            [(ngModel)]="solicitacao.descricaoEquipamento"
             required
           ></textarea>
         </div>
@@ -27,14 +27,14 @@
             class="input-form"
             id="categoria"
             name="categoria"
-            [(ngModel)]="solicitacao.category"
+            [(ngModel)]="solicitacao.categoria"
             required
           >
             <option
               *ngFor="let categoria of categorias"
-              [value]="categoria.value"
+              [ngValue]="categoria"
             >
-              {{ categoria.label }}
+              {{ categoria.nome }}
             </option>
           </select>
         </div>
@@ -47,7 +47,7 @@
             class="input-form"
             id="descricaoDefeito"
             name="descricaoDefeito"
-            [(ngModel)]="solicitacao.defectDescription"
+            [(ngModel)]="solicitacao.descricaoProblema"
             required
           ></textarea>
         </div>
@@ -56,29 +56,6 @@
           <button class="btn btn-primary" type="submit">Solicitar</button>
         </div>
       </form>
-
-      <div *ngIf="solicitacaoEnviada" class="mt-5">
-        <h2 class="dark:text-white">Solicitação Enviada!</h2>
-        <p class="dark:text-white">
-          <strong>Descrição do equipamento:</strong>
-          {{ solicitacaoSend.equipmentDescription }}
-        </p>
-        <p class="dark:text-white">
-          <strong>Categoria do equipamento:</strong>
-          {{ solicitacaoSend.category }}
-        </p>
-        <p class="dark:text-white">
-          <strong>Descrição do defeito:</strong>
-          {{ solicitacaoSend.defectDescription }}
-        </p>
-        <p class="dark:text-white">
-          <strong>Estado:</strong> {{ solicitacaoSend.status }}
-        </p>
-        <p class="dark:text-white">
-          <strong>Data e Hora:</strong>
-          {{ solicitacaoSend.datetime | date : "dd/MM/yyyy HH:mm" }}
-        </p>
-      </div>
     </div>
   </div>
 </section>

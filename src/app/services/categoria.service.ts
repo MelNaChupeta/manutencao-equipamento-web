@@ -18,53 +18,23 @@ export class CategoriaService {
     url:string = environment.URL_API;
 
     register(categoria: Categoria){
-        //return this.http.post<Categoria>(`${this.url+ '/categoria/register'}`, {categoria});
-        let categorias= JSON.parse(localStorage[this.LS_CHAVE]) as Categoria[];
-
-        categoria.id = new Date().getTime();
-
-        categorias.push(categoria);
-
-        localStorage[this.LS_CHAVE] = JSON.stringify(categorias); 
-        return of(categoria).pipe(delay(1000));
+        return this.http.post<Categoria>(`${this.url+ '/categoria/registrar'}`, categoria);
     }
     
     update(categoria: Categoria){
-        //return this.http.put<Categoria>(`${this.url+ '/categoria/update/'+categoria.id}`, {categoria});
-        let categorias= JSON.parse(localStorage[this.LS_CHAVE]) as Categoria[];
-
-        categorias.forEach((obj, index, objs) => {
-          if (categoria.id === obj.id) {          
-            objs[index] = categoria              
-          }
-        });
-    
-        localStorage[this.LS_CHAVE] = JSON.stringify(categorias);
-        return of(categoria).pipe(delay(1000));
+        return this.http.put<Categoria>(`${this.url+ '/categoria/alterar/'+categoria.id}`, categoria);
     }
     
     findById(id:Number) {
-        //return this.http.get<Categoria>(`${this.url+ '/categoria/'+id}`);
-        let categorias= JSON.parse(localStorage[this.LS_CHAVE]) as Categoria[];
-
-        return of(categorias.find(c => c.id ===id)).pipe(delay(1000));
+        return this.http.get<Categoria>(`${this.url+ '/categoria/'+id}`);
     }
     
     delete(id?:Number){
-        //return this.http.delete<Categoria>(`${this.url+ '/categoria/'+id}`);
-        let categorias= JSON.parse(localStorage[this.LS_CHAVE]) as Categoria[];
-
-        categorias = categorias.filter(c => c.id !== id);
-
-        localStorage[this.LS_CHAVE] = JSON.stringify(categorias);
-        return of().pipe(delay(1000));
+        return this.http.delete<Categoria>(`${this.url+ '/categoria/deletar/'+id}`);
     }
 
     findAll(): Observable<Categoria[]> {
-        //return this.http.get<Categoria[]>(`${this.url+ '/categoria/all'}`);
-        let categorias= JSON.parse(localStorage[this.LS_CHAVE]) as Categoria[];
-
-        return of(categorias?categorias:[]).pipe(delay(1000));
+        return this.http.get<Categoria[]>(`${this.url+ '/categoria'}`);
     }
 
 }

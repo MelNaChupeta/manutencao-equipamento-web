@@ -25,7 +25,8 @@ export class EditarFuncionarioComponent implements OnInit {
 
   @ViewChild('formFuncionario') formFuncionario!: NgForm;
   funcionario: Funcionario = new Funcionario();
-
+  isLoading:boolean = false;
+  
   constructor(
     private funcionarioService: FuncionarioService,
     private progressBarService: ProgressService,
@@ -63,6 +64,7 @@ export class EditarFuncionarioComponent implements OnInit {
     this.funcionarioService.atualizar(this.funcionario).subscribe({
       next: (response) => {
         this.progressBarService.hide();
+        this.isLoading = false;
         this.modalService.open(AlertModalComponent, {
           title:"Sucesso",
           body:"Funcionário alterado com sucesso",
@@ -72,6 +74,7 @@ export class EditarFuncionarioComponent implements OnInit {
         }); 
       }, error: (response) => {
         this.progressBarService.hide();
+        this.isLoading = false;
         let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
         
         if(response.error?.message)
@@ -82,7 +85,7 @@ export class EditarFuncionarioComponent implements OnInit {
           body: `<p>${message}</p>`,
         });
       }
-    });;
+    });
   }
 
 }
