@@ -10,92 +10,58 @@
 
     <!-- Product -->
     <div>
-      <h5 class="font-bold dark:text-white">Informações da Solicitação:</h5>
+      <h3 class="font-bold dark:text-white">Produto:</h3>
       <div
-        class="w-full max-w-2xl bg-gray-400/5 px-6 py-4 border rounded-md dark:border-white/5"
+        class="w-full bg-gray-400/5 px-6 py-4 border rounded-md dark:border-white/5"
       >
         <table class="table-auto w-full dark:text-white">
           <tbody>
             <tr>
-              <td
-                class="font-bold pr-2 whitespace-nowrap align-top text-right text-sm"
-              >
+              <td class="font-bold pr-4 whitespace-nowrap align-top text-right">
                 Data da solicitação:
               </td>
-              <td class="align-top text-left text-sm">
-                {{
-                  solicitacaoData.dtHrCriacao
-                    | date : "dd/MM/yyyy 'às' HH:mm:ss"
-                }}
+              <td class="align-top text-left">
+                {{ solicitacao.dtHrCriacao | date : "dd/MM/yyyy 'às' HH:mm:ss" }}
               </td>
             </tr>
-
             <tr>
               <td
-                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
               >
                 Estado:
               </td>
-              <td class="align-top text-left pt-2 text-sm">
-                {{ solicitacaoData.estadoAtual }}
+              <td class="align-top text-left pt-4">
+                {{ solicitacao.estadoAtual}}
               </td>
             </tr>
-
             <tr>
               <td
-                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
               >
                 Categoria:
               </td>
-              <td class="align-top text-left pt-2 text-sm">
-                {{ solicitacaoData.categoria }}
+              <td class="align-top text-left pt-4">
+                {{ solicitacao.categoria?.nome }}
               </td>
             </tr>
-
             <tr>
               <td
-                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
               >
                 Descrição do produto:
               </td>
-              <td class="align-top text-left pt-2 text-sm">
-                {{ solicitacaoData.descricaoEquipamento }}
+              <td class="align-top text-left pt-4">
+                {{ solicitacao.descricaoEquipamento }}
               </td>
             </tr>
-
             <tr>
               <td
-                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
               >
                 Descrição do defeito:
               </td>
-              <td class="align-top text-left pt-2 text-sm">
-                {{ solicitacaoData.defectDescription }}
-              </td>
-            </tr>
-
-            <tr>
-              <td
-                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
-              >
-                Valor pago:
-              </td>
-              <td class="align-top text-left pt-2 text-sm">
-                {{
-                  solicitacaoData.preco | currency : "BRL" : "symbol" : "1.2-2"
-                }}
-              </td>
-            </tr>
-
-            <tr>
-              <td
-                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
-              >
-                Funcionário responsável:
-              </td>
-              <td class="align-top text-left pt-2 text-sm">
-                {{ solicitacaoData.funcionario.name }} -
-                {{ solicitacaoData.funcionario.email }}
+              <td class="align-top text-left pt-4">
+                {{ solicitacao.descricaoProblema }}
               </td>
             </tr>
           </tbody>
@@ -105,101 +71,61 @@
 
     <!-- client -->
     <div>
-      <h5 class="font-bold dark:text-white">Cliente:</h5>
+      <h3 class="font-bold dark:text-white">Cliente:</h3>
       <div
-        class="w-full max-w-2xl bg-gray-400/5 px-6 py-4 border rounded-md dark:border-white/5"
+        class="w-full bg-gray-400/5 px-6 py-4 border rounded-md dark:border-white/5"
       >
         <table class="table-auto w-full dark:text-white">
           <tbody>
             <tr>
-              <td
-                class="font-bold pr-2 whitespace-nowrap align-top text-right text-sm"
-              >
+              <td class="font-bold pr-4 whitespace-nowrap align-top text-right">
                 Nome:
               </td>
-              <td class="align-top text-left text-sm">
-                {{ solicitacaoData.client.name }}
-              </td>
+              <td class="align-top text-left">{{ solicitacao.cliente?.nome }}</td>
             </tr>
             <tr>
               <td
-                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
               >
                 Email:
               </td>
-              <td class="align-top text-left pt-2 text-sm">
-                {{ solicitacaoData.client.email }}
-              </td>
+              <td class="align-top text-left pt-4">{{ solicitacao.cliente?.email }}</td>
             </tr>
             <tr>
               <td
-                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
               >
                 Telefone:
               </td>
-              <td class="align-top text-left pt-2 text-sm">
-                {{ solicitacaoData.client.phoneNumber }}
+              <td class="align-top text-left pt-4">
+                {{ solicitacao.cliente?.celular }}
               </td>
             </tr>
             <tr>
               <td
-                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
               >
                 CPF:
               </td>
-              <td class="align-top text-left pt-2 text-sm">
-                {{ solicitacaoData.client.cpf }}
-              </td>
+              <td class="align-top text-left pt-4">{{ solicitacao.cliente?.cpf }}</td>
             </tr>
             <tr>
               <td
-                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
               >
                 Endereço:
               </td>
-              <td class="align-top text-left pt-2 text-sm">
-                {{ solicitacaoData.client.endereco }}
+              <td class="align-top text-left pt-4">
+                {{ solicitacao.cliente?.endereco }}
               </td>
             </tr>
             <tr>
               <td
-                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
-              >
-                Bairro:
-              </td>
-              <td class="align-top text-left pt-2 text-sm">
-                {{ solicitacaoData.client.bairro }}
-              </td>
-            </tr>
-            <tr>
-              <td
-                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
-              >
-                Cidade:
-              </td>
-              <td class="align-top text-left pt-2 text-sm">
-                {{ solicitacaoData.client.cidade }}
-              </td>
-            </tr>
-            <tr>
-              <td
-                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
-              >
-                Estado:
-              </td>
-              <td class="align-top text-left pt-2 text-sm">
-                {{ solicitacaoData.client.uf }}
-              </td>
-            </tr>
-            <tr>
-              <td
-                class="font-bold pr-2 pt-2 whitespace-nowrap align-top text-right text-sm"
+                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
               >
                 CEP:
               </td>
-              <td class="align-top text-left pt-2 text-sm">
-                {{ solicitacaoData.client.cep }}
-              </td>
+              <td class="align-top text-left pt-4">{{ solicitacao.cliente?.cep }}</td>
             </tr>
           </tbody>
         </table>

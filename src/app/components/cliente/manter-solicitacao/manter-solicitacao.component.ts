@@ -14,6 +14,7 @@ import { ModalService } from '../../../services/modal.service';
 import { ProgressService } from '../../../services/progress.service';
 import { SolicitacaoService } from '../../../services/solicitacao.service';
 import { ErrorModalComponent } from '../../common/modal/error-modal/error-modal.component';
+import { AlertModalComponent } from '../../common/modal/alert-modal/alert-modal.component';
 
 registerLocaleData(localePT);
 
@@ -68,7 +69,8 @@ export class ManterSolicitacaoComponent implements OnInit {
    
     if(idSolicitacaoFromRoute) {
       this.progressBarService.show();
-      this.solicitacaoService.findById(idSolicitacaoFromRoute).subscribe({
+      const id = parseInt(idSolicitacaoFromRoute);
+      this.solicitacaoService.findById(id).subscribe({
         next: (response) => {
           this.progressBarService.hide();
           this.solicitacao = response;
@@ -127,6 +129,10 @@ export class ManterSolicitacaoComponent implements OnInit {
         return [
           { textoBotao: 'Pagar serviço', acao: () => this.pagarServico(this.solicitacao!) },
         ];
+      case EstadoSolicitacao.arrumada:
+        return [
+          { textoBotao: 'Pagar serviço', acao: () => this.pagarServico(this.solicitacao!) },
+        ];
       case EstadoSolicitacao.paga:
         return [];
       default:
@@ -154,7 +160,42 @@ export class ManterSolicitacaoComponent implements OnInit {
 
   aprovarOrcamento() {
     if (this.solicitacao) {
-      this.solicitacao.estadoAtual = 'aprovada' as EstadoSolicitacao;
+      this.progressBarService.show();
+      this.solicitacaoService.aprovar(this.solicitacao.id).subscribe({
+        next: (response) => {
+          this.solicitacao = response;
+          const valorFormatadoBr = this.currencyPipe.transform(
+            this.solicitacao.orcamento?.valorOrcamento,
+            'BRL',
+            'symbol',
+            '1.2-2'
+          );
+          this.progressBarService.hide();
+          this.modalService.open(AlertModalComponent, {
+            title: "Sucesso",
+            body: `<p>Serviço aprovado no valor ${valorFormatadoBr}</p>`,
+            onClose: () => {
+              this.router.navigate(['/inicio/clientes']);
+            },
+          });
+          this.atualizaFase();
+        }, error: (response) => {
+          this.progressBarService.hide();
+          let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
+          
+          if(response.error?.message)
+            message = response.error?.message;
+          
+          this.modalService.open(ErrorModalComponent, {
+            title: "Erro ao aprovar serviço",
+            body: `<p>${message}</p>`,
+            onClose: () => {
+              this.router.navigate(['/inicio/clientes']);
+            },
+          });
+        }
+      });
+      /*this.solicitacao.estadoAtual = 'aprovada' as EstadoSolicitacao;
       const valorFormatadoBr = this.currencyPipe.transform(
         this.solicitacao.orcamento?.valorOrcamento,
         'BRL',
@@ -162,7 +203,7 @@ export class ManterSolicitacaoComponent implements OnInit {
         '1.2-2'
       );
       this.mensagemModalOrcamentoAprovado = `Serviço aprovado no valor ${valorFormatadoBr}`;
-      this.isModalOrcamentoAprovadoOpen = true;
+      this.isModalOrcamentoAprovadoOpen = true;*/
     }
   }
 
@@ -175,10 +216,34 @@ export class ManterSolicitacaoComponent implements OnInit {
   }
 
   handleRejeicao(justificativaRejeicao: string) {
+    this.progressBarService.show();
     if (this.solicitacao) {
-      this.solicitacao.estadoAtual = 'rejeitada' as EstadoSolicitacao;
-      if(this.solicitacao.orcamento)
-        this.solicitacao.orcamento.justificativaRejeicao = justificativaRejeicao;
+      this.solicitacao.justificativaRejeicao = justificativaRejeicao;
+      this.solicitacaoService.rejeitar(this.solicitacao).subscribe({
+        next: (response) => {
+          this.solicitacao = response;
+          this.progressBarService.hide();
+          this.modalService.open(AlertModalComponent, {
+            title: "Sucesso",
+            body: `<p>Serviço rejeitado com sucesso</p>`,
+            onClose: () => {
+              this.router.navigate(['/inicio/clientes']);
+            },
+          });
+          this.atualizaFase();
+        }, error: (response) => {
+          this.progressBarService.hide();
+          let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
+          
+          if(response.error?.message)
+            message = response.error?.message;
+          
+          this.modalService.open(ErrorModalComponent, {
+            title: "Erro ao rejeitar serviço",
+            body: `<p>${message}</p>`,
+          });
+        }
+      });
     }
   }
 
@@ -193,13 +258,32 @@ export class ManterSolicitacaoComponent implements OnInit {
 
   handlePagamento() {
     if (this.solicitacao) {
-      this.solicitacao.estadoAtual = 'paga' as EstadoSolicitacao;
-      const novaMovimentacao: Movimentacao = {
-        dtHrMovimentacao: new Date(),
-        estadoMovimentacao: EstadoSolicitacao.paga,
-        autorMovimentacao: this.getUsuario(),
-      };
-      this.solicitacao.historicoMovimentacao?.push(novaMovimentacao);
+      this.progressBarService.show();
+      this.solicitacaoService.pagar(this.solicitacao.id).subscribe({
+        next: (response) => {
+          this.solicitacao = response;
+          this.progressBarService.hide();
+          this.modalService.open(AlertModalComponent, {
+            title: "Sucesso",
+            body: `<p>Serviço pago com sucesso</p>`,
+            onClose: () => {
+              this.router.navigate(['/inicio/clientes']);
+            },
+          });
+          this.atualizaFase();
+        }, error: (response) => {
+          this.progressBarService.hide();
+          let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
+          
+          if(response.error?.message)
+            message = response.error?.message;
+          
+          this.modalService.open(ErrorModalComponent, {
+            title: "Erro ao pagar serviço",
+            body: `<p>${message}</p>`,
+          });
+        }
+      });
     }
   }
 
@@ -211,7 +295,29 @@ export class ManterSolicitacaoComponent implements OnInit {
 
   resgatarOrcamento() {
     if (this.solicitacao) {
-      this.solicitacao.estadoAtual = 'orçada' as EstadoSolicitacao;
+      this.solicitacaoService.resgatar(this.solicitacao.id).subscribe({
+        next: (response) => {
+          this.solicitacao = response;
+          this.progressBarService.hide();
+          this.modalService.open(AlertModalComponent, {
+            title: "Sucesso",
+            body: `<p>Serviço resgatado com sucesso</p>`,
+            
+          });
+          this.atualizaFase();
+        }, error: (response) => {
+          this.progressBarService.hide();
+          let message = 'Ocorreu um erro ao processar a requisi&ccedil;&atilde;o.';
+          
+          if(response.error?.message)
+            message = response.error?.message;
+          
+          this.modalService.open(ErrorModalComponent, {
+            title: "Erro ao resgatar serviço",
+            body: `<p>${message}</p>`,
+          });
+        }
+      });
     }
   }
 

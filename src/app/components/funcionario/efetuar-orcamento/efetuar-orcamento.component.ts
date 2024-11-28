@@ -57,12 +57,15 @@ export class EfetuarOrcamentoComponent implements OnInit {
 
   ngOnInit(): void {
     let aux = this.route.snapshot.paramMap.get('idSolicitacao');
-    if(aux)
-      this.buscarSolicitacao(aux)
+    if(aux) {
+      const id = parseInt(aux);
+      this.buscarSolicitacao(id)
+    }
       //this.getOrcamento(this.id);
   }
 
-  buscarSolicitacao (idSolicitacaoFromRoute:string) {
+  buscarSolicitacao (idSolicitacaoFromRoute:number) {
+    this.progressBarService.show();
     this.solicitacaoService.findById(idSolicitacaoFromRoute).subscribe({
       next: (response) => {
         this.progressBarService.hide();
@@ -75,10 +78,10 @@ export class EfetuarOrcamentoComponent implements OnInit {
           message = response.error?.message;
         
         this.modalService.open(ErrorModalComponent, {
-          title: "Erro ao buscar categoria",
+          title: "Erro ao buscar solicitação",
           body: `<p>${message}</p>`,
           onClose: () => {
-            this.router.navigate(['/inicio/clientes']);
+            this.router.navigate(['/inicio/funcionarios']);
           },
         });
       }
@@ -113,6 +116,7 @@ export class EfetuarOrcamentoComponent implements OnInit {
         valorOrcamento: this.valorOrcamento
       },
     };
+    this.progressBarService.show();
     this.solicitacaoService.efeturarOrcamento(data).subscribe({
       next: (response) => {
         this.progressBarService.hide();
@@ -135,6 +139,6 @@ export class EfetuarOrcamentoComponent implements OnInit {
           body: `<p>${message}</p>`,
         });
       }
-    });;
+    });
   }
 }

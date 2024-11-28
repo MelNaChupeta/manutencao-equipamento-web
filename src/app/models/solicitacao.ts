@@ -1,4 +1,4 @@
-import { Categoria, Client } from ".";
+import { Categoria, Client, Funcionario } from ".";
 import { Orcamento } from "../solicitacoes";
 import { EstadoSolicitacao } from "./estadoSolicitacao";
 import { Movimentacao } from "./movimentacao";
@@ -9,8 +9,11 @@ export class Solicitacao {
     descricaoEquipamento?: string;
     categoria?: Categoria;
     cliente?: Client;
+    funcionario?:Funcionario;
     dtHrCriacao?: Date;
     descricaoProblema?: string;
+    descricaoManutencao?:string;
+    orientacaoCliente?:string;
     estadoAtual?: EstadoSolicitacao;
     valorOrcamento?:number
     justificativaRejeicao?:string;

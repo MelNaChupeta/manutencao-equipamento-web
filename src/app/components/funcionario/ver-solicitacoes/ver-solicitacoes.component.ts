@@ -4,6 +4,11 @@ import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FuncionarioService } from '../../../services/funcionario.service';
 import { BreadcrumbComponent } from '../../breadcrumb/breadcrumb.component';
+import { EstadoSolicitacao } from '../../../models';
+import { ModalService } from '../../../services/modal.service';
+import { ProgressService } from '../../../services/progress.service';
+import { SolicitacaoService } from '../../../services/solicitacao.service';
+import { ErrorModalComponent } from '../../common/modal/error-modal/error-modal.component';
 
 @Component({
   selector: 'app-ver-solicitacoes',
@@ -15,7 +20,10 @@ import { BreadcrumbComponent } from '../../breadcrumb/breadcrumb.component';
 export class VerSolicitacoesComponent implements OnInit {
   constructor(
     private router: Router,
-    private funcionarioService: FuncionarioService
+    private funcionarioService: FuncionarioService,
+    private solicitacaoService: SolicitacaoService,
+    private modalService: ModalService,
+    private progressBarService :ProgressService
   ) {}
 
   paths = [
@@ -52,20 +60,7 @@ export class VerSolicitacoesComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.solicitacoes = this.listarTodasSolicitacoes();
-
-    if (this.solicitacoes.length) {
-      this.solicitacoes.sort((a, b) => {
-        const dateA = new Date(a.dtHrCriacao).getTime();
-        const dateB = new Date(b.dtHrCriacao).getTime();
-        return dateA - dateB;
-      });
-      this.filteredSolicitacoes = JSON.parse(JSON.stringify(this.solicitacoes));
-
-      this.calendarInicio =
-        this.solicitacoes[0].dtHrCriacao.split('T')[0] || '2024-01-01';
-      this.calendarFim = this.todayStr;
-    }
+    this.applyDateFilter();
   }
 
   listarTodasSolicitacoes() {
@@ -85,26 +80,41 @@ export class VerSolicitacoesComponent implements OnInit {
   }
 
   applyDateFilter() {
-    let start = new Date();
-    let end = new Date();
-
+    let params:any = {};
     if (this.filterType === 'hoje') {
-      this.calendarInicio = this.todayStr;
-      this.calendarFim = this.todayStr;
+      params.hoje = true;
     } else if (this.filterType === 'todos') {
-      this.calendarInicio =
+      /*this.calendarInicio =
         this.solicitacoes[0].dtHrCriacao.split('T')[0] || '2024-01-01';
-      this.calendarFim = this.todayStr;
+      this.calendarFim = this.todayStr;*/
+      params.todas = true;
+    }else{
+      params.dataAberturaInicial = this.calendarInicio
+      params.dataAberturaFinal = this.calendarFim
     }
 
-    start = new Date(`${this.calendarInicio}T00:00:00`);
-    end = new Date(`${this.calendarFim}T23:59:59`);
 
-    this.filteredSolicitacoes = JSON.parse(JSON.stringify(this.solicitacoes));
+    /*this.filteredSolicitacoes = JSON.parse(JSON.stringify(this.solicitacoes));
 
     this.filteredSolicitacoes = this.filteredSolicitacoes.filter((item) => {
       const data = new Date(item.dtHrCriacao);
       return data <= end && data >= start;
+    });*/
+
+    this.solicitacaoService.buscarPorFiltros(params).subscribe({
+      next: (response) => {
+          this.progressBarService.hide();
+          this.filteredSolicitacoes = response;
+      },
+      error: (response) => {
+        let message = response.error?.message ? response.error?.message : "Erro ao buscar s"
+        this.progressBarService.hide();
+        this.modalService.open(ErrorModalComponent, {
+          title:"Atenção",
+          body:`<p>${message}</p>`
+        });  
+      }
     });
+    
   }
 }

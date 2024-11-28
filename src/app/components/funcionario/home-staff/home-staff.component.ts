@@ -7,6 +7,7 @@ import { ModalService } from '../../../services/modal.service';
 import { ProgressService } from '../../../services/progress.service';
 import { SolicitacaoService } from '../../../services/solicitacao.service';
 import { ErrorModalComponent } from '../../common/modal/error-modal/error-modal.component';
+import { EstadoSolicitacao } from '../../../models';
 
 
 export interface Solicitacao {
@@ -55,7 +56,7 @@ export class HomeStaffComponent implements OnInit {
   // }
 
   buscarSolicitacoes() {
-    this.solicitacaoService.buscarTodas().subscribe({
+    this.solicitacaoService.buscarPorFiltros({estadoAtual:EstadoSolicitacao.aberta}).subscribe({
       next: (response) => {
           this.progressBarService.hide();
           this.solicitacoes = response;
@@ -65,7 +66,7 @@ export class HomeStaffComponent implements OnInit {
         this.progressBarService.hide();
         this.modalService.open(ErrorModalComponent, {
           title:"Atenção",
-          body:""
+          body:`<p>${message}</p>`
         });  
       }
     });

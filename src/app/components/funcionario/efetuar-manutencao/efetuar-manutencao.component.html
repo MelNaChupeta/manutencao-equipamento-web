@@ -12,7 +12,7 @@
     <div>
       <h3 class="font-bold dark:text-white">Produto:</h3>
       <div
-        class="w-full max-w-2xl bg-gray-400/5 px-6 py-4 border rounded-md dark:border-white/5"
+        class="w-full bg-gray-400/5 px-6 py-4 border rounded-md dark:border-white/5"
       >
         <table class="table-auto w-full dark:text-white">
           <tbody>
@@ -21,10 +21,7 @@
                 Data da solicitação:
               </td>
               <td class="align-top text-left">
-                {{
-                  maintenanceData.product.dtHrCriacao
-                    | date : "dd/MM/yyyy 'às' HH:mm:ss"
-                }}
+                {{ solicitacao.dtHrCriacao | date : "dd/MM/yyyy 'às' HH:mm:ss" }}
               </td>
             </tr>
             <tr>
@@ -34,7 +31,7 @@
                 Estado:
               </td>
               <td class="align-top text-left pt-4">
-                {{ maintenanceData.product.status }}
+                {{ solicitacao.estadoAtual}}
               </td>
             </tr>
             <tr>
@@ -44,7 +41,7 @@
                 Categoria:
               </td>
               <td class="align-top text-left pt-4">
-                {{ maintenanceData.product.categoria }}
+                {{ solicitacao.categoria?.nome }}
               </td>
             </tr>
             <tr>
@@ -54,7 +51,7 @@
                 Descrição do produto:
               </td>
               <td class="align-top text-left pt-4">
-                {{ maintenanceData.product.descricaoEquipamento }}
+                {{ solicitacao.descricaoEquipamento }}
               </td>
             </tr>
             <tr>
@@ -64,7 +61,7 @@
                 Descrição do defeito:
               </td>
               <td class="align-top text-left pt-4">
-                {{ maintenanceData.product.defectDescription }}
+                {{ solicitacao.descricaoProblema }}
               </td>
             </tr>
           </tbody>
@@ -76,7 +73,7 @@
     <div>
       <h3 class="font-bold dark:text-white">Cliente:</h3>
       <div
-        class="w-full max-w-2xl bg-gray-400/5 px-6 py-4 border rounded-md dark:border-white/5"
+        class="w-full bg-gray-400/5 px-6 py-4 border rounded-md dark:border-white/5"
       >
         <table class="table-auto w-full dark:text-white">
           <tbody>
@@ -84,9 +81,7 @@
               <td class="font-bold pr-4 whitespace-nowrap align-top text-right">
                 Nome:
               </td>
-              <td class="align-top text-left">
-                {{ maintenanceData.client.name }}
-              </td>
+              <td class="align-top text-left">{{ solicitacao.cliente?.nome }}</td>
             </tr>
             <tr>
               <td
@@ -94,9 +89,7 @@
               >
                 Email:
               </td>
-              <td class="align-top text-left pt-4">
-                {{ maintenanceData.client.email }}
-              </td>
+              <td class="align-top text-left pt-4">{{ solicitacao.cliente?.email }}</td>
             </tr>
             <tr>
               <td
@@ -105,7 +98,7 @@
                 Telefone:
               </td>
               <td class="align-top text-left pt-4">
-                {{ maintenanceData.client.phoneNumber }}
+                {{ solicitacao.cliente?.celular }}
               </td>
             </tr>
             <tr>
@@ -114,9 +107,7 @@
               >
                 CPF:
               </td>
-              <td class="align-top text-left pt-4">
-                {{ maintenanceData.client.cpf }}
-              </td>
+              <td class="align-top text-left pt-4">{{ solicitacao.cliente?.cpf }}</td>
             </tr>
             <tr>
               <td
@@ -125,37 +116,7 @@
                 Endereço:
               </td>
               <td class="align-top text-left pt-4">
-                {{ maintenanceData.client.endereco }}
-              </td>
-            </tr>
-            <tr>
-              <td
-                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
-              >
-                Bairro:
-              </td>
-              <td class="align-top text-left pt-4">
-                {{ maintenanceData.client.bairro }}
-              </td>
-            </tr>
-            <tr>
-              <td
-                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
-              >
-                Cidade:
-              </td>
-              <td class="align-top text-left pt-4">
-                {{ maintenanceData.client.cidade }}
-              </td>
-            </tr>
-            <tr>
-              <td
-                class="font-bold pr-4 pt-4 whitespace-nowrap align-top text-right"
-              >
-                Estado:
-              </td>
-              <td class="align-top text-left pt-4">
-                {{ maintenanceData.client.uf }}
+                {{ solicitacao.cliente?.endereco }}
               </td>
             </tr>
             <tr>
@@ -164,9 +125,7 @@
               >
                 CEP:
               </td>
-              <td class="align-top text-left pt-4">
-                {{ maintenanceData.client.cep }}
-              </td>
+              <td class="align-top text-left pt-4">{{ solicitacao.cliente?.cep }}</td>
             </tr>
           </tbody>
         </table>
@@ -180,7 +139,7 @@
         class="flex items-center w-full max-w-2xl bg-gray-400/5 px-6 py-4 gap-4 border rounded-md dark:border-white/5"
       >
         <h4 class="font-bold dark:text-white">
-          {{ maintenanceData.preco | currency : "BRL" : "symbol" : "1.2-2" }}
+          {{ solicitacao.orcamento?.valorOrcamento | currency : "BRL" : "symbol" : "1.2-2" }}
         </h4>
       </div>
     </div>
@@ -244,7 +203,6 @@
           <div class="flex flex-row justify-end">
             <button
               class="pill-purple mt-4"
-              [routerLink]="['/solicitacoes/listar']"
               (click)="sendMaintenance()"
             >
               Enviar
@@ -278,8 +236,7 @@
 
           <div class="flex flex-row justify-end">
             <button
-              class="pill-purple mt-4"
-              [routerLink]="['/solicitacoes/listar']"
+              class="pill-purple mt-4"              
               [disabled]="!funcionarioEscolhido"
               [ngClass]="{ 'pill-disabled mt-4': !funcionarioEscolhido }"
               (click)="redirect()"
