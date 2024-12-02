@@ -6,6 +6,11 @@ import { Categoria } from '../../../models';
 import { TabelaComponent } from '../../common/estilo-tabela/estilo-tabela.component';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Receita } from '../../../models/receita';
+import { CategoriaService, ReceitaService } from '../../../services';
+import { ModalService } from '../../../services/modal.service';
+import { ProgressService } from '../../../services/progress.service';
+import { ErrorModalComponent } from '../../common/modal/error-modal/error-modal.component';
 
 @Component({
   selector: 'app-relatorio-receita',
@@ -23,63 +28,30 @@ import { FormsModule } from '@angular/forms';
 export class RelatorioReceitaComponent implements OnInit {
   faLoading:IconDefinition = faCircleNotch;
   faDownload:IconDefinition  = faDownload;
-
-  constructor(private currencyPipe: CurrencyPipe){
-
-  }
-  receitas:{data:string,valor:string | null}[] = [];
-  receitasFiltered = this.receitas;
-  ngOnInit(): void {
-    this.receitas = [
-      { data: '01/08/2024', valor: this.formatCurrency(1000.00) },
-      { data: '05/08/2024', valor: this.formatCurrency(1500.00) },
-      { data: '10/08/2024', valor: this.formatCurrency(2000.00) },
-      { data: '15/08/2024', valor: this.formatCurrency(2500.00) },
-      { data: '20/08/2024', valor: this.formatCurrency(3000.00) },
-      { data: '25/08/2024', valor: this.formatCurrency(3500.00) },
-      { data: '30/08/2024', valor: this.formatCurrency(4000.00) },
-      { data: '04/09/2024', valor: this.formatCurrency(4500.00) },
-      { data: '09/09/2024', valor: this.formatCurrency(5000.00) },
-      { data: '14/09/2024', valor: this.formatCurrency(5500.00) },
-      { data: '19/09/2024', valor: this.formatCurrency(6000.00) },
-      { data: '24/09/2024', valor: this.formatCurrency(6500.00) },
-      { data: '01/10/2024', valor: this.formatCurrency(7000.00) },
-      { data: '06/10/2024', valor: this.formatCurrency(7500.00) },
-      { data: '11/10/2024', valor: this.formatCurrency(8000.00) },
-      { data: '16/10/2024', valor: this.formatCurrency(8500.00) },
-      { data: '21/10/2024', valor: this.formatCurrency(9000.00) },
-      { data: '26/10/2024', valor: this.formatCurrency(9500.00)},
-      { data: '30/10/2024', valor: this.formatCurrency(10000.00) }
-    ];
-    this.receitasFiltered = this.receitas;
-
-  }
-
-  categorias:Categoria[] = [
-    { nome: 'notebook', id: 10 },
-    { nome: 'desktop', id: 9  },
-    { nome: 'celular', id: 8 },
-    { nome: 'tablet', id: 7 },
-    { nome: 'periferico', id: 6 },
-    { nome: 'camera', id: 5 },
-    { nome: 'televisao', id: 4 },
-    { nome: 'drone', id : 3},
-    { nome: 'videogameConsole', id:2},
-    { nome: 'videogameAcessorio', id : 1 },
-  ];
-
-  
-
+  receitas:Receita[] = [];
+  today: Date = new Date();
+  todayStr = this.today.toISOString().split('T')[0];
+  dataInicial!:string;
+  dataFinal!:string;
   colunas:any[] = [
-    { titulo: 'DATA', campo: 'data' , type: "date" },
+    { titulo: 'DATA', campo: 'periodo' , type: "date" },
     { titulo: 'VALOR', campo: 'valor' , type: "currency" },
   ];
 
+  constructor(
+    private currencyPipe: CurrencyPipe ,
+    private categoriaService: CategoriaService,
+    private receitaService: ReceitaService,
+    private progressBarService: ProgressService,
+    private modalService:ModalService
+  ){
 
-  today: Date = new Date();
-  todayStr = this.today.toISOString().split('T')[0];
-  dataInicial = '';
-  dataFinal = '';
+  }
+  ngOnInit(): void {
+    this.receitas = [];
+    this.listaReceitas();
+  }
+
 
   generateReceitasPDF() {
     const doc = new jsPDF();
@@ -95,9 +67,9 @@ export class RelatorioReceitaComponent implements OnInit {
     doc.text('Valor', 60, startY);
     startY += 10;
 
-    this.receitasFiltered.forEach((receita, index) => {
-      doc.text(receita.data, 20, startY + (index * 10));
-      doc.text(receita.valor || '', 60, startY + (index * 10));
+    this.receitas.forEach((receita, index) => {
+      doc.text(receita.periodo ?? "", 20, startY + (index * 10));
+      doc.text(receita.valor ? receita.valor.toString() : "", 60, startY + (index * 10));
     });
 
     doc.save(`relatorio-receitas-${this.todayStr}.pdf`);
@@ -105,18 +77,25 @@ export class RelatorioReceitaComponent implements OnInit {
 
 
   applyDateFilter() {
-    
-    if(this.dataFinal && this.dataInicial) {
-      const start = new Date(`${this.dataInicial}T00:00:00`);
-      const end = new Date(`${this.dataFinal}T23:59:59`);
-      this.receitasFiltered  = this.receitas?.filter((item) => {
-        const data = this.parseDate(item.data);
-        return data <= end && data >= start;
-      });
-    }else{
-      this.receitasFiltered = this.receitas;
-    }
+    this.listaReceitas();
   }
+
+  listaReceitas() {
+    this.progressBarService.show();
+    this.receitaService.findByPeriodo(this.dataInicial , this.dataFinal).subscribe({
+     next: (response) => {
+         this.progressBarService.hide();
+         this.receitas = response;
+     },
+     error: (response) => {
+       this.progressBarService.hide();
+       this.modalService.open(ErrorModalComponent, {
+         title:"Atenção",
+         body:"Erro ao buscar receitas"
+       });  
+     }
+   });
+ }
 
   parseDate(dateString:string) {
     const [day, month, year] = dateString.split('/').map(Number);

@@ -2,15 +2,15 @@
     <div class="flex items-center justify-between">
         <p tabindex="0"
             class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal dark:text-white">
-            Gerar Relatório de Receita por Categoria </p>
+           Relatório de Receita por Categoria </p>
     </div>
 
     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 px-12 py-8 rounded-2xl">
         <div class="input-container-sm">
             <label class="label-form">Categorias</label>
-            <select [(ngModel)]="categoriaSelecionada" (change)="applyCategoriaFilter()" class="input-form">
+            <select [(ngModel)]="categoriaSelecionada" (change)="applyCategoriaFilter()" name="idCategoria" class="input-form">
               <option value="">Todas</option>
-              <option *ngFor="let categoria of categorias" [value]="categoria.nome">
+              <option *ngFor="let categoria of categorias" [value]="categoria.id">
                 {{ categoria.nome }}
               </option>
             </select>
@@ -23,5 +23,5 @@
         </div>
     </div>
     
-    <app-tabela [dados]="receitasFiltered" [colunas]="colunas"></app-tabela>
+    <app-tabela [dados]="receitas" [colunas]="colunas"></app-tabela>
 </div>
