@@ -50,11 +50,12 @@ export class VerSolicitacoesComponent implements OnInit {
 
   estadoCores: { [key: string]: string } = {
     aberta: 'bg-gray-500',
-    orcada: 'bg-amber-900',
+    orçada: 'bg-amber-900',
     rejeitada: 'bg-red-600',
     aprovada: 'bg-yellow-300',
     redirecionada: 'bg-purple-500',
     aguardandoPagamento: 'bg-blue-500',
+    arrumada: 'bg-blue-500',
     paga: 'bg-orange-400',
     finalizada: 'bg-green-500',
   };

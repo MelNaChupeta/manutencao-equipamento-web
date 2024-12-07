@@ -18,16 +18,3 @@ export class Interceptor implements HttpInterceptor {
         return next.handle(request);
     }
 }
-/*@Injectable()
-export class Interceptor implements HttpInterceptorFn  {
-  constructor(private tokenService: TokenService){}
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
-    const token = this.tokenService.returnToken();
-    const authReq = req.clone({
-      headers: req.headers.set('Authorization', 'Bearer ' + token)
-    });
-
-    return next.handle(authReq);
-  }
-}*/

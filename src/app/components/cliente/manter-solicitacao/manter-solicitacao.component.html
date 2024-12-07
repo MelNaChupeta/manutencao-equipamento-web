@@ -29,7 +29,7 @@
         'etiqueta-vermelha': solicitacao?.estadoAtual === 'rejeitada',
         'etiqueta-amarela': solicitacao?.estadoAtual === 'aprovada',
         'etiqueta-roxa': solicitacao?.estadoAtual === 'redirecionada',
-        'etiqueta-azul': solicitacao?.estadoAtual === 'aguardando pagamento',
+        'etiqueta-azul': solicitacao?.estadoAtual === 'arrumada',
         'etiqueta-laranja': solicitacao?.estadoAtual === 'paga',
         'etiqueta-verde': solicitacao?.estadoAtual === 'finalizada',
       }"
@@ -117,7 +117,7 @@
                   'bg-violet-400':
                     movimentacao.estadoMovimentacao === 'redirecionada',
                   'bg-cyan-400':
-                    movimentacao.estadoMovimentacao === 'aguardando pagamento',
+                    movimentacao.estadoMovimentacao === 'arrumada',
                   'bg-orange-400': movimentacao.estadoMovimentacao === 'paga',
                   'bg-lime-400':
                     movimentacao.estadoMovimentacao === 'finalizada'

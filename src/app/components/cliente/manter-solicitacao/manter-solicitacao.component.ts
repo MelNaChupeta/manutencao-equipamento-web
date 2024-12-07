@@ -125,7 +125,7 @@ export class ManterSolicitacaoComponent implements OnInit {
         ];
       case EstadoSolicitacao.aprovada:
         return [];
-      case EstadoSolicitacao.aguardandoPagamento:
+      case EstadoSolicitacao.arrumada:
         return [
           { textoBotao: 'Pagar serviço', acao: () => this.pagarServico(this.solicitacao!) },
         ];
