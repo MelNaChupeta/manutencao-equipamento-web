@@ -83,7 +83,7 @@
 
                 </div>
 
-                <div class="input-container-md">
+                <div class="input-container-sm">
                     <label class="label-form relative dark:text-white">CEP
                         <input 
                             type="text" 
@@ -120,6 +120,24 @@
 
                 </div>
 
+                <div class="input-container-xs">
+                    <label class="label-form dark:text-white">Número
+                        <input 
+                            type="text" 
+                            class="input-form"
+                            placeholder="Número"
+                            [(ngModel)]="cliente.numero"
+                            formControlName="numero"
+                            [ngClass]="{'input-error': numero?.invalid && numero?.touched,}" 
+                        />
+                    </label>
+                    
+                    <span *ngIf="numero?.invalid && numero?.touched" class="error-message">
+                        Número inválido!
+                    </span>
+
+                </div>
+
                 <div class="input-container-sm">
                     <label class="label-form dark:text-white">Bairro
                         <input 
@@ -138,7 +156,7 @@
 
                 </div>
 
-                <div class="input-container-sm">
+                <div class="input-container-md">
                     <label class="label-form dark:text-white">Cidade
                         <input 
                             type="text" 
@@ -156,7 +174,7 @@
 
                 </div>
 
-                <div class="input-container-sm">
+                <div class="input-container-xs">
                     <label class="label-form dark:text-white">Estado
                         <input 
                             type="text" 
