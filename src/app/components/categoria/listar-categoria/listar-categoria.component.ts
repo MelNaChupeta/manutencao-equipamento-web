@@ -38,7 +38,6 @@ export class ListarCategoriaComponent  implements OnInit{
   categorias:Categoria[] = [];
 
   colunas:any[] = [
-    { titulo: 'ID', campo: 'id' },
     { titulo: 'NOME', campo: 'nome' },
   ];
 

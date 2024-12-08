@@ -44,9 +44,9 @@ export class ManterCategoriaComponent {
     private progressBarService: ProgressService,
     private route: ActivatedRoute){
     this.categoriaForm = this.fb.group({
-        nome: ['', [Validators.required]],
-        id: [null]
+        nome: ['', [Validators.required]]
     });
+    
     this.route.paramMap.subscribe(params => {
         let idCategoria = params.get('idCategoria');
         if(idCategoria){
@@ -68,14 +68,8 @@ export class ManterCategoriaComponent {
       return;
     }
     this.progressBarService.show();
-    this.isValidating = true;
     this.isLoading = true;
-
-    const categoria:Categoria = this.categoriaForm.value;
-    if(this.idCategoria) {
-      categoria.id = this.idCategoria;
-      this.editar(categoria);
-    }
+    this.editar(this.categoria);
   }
 
   editar(categoria:Categoria) {
