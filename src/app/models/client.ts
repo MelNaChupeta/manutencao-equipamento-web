@@ -2,6 +2,7 @@ import { User } from "../models/user";
 export class Client extends User {
   cep?:string;
   endereco?:string;
+  numero?: any;
   cidade?:string;
   estado?:string
   bairro?:string;

@@ -51,6 +51,7 @@ export class SignupComponent implements OnInit {
       celular: ['', [Validators.required]],
       cep: ['', [Validators.required]],
       endereco: ['', [Validators.required]],
+      numero: ['', [Validators.required]],
       bairro: ['', [Validators.required]],
       cidade: ['', [Validators.required]],
       estado: ['', [Validators.required]]
@@ -102,6 +103,10 @@ export class SignupComponent implements OnInit {
 
   get endereco() {
     return this.signupForm.get('endereco');
+  }
+
+  get numero() {
+    return this.signupForm.get('numero');
   }
 
   get bairro() {
