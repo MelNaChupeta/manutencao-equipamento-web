@@ -40,6 +40,11 @@ export class EditarFuncionarioComponent implements OnInit {
     this.funcionarioService.buscarPorId(id).subscribe({
       next: (response) => {
         this.progressBarService.hide();
+        let data   = response.dtNascimento?.split("/"); 
+        if(data?.length) {
+          let dtNascimento =  `${data[2]}-${data[1]}-${data[0]}`;
+          response.dtNascimento = dtNascimento;
+        }
         this.funcionario = response;
       }, error: (response) => {
         this.progressBarService.hide();
